@@ -97,3 +97,42 @@ east.sort(key=lambda x: x[1], reverse = True) #sortowanie po drugim elemencie
 west.sort(key=lambda x: x[1], reverse = True)
 print(east)
 print(west)
+
+print('PLAYOFFS:')   #SCHEMAT
+rnd1_east = east[:8]
+rnd1_west = west[:8]
+print(rnd1_east)
+print(rnd1_west)
+
+#rnd2_east = [[],[],[],[]]
+#rnd2_west = [[],[],[],[]]
+#win = [0,0,0,0,0,0,0,0]
+#while win[0] < 4 and win[7] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
+#    prob = rnd1_east[0][1]/(rnd1_east[0][1]+rnd1_east[7][1])
+#    result = rd.random()
+#    if result <= prob:
+#        win[0]+=1
+#    else:
+#        win[7]+=1
+#if win[0] == 4:
+#    rnd2_east[0]=rnd1_east[0]
+#else:
+#    rnd2_east[0]=rnd1_east[7]
+#    
+#rnd3_east = [[],[]]
+#rnd3_west = [[],[]]
+#win = [0,0,0,0]
+#while win[0] < 4 and win[1] < 4: 
+#    prob = rnd2_east[0][1]/(rnd2_east[0][1]+rnd2_east[1][1])
+#    result = rd.random()
+#    if result <= prob:
+#        win[0]+=1
+#    else:
+#        win[1]+=1
+#if win[0] == 4:
+#    rnd3_east[0]=rnd2_east[0]
+#else:
+#    rnd2_east[0]=rnd1_east[1]    
+#    
+#final=[[],[]]
+#win = [0,0]
