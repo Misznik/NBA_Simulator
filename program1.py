@@ -7,6 +7,7 @@ Created on Fri Oct 12 12:39:12 2018
 
 import pandas as pd
 import random as rd
+import math
 
 dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_simple')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
@@ -54,13 +55,24 @@ wyniki = [['ATL',0],
     #print(dane_10_lat[i-1][0])
     #print(wyniki[i-1][0])  #taka sama strunktura, moze slownik?
     #print(dane_10_lat[i-1][0])
-     
-for i in range(1,len(schedule_14_15[0])): #rozpoczecie petli od drugiego elementu, pomiciecie nazwy
-    for number in range(0,schedule_14_15[0][i]):
-        prob = dane_10_lat[0][1]/(dane_10_lat[0][1]+dane_10_lat[i-1][1])
-        result = rd.random()
-        if result <= prob:
-            wyniki[0][1]+=1
-        else:
-            wyniki[i-1][1]+=1 #przez roznice w struktureze trzeba inaczej indeksowac
+ilosc_gier=0
+N=100
+
+for n in range(0,N):
+    for j in range(0,len(schedule_14_15[0])-1):  
+        for i in range(j+1,len(schedule_14_15[0])): #rozpoczecie petli od drugiego elementu, pomiciecie nazwy
+            #ilosc_gier+=schedule_14_15[j][i]
+            for number in range(0,schedule_14_15[j][i]):
+                prob = dane_10_lat[j][1]/(dane_10_lat[j][1]+dane_10_lat[i-1][1])
+                result = rd.random()
+                if result <= prob:
+                    wyniki[j][1]+=1
+                else:
+                    wyniki[i-1][1]+=1 #przez roznice w struktureze trzeba inaczej indeksowac
+
+for n in range(0,len(wyniki)):
+    wyniki[n][1]=round(wyniki[n][1]/N)
+    ilosc_gier+=wyniki[n][1]
     
+print(wyniki)
+print(ilosc_gier)
