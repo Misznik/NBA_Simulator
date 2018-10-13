@@ -48,6 +48,9 @@ wyniki = [['ATL',0],
 ['WAS',0],
 ]
 
+west_teams = ['DAL','DEN','GSW','HOU','LAC','MEM','MIN','NOH','SEA','PHO','POR','SAC','SAS','UTA']
+east_teams = ['BOS','NJN','CHI','CHA','CLE','DET','IND','MIA','MIL','NYK','ORL','PHI','TOR','WAS']
+
 #prob = dane_10_lat[0][1]/(dane_10_lat[0][1]+dane_10_lat[1][1])
 #print(rd.random() >= prob)
 
@@ -58,21 +61,39 @@ wyniki = [['ATL',0],
 ilosc_gier=0
 N=100
 
-for n in range(0,N):
-    for j in range(0,len(schedule_14_15[0])-1):  
-        for i in range(j+1,len(schedule_14_15[0])): #rozpoczecie petli od drugiego elementu, pomiciecie nazwy
-            #ilosc_gier+=schedule_14_15[j][i]
-            for number in range(0,schedule_14_15[j][i]):
-                prob = dane_10_lat[j][1]/(dane_10_lat[j][1]+dane_10_lat[i-1][1])
-                result = rd.random()
-                if result <= prob:
-                    wyniki[j][1]+=1
-                else:
-                    wyniki[i-1][1]+=1 #przez roznice w struktureze trzeba inaczej indeksowac
+#for n in range(0,N):
+for j in range(0,len(schedule_14_15[0])-1):  
+    for i in range(j+1,len(schedule_14_15[0])): #rozpoczecie petli od drugiego elementu, pomiciecie nazwy
+        #ilosc_gier+=schedule_14_15[j][i]
+        for number in range(0,schedule_14_15[j][i]):
+            prob = dane_10_lat[j][1]/(dane_10_lat[j][1]+dane_10_lat[i-1][1])
+            result = rd.random()
+            if result <= prob:
+                wyniki[j][1]+=1
+            else:
+                wyniki[i-1][1]+=1 #przez roznice w struktureze trzeba inaczej indeksowac
 
-for n in range(0,len(wyniki)):
-    wyniki[n][1]=round(wyniki[n][1]/N)
-    ilosc_gier+=wyniki[n][1]
-    
-print(wyniki)
-print(ilosc_gier)
+#for n in range(0,len(wyniki)):
+#    wyniki[n][1]=round(wyniki[n][1]/N)
+#    ilosc_gier+=wyniki[n][1]
+
+#posortowane = wyniki
+#for n in range(0,len(posortowane)):
+#    posortowane[n].reverse() 
+#posortowane = sorted(posortowane, reverse = True)
+#print(wyniki)
+#print(ilosc_gier)
+
+east = []
+west = []
+
+for k in range(0,len(wyniki)):
+    if wyniki[k][0] in east_teams:
+        east.append(wyniki[k])
+    else:
+        west.append(wyniki[k])
+ 
+east.sort(key=lambda x: x[1], reverse = True) #sortowanie po drugim elemencie
+west.sort(key=lambda x: x[1], reverse = True)
+print(east)
+print(west)
