@@ -95,44 +95,227 @@ for k in range(0,len(wyniki)):
  
 east.sort(key=lambda x: x[1], reverse = True) #sortowanie po drugim elemencie
 west.sort(key=lambda x: x[1], reverse = True)
-print(east)
-print(west)
-
-print('PLAYOFFS:')   #SCHEMAT
+        
 rnd1_east = east[:8]
 rnd1_west = west[:8]
-print(rnd1_east)
-print(rnd1_west)
+##################################   EAST 1st ROUND
+rnd2_east = [[],[],[],[]]
+win = [0,0,0,0,0,0,0,0]
+while win[0] < 4 and win[7] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
+    prob = rnd1_east[0][1]/(rnd1_east[0][1]+rnd1_east[7][1])
+    result = rd.random()
+    if result <= prob:
+        win[0]+=1
+    else:
+        win[7]+=1
+if win[0] == 4:
+    rnd2_east[0]=rnd1_east[0]
+else:
+    rnd2_east[0]=rnd1_east[7]
+    
+while win[3] < 4 and win[4] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
+    prob = rnd1_east[3][1]/(rnd1_east[3][1]+rnd1_east[4][1])
+    result = rd.random()
+    if result <= prob:
+        win[3]+=1
+    else:
+        win[4]+=1
+if win[3] == 4:
+    rnd2_east[1]=rnd1_east[3]
+else:
+    rnd2_east[1]=rnd1_east[4]
+    
+while win[2] < 4 and win[5] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
+    prob = rnd1_east[2][1]/(rnd1_east[2][1]+rnd1_east[5][1])
+    result = rd.random()
+    if result <= prob:
+        win[2]+=1
+    else:
+        win[5]+=1
+if win[2] == 4:
+    rnd2_east[2]=rnd1_east[2]
+else:
+    rnd2_east[2]=rnd1_east[5]
+    
+while win[1] < 4 and win[6] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
+    prob = rnd1_east[1][1]/(rnd1_east[1][1]+rnd1_east[6][1])
+    result = rd.random()
+    if result <= prob:
+        win[1]+=1
+    else:
+        win[6]+=1
+if win[1] == 4:
+    rnd2_east[3]=rnd1_east[1]
+else:
+    rnd2_east[3]=rnd1_east[6]
+    
+##########################################################   WEST 1st ROUND
+rnd2_west = [[],[],[],[]]
+win = [0,0,0,0,0,0,0,0]
+while win[0] < 4 and win[7] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
+    prob = rnd1_west[0][1]/(rnd1_west[0][1]+rnd1_west[7][1])
+    result = rd.random()
+    if result <= prob:
+        win[0]+=1
+    else:
+        win[7]+=1
+if win[0] == 4:
+    rnd2_west[0]=rnd1_west[0]
+else:
+    rnd2_west[0]=rnd1_west[7]
+    
+while win[3] < 4 and win[4] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
+    prob = rnd1_west[3][1]/(rnd1_west[3][1]+rnd1_west[4][1])
+    result = rd.random()
+    if result <= prob:
+        win[3]+=1
+    else:
+        win[4]+=1
+if win[3] == 4:
+    rnd2_west[1]=rnd1_west[3]
+else:
+    rnd2_west[1]=rnd1_west[4]
+    
+while win[2] < 4 and win[5] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
+    prob = rnd1_west[2][1]/(rnd1_west[2][1]+rnd1_west[5][1])
+    result = rd.random()
+    if result <= prob:
+        win[2]+=1
+    else:
+        win[5]+=1
+if win[2] == 4:
+    rnd2_west[2]=rnd1_west[2]
+else:
+    rnd2_west[2]=rnd1_west[5]
+    
+while win[1] < 4 and win[6] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
+    prob = rnd1_west[1][1]/(rnd1_west[1][1]+rnd1_west[6][1])
+    result = rd.random()
+    if result <= prob:
+        win[1]+=1
+    else:
+        win[6]+=1
+if win[1] == 4:
+    rnd2_west[3]=rnd1_west[1]
+else:
+    rnd2_west[3]=rnd1_west[6]
+#############################################################   RND2 EAST     
+rnd3_east = [[],[]]
+win = [0,0,0,0]
+while win[0] < 4 and win[1] < 4: 
+    prob = rnd2_east[0][1]/(rnd2_east[0][1]+rnd2_east[1][1])
+    result = rd.random()
+    if result <= prob:
+        win[0]+=1
+    else:
+        win[1]+=1
+if win[0] == 4:
+    rnd3_east[0]=rnd2_east[0]
+else:
+    rnd3_east[0]=rnd2_east[1]    
+ 
+while win[2] < 4 and win[3] < 4: 
+    prob = rnd2_east[2][1]/(rnd2_east[2][1]+rnd2_east[3][1])
+    result = rd.random()
+    if result <= prob:
+        win[2]+=1
+    else:
+        win[3]+=1
+if win[2] == 4:
+    rnd3_east[1]=rnd2_east[2]
+else:
+    rnd3_east[1]=rnd2_east[3]  
 
-#rnd2_east = [[],[],[],[]]
-#rnd2_west = [[],[],[],[]]
-#win = [0,0,0,0,0,0,0,0]
-#while win[0] < 4 and win[7] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
-#    prob = rnd1_east[0][1]/(rnd1_east[0][1]+rnd1_east[7][1])
-#    result = rd.random()
-#    if result <= prob:
-#        win[0]+=1
-#    else:
-#        win[7]+=1
-#if win[0] == 4:
-#    rnd2_east[0]=rnd1_east[0]
-#else:
-#    rnd2_east[0]=rnd1_east[7]
-#    
-#rnd3_east = [[],[]]
-#rnd3_west = [[],[]]
-#win = [0,0,0,0]
-#while win[0] < 4 and win[1] < 4: 
-#    prob = rnd2_east[0][1]/(rnd2_east[0][1]+rnd2_east[1][1])
-#    result = rd.random()
-#    if result <= prob:
-#        win[0]+=1
-#    else:
-#        win[1]+=1
-#if win[0] == 4:
-#    rnd3_east[0]=rnd2_east[0]
-#else:
-#    rnd2_east[0]=rnd1_east[1]    
-#    
-#final=[[],[]]
-#win = [0,0]
+#############################################################   RND2 WEST     
+rnd3_west = [[],[]]
+win = [0,0,0,0]
+while win[0] < 4 and win[1] < 4: 
+    prob = rnd2_west[0][1]/(rnd2_west[0][1]+rnd2_west[1][1])
+    result = rd.random()
+    if result <= prob:
+        win[0]+=1
+    else:
+        win[1]+=1
+if win[0] == 4:
+    rnd3_west[0]=rnd2_west[0]
+else:
+    rnd3_west[0]=rnd2_west[1]    
+ 
+while win[2] < 4 and win[3] < 4: 
+    prob = rnd2_west[2][1]/(rnd2_west[2][1]+rnd2_west[3][1])
+    result = rd.random()
+    if result <= prob:
+        win[2]+=1
+    else:
+        win[3]+=1
+if win[2] == 4:
+    rnd3_west[1]=rnd2_west[2]
+else:
+    rnd3_west[1]=rnd2_west[3]  
+########################################  CONFERENCE FINALS
+final=[[],[]]
+win = [0,0]
+while win[0] < 4 and win[1] < 4: 
+    prob = rnd3_east[0][1]/(rnd3_east[0][1]+rnd3_east[1][1])
+    result = rd.random()
+    if result <= prob:
+        win[0]+=1
+    else:
+        win[1]+=1
+if win[0] == 4:
+    final[0]=rnd3_east[0]
+else:
+    final[0]=rnd3_east[1]
+    
+win = [0,0]
+while win[0] < 4 and win[1] < 4: 
+    prob = rnd3_west[0][1]/(rnd3_west[0][1]+rnd3_west[1][1])
+    result = rd.random()
+    if result <= prob:
+        win[0]+=1
+    else:
+        win[1]+=1
+if win[0] == 4:
+    final[1]=rnd3_west[0]
+else:
+    final[1]=rnd3_west[1]   
+    
+########################################  FINALS
+champion=[[]]
+win = [0,0]
+while win[0] < 4 and win[1] < 4: 
+    prob = final[0][1]/(final[0][1]+final[1][1])
+    result = rd.random()
+    if result <= prob:
+        win[0]+=1
+    else:
+        win[1]+=1
+if win[0] == 4:
+    champion[0]=final[0]
+else:
+    champion[0]=final[1]
+
+print('Eastern conference:')
+print(east)
+print('Western conference:')
+print(west)
+
+print('PLAYOFFS 1st Round:')   #SCHEMAT
+print('East:')
+print(rnd1_east)
+print('West:')
+print(rnd1_west)
+print('PLAYOFFS 2nd Round:')   
+print('East:')
+print(rnd2_east)
+print('West:')
+print(rnd2_west)
+print('Conference finals:')   
+print('East:')
+print(rnd3_east)
+print('West:')
+print(rnd3_west)
+print('Finals:')
+print(final)
+print('Champion:')
+print(champion)
