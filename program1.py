@@ -14,10 +14,10 @@ dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
-#dane_10_lat[ATL][1]
-schedule_14_15 = schedule_14_15_df.values.tolist()
+schedule_14_15 = schedule_14_15_df.values.tolist() #zamiana dataframe na liste
 
-dict_champs = {'ATL':0,
+#dict_champs = dict(zip(['string'], [0]*len(['string'])]))
+dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'BOS':0,
 'NJN':0,
 'CHI':0,
@@ -47,14 +47,15 @@ dict_champs = {'ATL':0,
 'TOR':0,
 'UTA':0,
 'WAS':0}
-
+                    #listy z konferencjami
 west_teams = ['DAL','DEN','GSW','HOU','LAC','MEM','MIN','NOH','SEA','PHO','POR','SAC','SAS','UTA']
 east_teams = ['BOS','NJN','CHI','CHA','CLE','DET','IND','MIA','MIL','NYK','ORL','PHI','TOR','WAS']
 
-N = 1000
+N = 1000 #Ilosc symulacji
+
 #############################  LOOPING
 for n in range(1,N):
-    wyniki = [['ATL',0],
+    wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
     ['NJN',0],
     ['CHI',0],
@@ -85,15 +86,16 @@ for n in range(1,N):
     ['UTA',0],
     ['WAS',0]]
     
+    #  Symulacja sezonu zasadniczego
     for j in range(0,len(schedule_14_15[0])-1):  
-        for i in range(j+1,len(schedule_14_15[0])): #rozpoczecie petli od drugiego elementu, pomiciecie nazwy
+        for i in range(j+1,len(schedule_14_15[0])): #rozpoczecie petli od drugiego elementu; pomiciecie nazwy
             for number in range(0,schedule_14_15[j][i]):
-                prob = dane_10_lat[j][1]/(dane_10_lat[j][1]+dane_10_lat[i-1][1])
-                result = rd.random()
+                prob = dane_10_lat[j][1]/(dane_10_lat[j][1]+dane_10_lat[i-1][1]) #wyznaczanie usrednionej szansy na zwyciestwo
+                result = rd.random() #wyznaczania liczby losowej z przedzialu [0,1]
                 if result <= prob:
                     wyniki[j][1]+=1
                 else:
-                    wyniki[i-1][1]+=1 #przez roznice w struktureze trzeba inaczej indeksowac
+                    wyniki[i-1][1]+=1 #przez roznice w strukturze trzeba inaczej indeksowac
     
     east = []
     west = []
@@ -336,3 +338,6 @@ print('Finals:')
 print(final)
 print('Champion:')
 print(champion)
+
+#dodac prawdopodobienstwa, sprawdzic gestosci przejscia, playoffy z przesloszci?, 
+#heatmapa na zwyciestwa, premiowac ostatnie lata w wagach
