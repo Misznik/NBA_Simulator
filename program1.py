@@ -7,14 +7,18 @@ Created on Fri Oct 12 12:39:12 2018
 
 import pandas as pd
 import random as rd
-import math
 import matplotlib.pylab as plt
+import copy
 
 dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_simple')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist() #zamiana dataframe na liste
+
+def przejscia(lista, slownik):
+    for key in lista:
+        slownik[key[0]] += 1
 
 #dict_champs = dict(zip(['string'], [0]*len(['string'])]))
 dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
@@ -47,6 +51,12 @@ dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'TOR':0,
 'UTA':0,
 'WAS':0}
+
+prawdopodobienstwa = copy.deepcopy(dict_champs)
+przejscia_1rnd = copy.deepcopy(dict_champs)
+przejscia_2rnd = copy.deepcopy(dict_champs)
+przejscia_3rnd = copy.deepcopy(dict_champs)
+przejscia_final = copy.deepcopy(dict_champs)
                     #listy z konferencjami
 west_teams = ['DAL','DEN','GSW','HOU','LAC','MEM','MIN','NOH','SEA','PHO','POR','SAC','SAS','UTA']
 east_teams = ['BOS','NJN','CHI','CHA','CLE','DET','IND','MIA','MIL','NYK','ORL','PHI','TOR','WAS']
@@ -111,6 +121,7 @@ for n in range(1,N):
             
     rnd1_east = east[:8]
     rnd1_west = west[:8]
+    
     ##################################   EAST 1st ROUND
     rnd2_east = [[],[],[],[]]
     win = [0,0,0,0,0,0,0,0]
@@ -161,6 +172,7 @@ for n in range(1,N):
         rnd2_east[3]=rnd1_east[1]
     else:
         rnd2_east[3]=rnd1_east[6]
+        
         
     ##########################################################   WEST 1st ROUND
     rnd2_west = [[],[],[],[]]
@@ -309,12 +321,14 @@ for n in range(1,N):
         champion[0]=final[1]
         
     dict_champs[champion[0][0]]+=1
+    przejscia(rnd1_east, przejscia_1rnd)
+    przejscia(rnd1_west, przejscia_1rnd)
+    przejscia(rnd2_east, przejscia_2rnd)
+    przejscia(rnd2_west, przejscia_2rnd)
+    przejscia(rnd3_east, przejscia_3rnd)
+    przejscia(rnd3_west, przejscia_3rnd)
+    przejscia(final, przejscia_final)
 
-names = list(dict_champs.keys())
-values = list(dict_champs.values())
-
-plt.bar(range(len(dict_champs)),values,tick_label=names)
-plt.show()
 print('Eastern conference:')
 print(east)
 print('Western conference:')
@@ -339,5 +353,58 @@ print(final)
 print('Champion:')
 print(champion)
 
-#dodac prawdopodobienstwa, sprawdzic gestosci przejscia, playoffy z przesloszci?, 
+suma = 0
+for i in range(len(dane_10_lat)):
+    suma += dane_10_lat[i][1]
+for i in range(len(dane_10_lat)):
+    prawdopodobienstwa[dane_10_lat[i][0]] = dane_10_lat[i][1]/suma*N #- 25  #zblizony ksztalt
+    
+names = list(dict_champs.keys())
+values = list(dict_champs.values())
+plt.figure(1)
+plt.subplot(211)
+plt.bar(range(len(dict_champs)),values,tick_label=names)
+plt.title('mistrzowie')
+plt.show()    
+    
+names2 = list(prawdopodobienstwa.keys())
+values2 = list(prawdopodobienstwa.values())
+plt.figure(1)
+plt.subplot(212)
+plt.title('prawdopodobienstwa usrednione')
+plt.bar(range(len(prawdopodobienstwa)),values2,tick_label=names2)
+plt.show()
+#################################################  PRZEJSCIA
+names2 = list(przejscia_1rnd.keys())
+values2 = list(przejscia_1rnd.values())
+plt.figure(2)
+plt.subplot(211)
+plt.title('do 1 rundy')
+plt.bar(range(len(przejscia_1rnd)),values2,tick_label=names2)
+plt.show()
+
+names2 = list(przejscia_2rnd.keys())
+values2 = list(przejscia_2rnd.values())
+plt.figure(2)
+plt.subplot(212)
+plt.title('do 2 rundy')
+plt.bar(range(len(przejscia_2rnd)),values2,tick_label=names2)
+plt.show()
+
+names2 = list(przejscia_3rnd.keys())
+values2 = list(przejscia_3rnd.values())
+plt.figure(3)
+plt.subplot(211)
+plt.title('do 3 rundy')
+plt.bar(range(len(przejscia_3rnd)),values2,tick_label=names2)
+plt.show()
+
+names2 = list(przejscia_final.keys())
+values2 = list(przejscia_final.values())
+plt.figure(3)
+plt.subplot(212)
+plt.title('do finalu')
+plt.bar(range(len(przejscia_final)),values2,tick_label=names2)
+plt.show()
+#dodac prawdopodobienstwa, sprawdzic gestosci przejscia, (playoffy z przesloszci? optional), 
 #heatmapa na zwyciestwa, premiowac ostatnie lata w wagach
