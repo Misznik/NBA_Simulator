@@ -52,43 +52,24 @@ def find_indeks(indeks_fd):
                 indeks = indeks_j
                 return indeks
                 
-#for indeks_i in range(1,len(dane_10_lat)+1):
-#    for indeks_j in range(len(dane_10_lat)):  #wyszukanie indeksu dla rozbudowanego mdoelu
-#        if dane_10_lat[indeks_j][0] == schedule_14_15[1][0]: #dla bostonu
-#            indeks = indeks_j
-#            print(dane_10_lat[indeks][indeks_i], indeks_i, indeks_j)
 
 for j in range(0,len(schedule_14_15[0])-1):  
         for i in range(j+1,len(schedule_14_15[0])): #rozpoczecie petli od drugiego elementu; pomiciecie nazwy
             for number in range(0,schedule_14_15[j][i]):
-                indeks = find_indeks(i)
-                prob = dane_10_lat[j][indeks] #wyznaczanie usrednionej szansy na zwyciestwo
+                indeks = find_indeks(i-1)
+                prob = dane_10_lat[j][indeks+1] #wyznaczanie usrednionej szansy na zwyciestwo
                 result = rd.random() #wyznaczania liczby losowej z przedzialu [0,1]
-                print(j,i,schedule_14_15[j][i],prob,result,schedule_14_15[i-1][0])
+                #print('j:',j,'i:',i,'indeks:',indeks,'schedule:',schedule_14_15[j][i],'prob:',prob,result)
                 if result <= prob:
                     wyniki[j][1]+=1
                 else:
                     wyniki[i-1][1]+=1
 
            
-#for j in range(0,len(schedule_14_15[0])-1):     #bckp
-#        for i in range(j+1,len(schedule_14_15[0])):
-#            for indeks_i in range(len(dane_10_lat)):  #wyszukanie indeksu dla rozbudowanego mdoelu
-#                for indeks_j in range(len(dane_10_lat)): 
-#                    if dane_10_lat[indeks_j][0] == schedule_14_15[i-1][0]:
-#                        indeks = indeks_j
-#            prob = dane_10_lat[indeks][indeks_i]                        
-#            for number in range(0,schedule_14_15[j][i]):
-#                result = rd.random()
-#                if result <= prob:
-#                    wyniki[j][1]+=1
-#                else:
-#                    wyniki[i-1][1]+=1
-# 
 
-#ilosc = 0
-#for it in range(len(wyniki)):
-#    ilosc += wyniki[it][1]                  
+ilosc = 0
+for it in range(len(wyniki)):
+    ilosc += wyniki[it][1]                  
 print(wyniki)
-#print(ilosc)
+print(ilosc)
 # TU JUZ BEZ SREDNIEJ WAZONEJ
