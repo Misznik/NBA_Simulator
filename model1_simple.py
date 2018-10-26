@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Oct 15 17:25:03 2018
+Created on Fri Oct 12 12:39:12 2018
 
 @author: micha
 """
+
 import pandas as pd
 import random as rd
+import numpy as np
 import matplotlib.pylab as plt
 import copy
 
-dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki')
+dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_simple')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
-schedule_14_15 = schedule_14_15_df.values.tolist()
+schedule_14_15 = schedule_14_15_df.values.tolist() #zamiana dataframe na liste
 
-def find_indeks(indeks_fd):
-    for indeks_i in range(1,len(dane_10_lat)+1):
-        for indeks_j in range(len(dane_10_lat)):  #wyszukanie indeksu dla rozbudowanego mdoelu
-            if dane_10_lat[indeks_j][0] == schedule_14_15[indeks_fd][0]: #dla bostonu
-                indeks = indeks_j
-                return indeks
 def przejscia(lista, slownik):
     for key in lista:
         slownik[key[0]] += 1
-                    
+
+gestosci = []
+for i in range(len(dane_10_lat)):
+    gestosci.append([])
+
+
 dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'BOS':0,
 'NJN':0,
@@ -66,63 +67,67 @@ west_teams = ['DAL','DEN','GSW','HOU','LAC','MEM','MIN','NOH','SEA','PHO','POR',
 east_teams = ['BOS','NJN','CHI','CHA','CLE','DET','IND','MIA','MIL','NYK','ORL','PHI','TOR','WAS']
 
 N = 1000 #Ilosc symulacji
+
+#############################  LOOPING
 for n in range(1,N):
-    wyniki = [['ATL',0],
-        ['BOS',0],
-        ['NJN',0],
-        ['CHI',0],
-        ['CHA',0],
-        ['CLE',0],
-        ['DAL',0],
-        ['DEN',0],
-        ['DET',0],
-        ['GSW',0],
-        ['HOU',0],
-        ['IND',0],
-        ['LAC',0],
-        ['LAL',0],
-        ['MEM',0],
-        ['MIA',0],
-        ['MIL',0],
-        ['MIN',0],
-        ['NOH',0],
-        ['NYK',0],
-        ['SEA',0],
-        ['ORL',0],
-        ['PHI',0],
-        ['PHO',0],
-        ['POR',0],
-        ['SAC',0],
-        ['SAS',0],
-        ['TOR',0],
-        ['UTA',0],
-        ['WAS',0]]
+    wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
+    ['BOS',0],
+    ['NJN',0],
+    ['CHI',0],
+    ['CHA',0],
+    ['CLE',0],
+    ['DAL',0],
+    ['DEN',0],
+    ['DET',0],
+    ['GSW',0],
+    ['HOU',0],
+    ['IND',0],
+    ['LAC',0],
+    ['LAL',0],
+    ['MEM',0],
+    ['MIA',0],
+    ['MIL',0],
+    ['MIN',0],
+    ['NOH',0],
+    ['NYK',0],
+    ['SEA',0],
+    ['ORL',0],
+    ['PHI',0],
+    ['PHO',0],
+    ['POR',0],
+    ['SAC',0],
+    ['SAS',0],
+    ['TOR',0],
+    ['UTA',0],
+    ['WAS',0]]
     
+    #  Symulacja sezonu zasadniczego
     for j in range(0,len(schedule_14_15[0])-1):  
-            for i in range(j+1,len(schedule_14_15[0])): #rozpoczecie petli od drugiego elementu; pomiciecie nazwy
-                for number in range(0,schedule_14_15[j][i]):
-                    indeks = find_indeks(i-1)
-                    prob = dane_10_lat[j][indeks+1] #wyznaczanie usrednionej szansy na zwyciestwo
-                    result = rd.random() #wyznaczania liczby losowej z przedzialu [0,1]
-                    #print('j:',j,'i:',i,'indeks:',indeks,'schedule:',schedule_14_15[j][i],'prob:',prob,result)
-                    if result <= prob:
-                        wyniki[j][1]+=1
-                    else:
-                        wyniki[i-1][1]+=1
+        for i in range(j+1,len(schedule_14_15[0])): #rozpoczecie petli od drugiego elementu; pomiciecie nazwy
+            for number in range(0,schedule_14_15[j][i]):
+                prob = dane_10_lat[j][1]/(dane_10_lat[j][1]+dane_10_lat[i-1][1]) #wyznaczanie usrednionej szansy na zwyciestwo
+                result = rd.random() #wyznaczania liczby losowej z przedzialu [0,1]
+                if result <= prob:
+                    wyniki[j][1]+=1
+                else:
+                    wyniki[i-1][1]+=1 #przez roznice w strukturze trzeba inaczej indeksowac
     
     east = []
     west = []
+    
     for k in range(0,len(wyniki)):
         if wyniki[k][0] in east_teams:
             east.append(wyniki[k])
         else:
             west.append(wyniki[k])
+     
     east.sort(key=lambda x: x[1], reverse = True) #sortowanie po drugim elemencie
-    west.sort(key=lambda x: x[1], reverse = True)    
+    west.sort(key=lambda x: x[1], reverse = True)
+            
     rnd1_east = east[:8]
     rnd1_west = west[:8]
     
-        ##################################   EAST 1st ROUND
+    ##################################   EAST 1st ROUND
     rnd2_east = [[],[],[],[]]
     win = [0,0,0,0,0,0,0,0]
     while win[0] < 4 and win[7] < 4:  #NOWY POMYSL NA SYMULACJE PLAYOFFOW: WYNIKI Z TEGO SEZONU
@@ -172,6 +177,7 @@ for n in range(1,N):
         rnd2_east[3]=rnd1_east[1]
     else:
         rnd2_east[3]=rnd1_east[6]
+        
         
     ##########################################################   WEST 1st ROUND
     rnd2_west = [[],[],[],[]]
@@ -327,6 +333,9 @@ for n in range(1,N):
     przejscia(rnd3_east, przejscia_3rnd)
     przejscia(rnd3_west, przejscia_3rnd)
     przejscia(final, przejscia_final)
+    
+    for i in range(len(dane_10_lat)):
+        gestosci[i].append(wyniki[i][1])
 
 print('Eastern conference:')
 print(east)
@@ -352,45 +361,78 @@ print(final)
 print('Champion:')
 print(champion)
 
-    
-names = list(dict_champs.keys())
-values = list(dict_champs.values())
-plt.figure(1)
-plt.bar(range(len(dict_champs)),values,tick_label=names)
-plt.title('mistrzowie')
-plt.show()    
-    
-#################################################  PRZEJSCIA
-names2 = list(przejscia_1rnd.keys())
-values2 = list(przejscia_1rnd.values())
-plt.figure(2)
-plt.subplot(211)
-plt.title('do 1 rundy')
-plt.bar(range(len(przejscia_1rnd)),values2,tick_label=names2)
-plt.show()
+#suma = 0
+#for i in range(len(dane_10_lat)):
+#    suma += dane_10_lat[i][1]
+#for i in range(len(dane_10_lat)):
+#    prawdopodobienstwa[dane_10_lat[i][0]] = dane_10_lat[i][1]/suma*N #- 25  #zblizony ksztalt
+#    
+#names = list(dict_champs.keys())
+#values = list(dict_champs.values())
+#plt.figure(1)
+#plt.subplot(211)
+#plt.bar(range(len(dict_champs)),values,tick_label=names)
+#plt.title('mistrzowie')
+#plt.show()    
+#    
+#names2 = list(prawdopodobienstwa.keys())
+#values2 = list(prawdopodobienstwa.values())
+#plt.figure(1)
+#plt.subplot(212)
+#plt.title('prawdopodobienstwa usrednione')
+#plt.bar(range(len(prawdopodobienstwa)),values2,tick_label=names2)
+#plt.show()
+##################################################  PRZEJSCIA
+#names2 = list(przejscia_1rnd.keys())
+#values2 = list(przejscia_1rnd.values())
+#plt.figure(2)
+#plt.subplot(211)
+#plt.title('do 1 rundy')
+#plt.bar(range(len(przejscia_1rnd)),values2,tick_label=names2)
+#plt.show()
+#
+#names2 = list(przejscia_2rnd.keys())
+#values2 = list(przejscia_2rnd.values())
+#plt.figure(2)
+#plt.subplot(212)
+#plt.title('do 2 rundy')
+#plt.bar(range(len(przejscia_2rnd)),values2,tick_label=names2)
+#plt.show()
+#
+#names2 = list(przejscia_3rnd.keys())
+#values2 = list(przejscia_3rnd.values())
+#plt.figure(3)
+#plt.subplot(211)
+#plt.title('do 3 rundy')
+#plt.bar(range(len(przejscia_3rnd)),values2,tick_label=names2)
+#plt.show()
+#
+#names2 = list(przejscia_final.keys())
+#values2 = list(przejscia_final.values())
+#plt.figure(3)
+#plt.subplot(212)
+#plt.title('do finalu')
+#plt.bar(range(len(przejscia_final)),values2,tick_label=names2)
+#plt.show()
+#
+#names2=[]
+#values2=[]
+#
+#for i in range(len(dane_10_lat)):
+#    names2.append(dane_10_lat[i][0])
+#    values2.append(dane_10_lat[i][1])
+#plt.figure(4)
+#plt.title('Stosunek ilosci wygranych do ilosci meczy wygranych do rozegranych w 10 lat')
+#plt.bar(range(len(dane_10_lat)),values2,tick_label=names2)
+#plt.show()
 
-names2 = list(przejscia_2rnd.keys())
-values2 = list(przejscia_2rnd.values())
-plt.figure(2)
-plt.subplot(212)
-plt.title('do 2 rundy')
-plt.bar(range(len(przejscia_2rnd)),values2,tick_label=names2)
-plt.show()
+numer = 4
+pd.DataFrame(gestosci[numer]).plot(kind='density')
+#print('srednia dla', wyniki[numer][0], ' : ', np.mean(gestosci[numer]))
+srednie = []
+for i in range(len(gestosci)):
+    srednie.append(np.mean(gestosci[i]))
 
-names2 = list(przejscia_3rnd.keys())
-values2 = list(przejscia_3rnd.values())
-plt.figure(3)
-plt.subplot(211)
-plt.title('do 3 rundy')
-plt.bar(range(len(przejscia_3rnd)),values2,tick_label=names2)
-plt.show()
 
-names2 = list(przejscia_final.keys())
-values2 = list(przejscia_final.values())
-plt.figure(3)
-plt.subplot(212)
-plt.title('do finalu')
-plt.bar(range(len(przejscia_final)),values2,tick_label=names2)
-plt.show()
 #dodac prawdopodobienstwa, sprawdzic gestosci przejscia, (playoffy z przesloszci? optional), 
 #heatmapa na zwyciestwa, premiowac ostatnie lata w wagach

@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Oct 12 12:39:12 2018
+Created on Fri Oct 26 17:53:48 2018
 
 @author: micha
 """
-
 import pandas as pd
 import random as rd
 import matplotlib.pylab as plt
 import copy
 
-dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_simple')
+dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi_simple')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
@@ -406,5 +405,17 @@ plt.subplot(212)
 plt.title('do finalu')
 plt.bar(range(len(przejscia_final)),values2,tick_label=names2)
 plt.show()
+
+names2=[]
+values2=[]
+
+for i in range(len(dane_10_lat)):
+    names2.append(dane_10_lat[i][0])
+    values2.append(dane_10_lat[i][1])
+plt.figure(4)
+plt.title('Stosunek ilosci wygranych do ilosci meczy wygranych do rozegranych w 10 lat')
+plt.bar(range(len(dane_10_lat)),values2,tick_label=names2)
+plt.show()
+
 #dodac prawdopodobienstwa, sprawdzic gestosci przejscia, (playoffy z przesloszci? optional), 
 #heatmapa na zwyciestwa, premiowac ostatnie lata w wagach
