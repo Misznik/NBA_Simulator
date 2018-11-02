@@ -9,6 +9,7 @@ import random as rd
 import matplotlib.pylab as plt
 import numpy as np
 import copy
+import seaborn as sns; sns.set()
 
 dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
@@ -22,10 +23,30 @@ def find_indeks(indeks_fd):
             if dane_10_lat[indeks_j][0] == schedule_14_15[indeks_fd][0]: #dla bostonu
                 indeks = indeks_j
                 return indeks
+            
 def przejscia(lista, slownik):
     for key in lista:
         slownik[key[0]] += 1
-                        
+            
+def rysuj_wykres(slownik, tytul):
+    names = list(slownik.keys())
+    values = list(slownik.values())
+    plt.bar(range(len(slownik)),values,tick_label=names)
+    plt.title(tytul)
+    plt.show() 
+
+def rysuj_histogram(numer, mody):
+    nazwa = "Histogram zwyciestw "+ dane_10_lat[numer][0]
+    plt.title(nazwa)
+    plt.hist(gestosci[numer], bins = mody)
+
+def rysuj_gestosc(lista, numer):
+    pd.DataFrame(lista[numer]).plot(kind='density')
+
+gestosci = []
+for i in range(len(dane_10_lat)):
+    gestosci.append([])
+            
 dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'BOS':0,
 'NJN':0,
@@ -67,7 +88,7 @@ west_teams = ['DAL','DEN','GSW','HOU','LAC','MEM','MIN','NOH','SEA','PHO','POR',
 east_teams = ['BOS','NJN','CHI','CHA','CLE','DET','IND','MIA','MIL','NYK','ORL','PHI','TOR','WAS']
 
 N = 1000 #Ilosc symulacji
-for n in range(1,N):
+for n in range(1,N+1):
     wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
     ['CHA',0],
@@ -328,6 +349,9 @@ for n in range(1,N):
     przejscia(rnd3_east, przejscia_3rnd)
     przejscia(rnd3_west, przejscia_3rnd)
     przejscia(final, przejscia_final)
+    
+    for i in range(len(dane_10_lat)):
+        gestosci[i].append(wyniki[i][1])
 
 print('Eastern conference:')
 print(east)
@@ -353,54 +377,7 @@ print(final)
 print('Champion:')
 print(champion)
 
-#plt.figure(1)
-#plt.plot(Atlanta)
-#plt.title('mistrzowie')
-#plt.show()  
-    
-#names = list(dict_champs.keys())
-#values = list(dict_champs.values())
-#plt.figure(1)
-#plt.bar(range(len(dict_champs)),values,tick_label=names)
-#plt.title('mistrzowie')
-#plt.show()    
-    
-#################################################  PRZEJSCIA
-#names2 = list(przejscia_1rnd.keys())
-#values2 = list(przejscia_1rnd.values())
-#plt.figure(2)
-#plt.subplot(211)
-#plt.title('do 1 rundy')
-#plt.bar(range(len(przejscia_1rnd)),values2,tick_label=names2)
-#plt.show()
-#
-#names2 = list(przejscia_2rnd.keys())
-#values2 = list(przejscia_2rnd.values())
-#plt.figure(2)
-#plt.subplot(212)
-#plt.title('do 2 rundy')
-#plt.bar(range(len(przejscia_2rnd)),values2,tick_label=names2)
-#plt.show()
-#
-#names2 = list(przejscia_3rnd.keys())
-#values2 = list(przejscia_3rnd.values())
-#plt.figure(3)
-#plt.subplot(211)
-#plt.title('do 3 rundy')
-#plt.bar(range(len(przejscia_3rnd)),values2,tick_label=names2)
-#plt.show()
-#
-#names2 = list(przejscia_final.keys())
-#values2 = list(przejscia_final.values())
-#plt.figure(3)
-#plt.subplot(212)
-#plt.title('do finalu')
-#plt.bar(range(len(przejscia_final)),values2,tick_label=names2)
-#plt.show()
-
-#plt.figure(5)
-#plt.title("Histogram zwyciestw Atlanty")
-#plt.hist(Atlanta, bins = 10)
+rysuj_wykres(dict_champs,'mistrzowie')
 
 
 #dodac prawdopodobienstwa(done), sprawdzic gestosci przejscia(done? - sprawdz dla kazdej druzyny), 

@@ -10,8 +10,10 @@ import random as rd
 import numpy as np
 import matplotlib.pylab as plt
 import copy
+import seaborn as sns; sns.set()
 
 dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_simple')
+wygrane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='suma_bez_wag')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
@@ -20,6 +22,21 @@ schedule_14_15 = schedule_14_15_df.values.tolist() #zamiana dataframe na liste
 def przejscia(lista, slownik):
     for key in lista:
         slownik[key[0]] += 1
+
+def rysuj_wykres(slownik, tytul):
+    names = list(slownik.keys())
+    values = list(slownik.values())
+    plt.bar(range(len(slownik)),values,tick_label=names)
+    plt.title(tytul)
+    plt.show() 
+
+def rysuj_gestosc(lista, numer):
+    pd.DataFrame(lista[numer]).plot(kind='density')
+    
+def rysuj_histogram(numer, mody):
+    nazwa = "Histogram zwyciestw "+ dane_10_lat[numer][0]
+    plt.title(nazwa)
+    plt.hist(gestosci[numer], bins = mody)
 
 gestosci = []
 for i in range(len(dane_10_lat)):
@@ -66,10 +83,10 @@ przejscia_final = copy.deepcopy(dict_champs)
 west_teams = ['DAL','DEN','GSW','HOU','LAC','MEM','MIN','NOH','SEA','PHO','POR','SAC','SAS','UTA']
 east_teams = ['BOS','NJN','CHI','CHA','CLE','DET','IND','MIA','MIL','NYK','ORL','PHI','TOR','WAS']
 
-N = 1001 #Ilosc symulacji
+N = 1000 #Ilosc symulacji
 
 #############################  LOOPING
-for n in range(1,N):
+for n in range(1,N+1):
     wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
     ['CHA',0],
@@ -337,115 +354,67 @@ for n in range(1,N):
     for i in range(len(dane_10_lat)):
         gestosci[i].append(wyniki[i][1])
 
-#print('Eastern conference:')
-#print(east)
-#print('Western conference:')
-#print(west)
-#print('PLAYOFFS 1st Round:')   
-#print('East:')
-#print(rnd1_east)
-#print('West:')
-#print(rnd1_west)
-#print('PLAYOFFS 2nd Round:')   
-#print('East:')
-#print(rnd2_east)
-#print('West:')
-#print(rnd2_west)
-#print('Conference finals:')   
-#print('East:')
-#print(rnd3_east)
-#print('West:')
-#print(rnd3_west)
-#print('Finals:')
-#print(final)
-#print('Champion:')
-#print(champion)
-
-def rysuj_wykres(slownik, tytul):
-    names = list(slownik.keys())
-    values = list(slownik.values())
-    plt.bar(range(len(slownik)),values,tick_label=names)
-    plt.title(tytul)
-    plt.show() 
-
-def rysuj_gestosc(lista, numer):
-    pd.DataFrame(lista[numer]).plot(kind='density')
+print('Eastern conference:')
+print(east)
+print('Western conference:')
+print(west)
+print('PLAYOFFS 1st Round:')   
+print('East:')
+print(rnd1_east)
+print('West:')
+print(rnd1_west)
+print('PLAYOFFS 2nd Round:')   
+print('East:')
+print(rnd2_east)
+print('West:')
+print(rnd2_west)
+print('Conference finals:')   
+print('East:')
+print(rnd3_east)
+print('West:')
+print(rnd3_west)
+print('Finals:')
+print(final)
+print('Champion:')
+print(champion)
 
 srednie = []
 for i in range(len(gestosci)):
     srednie.append(np.mean(gestosci[i]))
-
-#rysuj_wykres(dict_champs,'mistrzowie')
-#
-#rysuj_gestosc(gestosci,4)
 
 suma = 0
 for i in range(len(dane_10_lat)):
     suma += dane_10_lat[i][1]
 for i in range(len(dane_10_lat)):
     prawdopodobienstwa[dane_10_lat[i][0]] = dane_10_lat[i][1]/suma*N #- 25  #zblizony ksztalt
-#    
-names = list(dict_champs.keys())
-values = list(dict_champs.values())
-plt.figure(1)
-plt.subplot(211)
-plt.bar(range(len(dict_champs)),values,tick_label=names)
-plt.title('mistrzowie')
-plt.show()    
-    
-names2 = list(prawdopodobienstwa.keys())
-values2 = list(prawdopodobienstwa.values())
-plt.figure(1)
-plt.subplot(212)
-plt.title('prawdopodobienstwa usrednione')
-plt.bar(range(len(prawdopodobienstwa)),values2,tick_label=names2)
-plt.show()
+#        
 ##################################################  PRZEJSCIA
-#names2 = list(przejscia_1rnd.keys())
+#names2 = list(przejscia_1rnd.keys())             #przyklad rysowania wykresu
 #values2 = list(przejscia_1rnd.values())
 #plt.figure(2)
 #plt.subplot(211)
 #plt.title('do 1 rundy')
 #plt.bar(range(len(przejscia_1rnd)),values2,tick_label=names2)
 #plt.show()
-#
-#names2 = list(przejscia_2rnd.keys())
-#values2 = list(przejscia_2rnd.values())
-#plt.figure(2)
-#plt.subplot(212)
-#plt.title('do 2 rundy')
-#plt.bar(range(len(przejscia_2rnd)),values2,tick_label=names2)
-#plt.show()
-#
-#names2 = list(przejscia_3rnd.keys())
-#values2 = list(przejscia_3rnd.values())
-#plt.figure(3)
-#plt.subplot(211)
-#plt.title('do 3 rundy')
-#plt.bar(range(len(przejscia_3rnd)),values2,tick_label=names2)
-#plt.show()
-#
-#names2 = list(przejscia_final.keys())
-#values2 = list(przejscia_final.values())
-#plt.figure(3)
-#plt.subplot(212)
-#plt.title('do finalu')
-#plt.bar(range(len(przejscia_final)),values2,tick_label=names2)
-#plt.show()
-#
-#names2=[]
-#values2=[]
-#
-#for i in range(len(dane_10_lat)):
-#    names2.append(dane_10_lat[i][0])
-#    values2.append(dane_10_lat[i][1])
-#plt.figure(4)
-#plt.title('Stosunek ilosci wygranych do ilosci meczy wygranych do rozegranych w 10 lat')
-#plt.bar(range(len(dane_10_lat)),values2,tick_label=names2)
-#plt.show()
+
+#rysuj_wykres(dict_champs,'mistrzowie')
+#rysuj_gestosc(gestosci,4)
+rysuj_histogram(1,10)
+
+names2=[]
+values2=[]
+for i in range(len(dane_10_lat)):
+    names2.append(dane_10_lat[i][0])
+    values2.append(dane_10_lat[i][1])
+plt.figure(4)
+plt.title('Stosunek ilosci wygranych do ilosci meczy wygranych do rozegranych w 10 lat')
+plt.bar(range(len(dane_10_lat)),values2,tick_label=names2)
+plt.show()
 
 #print('srednia dla', wyniki[numer][0], ' : ', np.mean(gestosci[numer]))
-
+#plt.figure(5)
+#plt.title("Histogram zwyciestw Atlanty")
+#plt.hist(Atlanta, bins = 10)
 
 #dodac prawdopodobienstwa, sprawdzic gestosci przejscia, (playoffy z przesloszci? optional), 
-#heatmapa na zwyciestwa, premiowac ostatnie lata w wagach
+#heatmapa na zwyciestwa
