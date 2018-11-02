@@ -66,15 +66,14 @@ przejscia_final = copy.deepcopy(dict_champs)
 west_teams = ['DAL','DEN','GSW','HOU','LAC','MEM','MIN','NOH','SEA','PHO','POR','SAC','SAS','UTA']
 east_teams = ['BOS','NJN','CHI','CHA','CLE','DET','IND','MIA','MIL','NYK','ORL','PHI','TOR','WAS']
 
-N = 1000 #Ilosc symulacji
+N = 1001 #Ilosc symulacji
 
 #############################  LOOPING
 for n in range(1,N):
     wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
-    ['NJN',0],
-    ['CHI',0],
     ['CHA',0],
+    ['CHI',0],
     ['CLE',0],
     ['DAL',0],
     ['DEN',0],
@@ -88,15 +87,16 @@ for n in range(1,N):
     ['MIA',0],
     ['MIL',0],
     ['MIN',0],
+    ['NJN',0],
     ['NOH',0],
     ['NYK',0],
-    ['SEA',0],
     ['ORL',0],
     ['PHI',0],
     ['PHO',0],
     ['POR',0],
     ['SAC',0],
     ['SAS',0],
+    ['SEA',0],
     ['TOR',0],
     ['UTA',0],
     ['WAS',0]]
@@ -337,51 +337,69 @@ for n in range(1,N):
     for i in range(len(dane_10_lat)):
         gestosci[i].append(wyniki[i][1])
 
-print('Eastern conference:')
-print(east)
-print('Western conference:')
-print(west)
-print('PLAYOFFS 1st Round:')   
-print('East:')
-print(rnd1_east)
-print('West:')
-print(rnd1_west)
-print('PLAYOFFS 2nd Round:')   
-print('East:')
-print(rnd2_east)
-print('West:')
-print(rnd2_west)
-print('Conference finals:')   
-print('East:')
-print(rnd3_east)
-print('West:')
-print(rnd3_west)
-print('Finals:')
-print(final)
-print('Champion:')
-print(champion)
+#print('Eastern conference:')
+#print(east)
+#print('Western conference:')
+#print(west)
+#print('PLAYOFFS 1st Round:')   
+#print('East:')
+#print(rnd1_east)
+#print('West:')
+#print(rnd1_west)
+#print('PLAYOFFS 2nd Round:')   
+#print('East:')
+#print(rnd2_east)
+#print('West:')
+#print(rnd2_west)
+#print('Conference finals:')   
+#print('East:')
+#print(rnd3_east)
+#print('West:')
+#print(rnd3_west)
+#print('Finals:')
+#print(final)
+#print('Champion:')
+#print(champion)
 
-#suma = 0
-#for i in range(len(dane_10_lat)):
-#    suma += dane_10_lat[i][1]
-#for i in range(len(dane_10_lat)):
-#    prawdopodobienstwa[dane_10_lat[i][0]] = dane_10_lat[i][1]/suma*N #- 25  #zblizony ksztalt
+def rysuj_wykres(slownik, tytul):
+    names = list(slownik.keys())
+    values = list(slownik.values())
+    plt.bar(range(len(slownik)),values,tick_label=names)
+    plt.title(tytul)
+    plt.show() 
+
+def rysuj_gestosc(lista, numer):
+    pd.DataFrame(lista[numer]).plot(kind='density')
+
+srednie = []
+for i in range(len(gestosci)):
+    srednie.append(np.mean(gestosci[i]))
+
+#rysuj_wykres(dict_champs,'mistrzowie')
+#
+#rysuj_gestosc(gestosci,4)
+
+suma = 0
+for i in range(len(dane_10_lat)):
+    suma += dane_10_lat[i][1]
+for i in range(len(dane_10_lat)):
+    prawdopodobienstwa[dane_10_lat[i][0]] = dane_10_lat[i][1]/suma*N #- 25  #zblizony ksztalt
 #    
-#names = list(dict_champs.keys())
-#values = list(dict_champs.values())
-#plt.figure(1)
-#plt.subplot(211)
-#plt.bar(range(len(dict_champs)),values,tick_label=names)
-#plt.title('mistrzowie')
-#plt.show()    
-#    
-#names2 = list(prawdopodobienstwa.keys())
-#values2 = list(prawdopodobienstwa.values())
-#plt.figure(1)
-#plt.subplot(212)
-#plt.title('prawdopodobienstwa usrednione')
-#plt.bar(range(len(prawdopodobienstwa)),values2,tick_label=names2)
-#plt.show()
+names = list(dict_champs.keys())
+values = list(dict_champs.values())
+plt.figure(1)
+plt.subplot(211)
+plt.bar(range(len(dict_champs)),values,tick_label=names)
+plt.title('mistrzowie')
+plt.show()    
+    
+names2 = list(prawdopodobienstwa.keys())
+values2 = list(prawdopodobienstwa.values())
+plt.figure(1)
+plt.subplot(212)
+plt.title('prawdopodobienstwa usrednione')
+plt.bar(range(len(prawdopodobienstwa)),values2,tick_label=names2)
+plt.show()
 ##################################################  PRZEJSCIA
 #names2 = list(przejscia_1rnd.keys())
 #values2 = list(przejscia_1rnd.values())
@@ -426,12 +444,7 @@ print(champion)
 #plt.bar(range(len(dane_10_lat)),values2,tick_label=names2)
 #plt.show()
 
-numer = 4
-pd.DataFrame(gestosci[numer]).plot(kind='density')
 #print('srednia dla', wyniki[numer][0], ' : ', np.mean(gestosci[numer]))
-srednie = []
-for i in range(len(gestosci)):
-    srednie.append(np.mean(gestosci[i]))
 
 
 #dodac prawdopodobienstwa, sprawdzic gestosci przejscia, (playoffy z przesloszci? optional), 

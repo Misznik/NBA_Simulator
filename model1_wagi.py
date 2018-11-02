@@ -66,9 +66,8 @@ N = 1000 #Ilosc symulacji
 for n in range(1,N):
     wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
-    ['NJN',0],
-    ['CHI',0],
     ['CHA',0],
+    ['CHI',0],
     ['CLE',0],
     ['DAL',0],
     ['DEN',0],
@@ -82,15 +81,16 @@ for n in range(1,N):
     ['MIA',0],
     ['MIL',0],
     ['MIN',0],
+    ['NJN',0],
     ['NOH',0],
     ['NYK',0],
-    ['SEA',0],
     ['ORL',0],
     ['PHI',0],
     ['PHO',0],
     ['POR',0],
     ['SAC',0],
     ['SAS',0],
+    ['SEA',0],
     ['TOR',0],
     ['UTA',0],
     ['WAS',0]]
