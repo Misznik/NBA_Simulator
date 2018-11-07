@@ -6,42 +6,21 @@ Created on Mon Oct 15 17:25:03 2018
 """
 import pandas as pd
 import random as rd
-import numpy as np
 import matplotlib.pylab as plt
+import numpy as np
 import copy
+from scipy import stats
+import itertools
+import operator
+from statsmodels.graphics.gofplots import qqplot
 import seaborn as sns; sns.set()
+from funkcje_pomocnicze import *
 
 dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist()
-
-def find_indeks(indeks_fd):
-    for indeks_i in range(1,len(dane_10_lat)+1):
-        for indeks_j in range(len(dane_10_lat)):  #wyszukanie indeksu dla rozbudowanego mdoelu
-            if dane_10_lat[indeks_j][0] == schedule_14_15[indeks_fd][0]: #dla bostonu
-                indeks = indeks_j
-                return indeks
-            
-def przejscia(lista, slownik):
-    for key in lista:
-        slownik[key[0]] += 1
-            
-def rysuj_wykres(slownik, tytul):
-    names = list(slownik.keys())
-    values = list(slownik.values())
-    plt.bar(range(len(slownik)),values,tick_label=names)
-    plt.title(tytul)
-    plt.show() 
-    
-def rysuj_histogram(numer, mody):
-    nazwa = "Histogram zwyciestw "+ dane_10_lat[numer][0]
-    plt.title(nazwa)
-    plt.hist(gestosci[numer], bins = mody)    
-
-def rysuj_gestosc(lista, numer):
-    pd.DataFrame(lista[numer]).plot(kind='density')
 
 gestosci = []
 for i in range(len(dane_10_lat)):

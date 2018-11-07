@@ -7,10 +7,15 @@ Created on Fri Oct 12 12:39:12 2018
 
 import pandas as pd
 import random as rd
-import numpy as np
 import matplotlib.pylab as plt
+import numpy as np
 import copy
+from scipy import stats
+import itertools
+import operator
+from statsmodels.graphics.gofplots import qqplot
 import seaborn as sns; sns.set()
+from funkcje_pomocnicze import *
 
 dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_simple')
 wygrane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='suma_bez_wag')
@@ -18,25 +23,6 @@ schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist() #zamiana dataframe na liste
-
-def przejscia(lista, slownik):
-    for key in lista:
-        slownik[key[0]] += 1
-
-def rysuj_wykres(slownik, tytul):
-    names = list(slownik.keys())
-    values = list(slownik.values())
-    plt.bar(range(len(slownik)),values,tick_label=names)
-    plt.title(tytul)
-    plt.show() 
-
-def rysuj_gestosc(lista, numer):
-    pd.DataFrame(lista[numer]).plot(kind='density')
-    
-def rysuj_histogram(numer, mody):
-    nazwa = "Histogram zwyciestw "+ dane_10_lat[numer][0]
-    plt.title(nazwa)
-    plt.hist(gestosci[numer], bins = mody)
 
 gestosci = []
 for i in range(len(dane_10_lat)):
@@ -417,11 +403,3 @@ plt.figure(4)
 plt.title('Stosunek ilosci wygranych do ilosci meczy wygranych do rozegranych w 10 lat')
 plt.bar(range(len(dane_10_lat)),values2,tick_label=names2)
 plt.show()
-
-#print('srednia dla', wyniki[numer][0], ' : ', np.mean(gestosci[numer]))
-#plt.figure(5)
-#plt.title("Histogram zwyciestw Atlanty")
-#plt.hist(Atlanta, bins = 10)
-
-#dodac prawdopodobienstwa, sprawdzic gestosci przejscia, (playoffy z przesloszci? optional), 
-#heatmapa na zwyciestwa
