@@ -62,7 +62,8 @@ przejscia_1rnd = copy.deepcopy(dict_champs)
 przejscia_2rnd = copy.deepcopy(dict_champs)
 przejscia_3rnd = copy.deepcopy(dict_champs)
 przejscia_final = copy.deepcopy(dict_champs)
-                    #listy z konferencjami
+finalowe4 = []
+                
 west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR','SAC','SAS','SEA','UTA']
 east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
 
@@ -331,6 +332,9 @@ for n in range(1,N+1):
     
     for i in range(len(dane_10_lat)):
         gestosci[i].append(wyniki[i][1])
+        
+    czworka_sort = ([rnd3_east[0][0],rnd3_east[1][0],rnd3_west[0][0],rnd3_west[1][0]])
+    finalowe4.append(sorted(czworka_sort))
 
 print('Eastern conference:')
 print(east)
@@ -356,14 +360,20 @@ print(final)
 print('Champion:')
 print(champion)
 
-rysuj_wykres(dict_champs,'mistrzowie') 
-
 srednie = []
 for i in range(len(gestosci)):
     srednie.append([dane_10_lat[i][0], np.mean(gestosci[i])])
-    
-#################################################  PRZEJSCIA
 
+east_density = []
+west_density = []
+for i in range(len(gestosci)): 
+    if dane_10_lat[i][0] in east_teams:
+        east_density.append(gestosci[i])
+    elif dane_10_lat[i][0] in west_teams:
+        west_density.append(gestosci[i])
+
+#boxploty_konf(east_density, east_teams)  
+#boxploty_konf(west_density, west_teams)   
 #rysuj_wykres(dict_champs,'mistrzowie')
 #rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
 #rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
@@ -371,6 +381,5 @@ for i in range(len(gestosci)):
 #rysuj_wykres(przejscia_final,'przejscia do finalow')
 #rysuj_gestosc(gestosci,4)
 #rysuj_histogram(1,10)
-
-#dodac prawdopodobienstwa, sprawdzic gestosci przejscia, (playoffy z przesloszci? optional), 
-#heatmapa na zwyciestwa, premiowac ostatnie lata w wagach
+#testy_norm(gestosci)
+print('najczestsze czworki ' ,most_common(finalowe4))

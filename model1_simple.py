@@ -64,7 +64,8 @@ przejscia_1rnd = copy.deepcopy(dict_champs)
 przejscia_2rnd = copy.deepcopy(dict_champs)
 przejscia_3rnd = copy.deepcopy(dict_champs)
 przejscia_final = copy.deepcopy(dict_champs)
-                    #listy z konferencjami
+finalowe4 = []
+
 west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR','SAC','SAS','SEA','UTA']
 east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
 
@@ -338,6 +339,9 @@ for n in range(1,N+1):
     
     for i in range(len(dane_10_lat)):
         gestosci[i].append(wyniki[i][1])
+        
+    czworka_sort = ([rnd3_east[0][0],rnd3_east[1][0],rnd3_west[0][0],rnd3_west[1][0]])
+    finalowe4.append(sorted(czworka_sort))
 
 print('Eastern conference:')
 print(east)
@@ -363,20 +367,31 @@ print(final)
 print('Champion:')
 print(champion)
 
-#srednie = []
-#for i in range(len(gestosci)):
-#    srednie.append(np.mean(gestosci[i]))
-
 srednie = []
 for i in range(len(gestosci)):
     srednie.append([dane_10_lat[i][0], np.mean(gestosci[i])])
 
-suma = 0
-for i in range(len(dane_10_lat)):
-    suma += dane_10_lat[i][1]
-for i in range(len(dane_10_lat)):
-    prawdopodobienstwa[dane_10_lat[i][0]] = dane_10_lat[i][1]/suma*N #- 25  #zblizony ksztalt
-#        
+east_density = []
+west_density = []
+for i in range(len(gestosci)): 
+    if dane_10_lat[i][0] in east_teams:
+        east_density.append(gestosci[i])
+    elif dane_10_lat[i][0] in west_teams:
+        west_density.append(gestosci[i])
+
+#boxploty_konf(east_density, east_teams)  
+#boxploty_konf(west_density, west_teams)   
+#rysuj_wykres(dict_champs,'mistrzowie')
+#rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
+#rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
+#rysuj_wykres(przejscia_3rnd,'przejscia do 3 rundy')
+#rysuj_wykres(przejscia_final,'przejscia do finalow')
+#rysuj_gestosc(gestosci,4)
+#rysuj_histogram(1,10)
+#testy_norm(gestosci)
+print('najczestsze czworki ' ,most_common(finalowe4))
+
+   
 ##################################################  PRZEJSCIA
 #names2 = list(przejscia_1rnd.keys())             #przyklad rysowania wykresu
 #values2 = list(przejscia_1rnd.values())
@@ -386,20 +401,17 @@ for i in range(len(dane_10_lat)):
 #plt.bar(range(len(przejscia_1rnd)),values2,tick_label=names2)
 #plt.show()
 
-#rysuj_wykres(dict_champs,'mistrzowie')
-#rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
-#rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
-#rysuj_wykres(przejscia_3rnd,'przejscia do 3 rundy')
-#rysuj_wykres(przejscia_final,'przejscia do finalow')
-#rysuj_gestosc(gestosci,4)
-#rysuj_histogram(1,10)
-
-names2=[]
-values2=[]
-for i in range(len(dane_10_lat)):
-    names2.append(dane_10_lat[i][0])
-    values2.append(dane_10_lat[i][1])
-plt.figure(4)
-plt.title('Stosunek ilosci wygranych do ilosci meczy wygranych do rozegranych w 10 lat')
-plt.bar(range(len(dane_10_lat)),values2,tick_label=names2)
-plt.show()
+#suma = 0
+#for i in range(len(dane_10_lat)):
+#    suma += dane_10_lat[i][1]
+#for i in range(len(dane_10_lat)):
+#    prawdopodobienstwa[dane_10_lat[i][0]] = dane_10_lat[i][1]/suma*N #- 25  #zblizony ksztalt
+#names2=[]
+#values2=[]
+#for i in range(len(dane_10_lat)):
+#    names2.append(dane_10_lat[i][0])
+#    values2.append(dane_10_lat[i][1])
+#plt.figure(4)
+#plt.title('Stosunek ilosci wygranych do ilosci meczy wygranych do rozegranych w 10 lat')
+#plt.bar(range(len(dane_10_lat)),values2,tick_label=names2)
+#plt.show()

@@ -22,7 +22,6 @@ schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist()
 
-
 gestosci = []
 for i in range(len(dane_10_lat)):
     gestosci.append([])
@@ -361,25 +360,9 @@ print(final)
 print('Champion:')
 print(champion)
 
-rysuj_wykres(dict_champs,'mistrzowie')
-
 srednie = []
 for i in range(len(gestosci)):
     srednie.append([dane_10_lat[i][0], np.mean(gestosci[i])])
-    
-#rysuj_wykres(dict_champs,'mistrzowie')
-#rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
-#rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
-#rysuj_wykres(przejscia_3rnd,'przejscia do 3 rundy')
-#rysuj_wykres(przejscia_final,'przejscia do finalow')
-#rysuj_gestosc(gestosci,4)
-#rysuj_histogram(1,10)
-
-#for i in range(len(gestosci)):  # shapiro-wilk, nie sa normalne
-#    print(dane_10_lat[i][0], stats.shapiro(gestosci[i]))
-
-#for i in range(len(gestosci)):  # D’Agostino’s K^2 Test, Sample looks Gaussian (fail to reject H0)
-#    print(dane_10_lat[i][0], stats.normaltest(gestosci[i]))
 
 east_density = []
 west_density = []
@@ -389,17 +372,18 @@ for i in range(len(gestosci)):
     elif dane_10_lat[i][0] in west_teams:
         west_density.append(gestosci[i])
 
-fig, ax = plt.subplots()
-ax.boxplot(east_density)
-plt.xticks([i for i in range(1,16)], east_teams)
-plt.show()
-
-fig, ax = plt.subplots()
-ax.boxplot(west_density)
-plt.xticks([i for i in range(1,16)], west_teams)
-plt.show()
-
+#boxploty_konf(east_density, east_teams)  
+#boxploty_konf(west_density, west_teams)   
+#rysuj_wykres(dict_champs,'mistrzowie')
+#rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
+#rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
+#rysuj_wykres(przejscia_3rnd,'przejscia do 3 rundy')
+#rysuj_wykres(przejscia_final,'przejscia do finalow')
+#rysuj_gestosc(gestosci,4)
+#rysuj_histogram(1,10)
+#testy_norm(gestosci)
 print('najczestsze czworki ' ,most_common(finalowe4))
+
 
 #dodac prawdopodobienstwa(done), sprawdzic gestosci przejscia(done? - sprawdz dla kazdej druzyny), 
 #(playoffy z przesloszci? optional), 
