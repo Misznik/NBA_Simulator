@@ -10,6 +10,8 @@ import matplotlib.pylab as plt
 import numpy as np
 import copy
 from scipy import stats
+import itertools
+import operator
 from statsmodels.graphics.gofplots import qqplot
 import seaborn as sns; sns.set()
 
@@ -44,6 +46,24 @@ def rysuj_histogram(numer, mody):
 
 def rysuj_gestosc(lista, numer):
     pd.DataFrame(lista[numer]).plot(kind='density')
+
+def most_common(L):   #kod z internetu, to nie plagiat?
+  # get an iterable of (item, iterable) pairs
+  SL = sorted((x, i) for i, x in enumerate(L))
+  # print 'SL:', SL
+  groups = itertools.groupby(SL, key=operator.itemgetter(0))
+  # auxiliary function to get "quality" for an item
+  def _auxfun(g):
+    item, iterable = g
+    count = 0
+    min_index = len(L)
+    for _, where in iterable:
+      count += 1
+      min_index = min(min_index, where)
+    # print 'item %r, count %r, minind %r' % (item, count, min_index)
+    return count, -min_index
+  # pick the highest-count/earliest item
+  return max(groups, key=_auxfun)[0]
 
 gestosci = []
 for i in range(len(dane_10_lat)):
@@ -88,6 +108,7 @@ przejscia_final = copy.deepcopy(dict_champs)
                     #listy z konferencjami
 west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR','SAC','SAS','SEA','UTA']
 east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
+finalowe4 = []
 
 N = 1000 #Ilosc symulacji
 for n in range(1,N+1):
@@ -354,6 +375,9 @@ for n in range(1,N+1):
     
     for i in range(len(dane_10_lat)):
         gestosci[i].append(wyniki[i][1])
+        
+    czworka_sort = ([rnd3_east[0][0],rnd3_east[1][0],rnd3_west[0][0],rnd3_west[1][0]])
+    finalowe4.append(sorted(czworka_sort))
 
 print('Eastern conference:')
 print(east)
@@ -417,6 +441,8 @@ ax.boxplot(west_density)
 plt.xticks([i for i in range(1,16)], west_teams)
 plt.show()
 
+print('najczestsze czworki ' ,most_common(finalowe4))
+
 #dodac prawdopodobienstwa(done), sprawdzic gestosci przejscia(done? - sprawdz dla kazdej druzyny), 
 #(playoffy z przesloszci? optional), 
 #heatmapa na zwyciestwa, premiowac ostatnie lata w wagach
@@ -424,5 +450,5 @@ plt.show()
 #zebrać dane z playoffow
 #zrobic testy (done)
 #boxplot długi (done)
-#zapamietac czworki finalowe
+#zapamietac czworki finalowe (done)
 #moze mapa jakas?
