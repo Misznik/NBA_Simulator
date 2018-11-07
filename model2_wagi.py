@@ -9,6 +9,8 @@ import random as rd
 import matplotlib.pylab as plt
 import numpy as np
 import copy
+from scipy import stats
+from statsmodels.graphics.gofplots import qqplot
 import seaborn as sns; sns.set()
 
 dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi')
@@ -49,9 +51,8 @@ for i in range(len(dane_10_lat)):
             
 dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'BOS':0,
-'NJN':0,
-'CHI':0,
 'CHA':0,
+'CHI':0,
 'CLE':0,
 'DAL':0,
 'DEN':0,
@@ -65,15 +66,16 @@ dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'MIA':0,
 'MIL':0,
 'MIN':0,
+'NJN':0,
 'NOH':0,
 'NYK':0,
-'SEA':0,
 'ORL':0,
 'PHI':0,
 'PHO':0,
 'POR':0,
 'SAC':0,
 'SAS':0,
+'SEA':0,
 'TOR':0,
 'UTA':0,
 'WAS':0}
@@ -84,8 +86,8 @@ przejscia_2rnd = copy.deepcopy(dict_champs)
 przejscia_3rnd = copy.deepcopy(dict_champs)
 przejscia_final = copy.deepcopy(dict_champs)
                     #listy z konferencjami
-west_teams = ['DAL','DEN','GSW','HOU','LAC','MEM','MIN','NOH','SEA','PHO','POR','SAC','SAS','UTA']
-east_teams = ['BOS','NJN','CHI','CHA','CLE','DET','IND','MIA','MIL','NYK','ORL','PHI','TOR','WAS']
+west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR','SAC','SAS','SEA','UTA']
+east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
 
 N = 1000 #Ilosc symulacji
 for n in range(1,N+1):
@@ -379,7 +381,48 @@ print(champion)
 
 rysuj_wykres(dict_champs,'mistrzowie')
 
+srednie = []
+for i in range(len(gestosci)):
+    srednie.append([dane_10_lat[i][0], np.mean(gestosci[i])])
+    
+#rysuj_wykres(dict_champs,'mistrzowie')
+#rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
+#rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
+#rysuj_wykres(przejscia_3rnd,'przejscia do 3 rundy')
+#rysuj_wykres(przejscia_final,'przejscia do finalow')
+#rysuj_gestosc(gestosci,4)
+#rysuj_histogram(1,10)
+
+#for i in range(len(gestosci)):  # shapiro-wilk, nie sa normalne
+#    print(dane_10_lat[i][0], stats.shapiro(gestosci[i]))
+
+#for i in range(len(gestosci)):  # D’Agostino’s K^2 Test, Sample looks Gaussian (fail to reject H0)
+#    print(dane_10_lat[i][0], stats.normaltest(gestosci[i]))
+
+east_density = []
+west_density = []
+for i in range(len(gestosci)): 
+    if dane_10_lat[i][0] in east_teams:
+        east_density.append(gestosci[i])
+    elif dane_10_lat[i][0] in west_teams:
+        west_density.append(gestosci[i])
+
+#fig, ax = plt.subplots()
+#ax.boxplot(east_density)
+#plt.xticks([i for i in range(1,16)], east_teams)
+#plt.show()
+
+fig, ax = plt.subplots()
+ax.boxplot(west_density)
+plt.xticks([i for i in range(1,16)], west_teams)
+plt.show()
 
 #dodac prawdopodobienstwa(done), sprawdzic gestosci przejscia(done? - sprawdz dla kazdej druzyny), 
 #(playoffy z przesloszci? optional), 
 #heatmapa na zwyciestwa, premiowac ostatnie lata w wagach
+#rozszerzyc do tego sezonu
+#zebrać dane z playoffow
+#zrobic testy (done)
+#boxplot długi (done)
+#zapamietac czworki finalowe
+#moze mapa jakas?

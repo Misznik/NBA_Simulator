@@ -6,6 +6,7 @@ Created on Mon Oct 15 17:25:03 2018
 """
 import pandas as pd
 import random as rd
+import numpy as np
 import matplotlib.pylab as plt
 import copy
 import seaborn as sns; sns.set()
@@ -48,9 +49,8 @@ for i in range(len(dane_10_lat)):
     
 dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'BOS':0,
-'NJN':0,
-'CHI':0,
 'CHA':0,
+'CHI':0,
 'CLE':0,
 'DAL':0,
 'DEN':0,
@@ -64,15 +64,16 @@ dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'MIA':0,
 'MIL':0,
 'MIN':0,
+'NJN':0,
 'NOH':0,
 'NYK':0,
-'SEA':0,
 'ORL':0,
 'PHI':0,
 'PHO':0,
 'POR':0,
 'SAC':0,
 'SAS':0,
+'SEA':0,
 'TOR':0,
 'UTA':0,
 'WAS':0}
@@ -83,8 +84,8 @@ przejscia_2rnd = copy.deepcopy(dict_champs)
 przejscia_3rnd = copy.deepcopy(dict_champs)
 przejscia_final = copy.deepcopy(dict_champs)
                     #listy z konferencjami
-west_teams = ['DAL','DEN','GSW','HOU','LAC','MEM','MIN','NOH','SEA','PHO','POR','SAC','SAS','UTA']
-east_teams = ['BOS','NJN','CHI','CHA','CLE','DET','IND','MIA','MIL','NYK','ORL','PHI','TOR','WAS']
+west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR','SAC','SAS','SEA','UTA']
+east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
 
 N = 1000 #Ilosc symulacji
 for n in range(1,N+1):
@@ -377,8 +378,20 @@ print('Champion:')
 print(champion)
 
 rysuj_wykres(dict_champs,'mistrzowie') 
+
+srednie = []
+for i in range(len(gestosci)):
+    srednie.append([dane_10_lat[i][0], np.mean(gestosci[i])])
     
 #################################################  PRZEJSCIA
+
+#rysuj_wykres(dict_champs,'mistrzowie')
+#rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
+#rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
+#rysuj_wykres(przejscia_3rnd,'przejscia do 3 rundy')
+#rysuj_wykres(przejscia_final,'przejscia do finalow')
+#rysuj_gestosc(gestosci,4)
+#rysuj_histogram(1,10)
 
 #dodac prawdopodobienstwa, sprawdzic gestosci przejscia, (playoffy z przesloszci? optional), 
 #heatmapa na zwyciestwa, premiowac ostatnie lata w wagach
