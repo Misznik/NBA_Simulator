@@ -17,7 +17,8 @@ from statsmodels.graphics.gofplots import qqplot
 import seaborn as sns; sns.set()
 from funkcje_pomocnicze import *
 
-dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_simple')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_simple')
+dane_10_lat_df = pd.read_excel('team_v_team_5_makra.xlsm', sheetname='stosunki_wagi')
 wygrane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='suma_bez_wag')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
@@ -381,7 +382,7 @@ for i in range(len(gestosci)):
 
 #boxploty_konf(east_density, east_teams)  
 #boxploty_konf(west_density, west_teams)   
-#rysuj_wykres(dict_champs,'mistrzowie')
+rysuj_wykres(dict_champs,'mistrzowie')
 #rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
 #rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
 #rysuj_wykres(przejscia_3rnd,'przejscia do 3 rundy')
