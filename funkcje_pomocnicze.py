@@ -14,6 +14,8 @@ import itertools
 import operator
 from statsmodels.graphics.gofplots import qqplot
 import seaborn as sns; sns.set()
+from statsmodels.stats.diagnostic import lilliefors
+import pylab
 
 dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
@@ -67,20 +69,64 @@ def most_common(L):   #kod z internetu, to nie plagiat?
   # pick the highest-count/earliest item
   return max(groups, key=_auxfun)[0]
 
-def testy_norm(lista_gestosci):
-    print('Shapiro-Wilk')
-    for i in range(len(lista_gestosci)):  # shapiro-wilk, nie sa normalne
-        print(dane_10_lat[i][0], stats.shapiro(lista_gestosci[i]))
+def testy_norm(lista_gestosci, indeks):
+    print('Shapiro-Wilk') # shapiro-wilk, nie sa normalne
+    print(dane_10_lat[indeks][0], stats.shapiro(lista_gestosci[indeks]))
+    print('Lilliefors') # shapiro-wilk, nie sa normalne
+    print(dane_10_lat[indeks][0], lilliefors(lista_gestosci[indeks]))
     print('D’Agostino’s K^2 Test')
-    for i in range(len(lista_gestosci)):  # D’Agostino’s K^2 Test, Sample looks Gaussian (fail to reject H0)
-        print(dane_10_lat[i][0], stats.normaltest(lista_gestosci[i]))
+    # D’Agostino’s K^2 Test, Sample looks Gaussian (fail to reject H0)
+    print(dane_10_lat[indeks][0], stats.normaltest(lista_gestosci[indeks]))
     print('Anderson-Darling test')
-    for i in range(len(lista_gestosci)):  # 
-        print(dane_10_lat[i][0], stats.anderson(lista_gestosci[i]), 'norm')    
+    print(dane_10_lat[indeks][0], stats.anderson(lista_gestosci[indeks]), 'norm')    
 
 def boxploty_konf(lista_gest, lista_nazw):        
     fig, ax = plt.subplots()
     ax.boxplot(lista_gest)
     plt.xticks([i for i in range(1,16)], lista_nazw)
     plt.show()
+    
+def rysuj_qqplot(lista, numer):    
+    stats.probplot(lista[numer], dist="norm", plot=pylab)
+    pylab.show()
         
+#def predykcja():
+#    rnd1_east = list(przejscia_1rnd.items())
+#    rnd1_east.sort(key=lambda x: x[1], reverse=True)
+#    rnd1_east=rnd1_east[0:8]
+#    print('PLAYOFFS 1st Round:')   
+#    print('East:')
+#    print(rnd1_east)
+#    
+#    rnd1_east = list(przejscia_1rnd.items())
+#    rnd1_east.sort(key=lambda x: x[1], reverse=True)
+#    rnd1_east=rnd1_east[0:8]
+#    print('PLAYOFFS 1st Round:')   
+#    print('East:')
+#    print(rnd1_east)
+#    print('West:')
+#    print(rnd1_west)
+#    print('PLAYOFFS 2nd Round:')   
+#    print('East:')
+#    print(rnd2_east)
+#    print('West:')
+#    print(rnd2_west)
+#    print('Conference finals:')   
+#    print('East:')
+#    print(rnd3_east)
+#    print('West:')
+#    print(rnd3_west)
+#    print('Finals:')
+#    print(final)
+#    print('Champion:')
+#    print(champion)
+#    przejscia(rnd1_east, przejscia_1rnd)
+#    przejscia(rnd1_west, przejscia_1rnd)
+#    przejscia(rnd2_east, przejscia_2rnd)
+#    przejscia(rnd2_west, przejscia_2rnd)
+#    przejscia(rnd3_east, przejscia_3rnd)
+#    przejscia(rnd3_west, przejscia_3rnd)
+    
+    
+ ##################################################################3   
+    
