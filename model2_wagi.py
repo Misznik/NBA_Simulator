@@ -18,8 +18,8 @@ from statsmodels.stats.diagnostic import lilliefors
 import pylab
 
 #dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi')
-dane_10_lat_df = pd.read_excel('team_v_team_last_10.xlsm', sheetname='stosunki_wagi')
-schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='18-19')
+dane_10_lat_df = pd.read_excel('team_v_team_5_makra.xlsm', sheetname='stosunki_wagi')
+schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist()
@@ -69,7 +69,7 @@ west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR',
 east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
 finalowe4 = []
 
-N = 10000 #Ilosc symulacji
+N = 1000 #Ilosc symulacji
 for n in range(1,N+1):
     wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
@@ -374,8 +374,8 @@ for i in range(len(gestosci)):
     elif dane_10_lat[i][0] in west_teams:
         west_density.append(gestosci[i])
 
-#boxploty_konf(east_density, east_teams)  
-#boxploty_konf(west_density, west_teams)   
+boxploty_konf(east_density, east_teams, wyniki_east_14_15)  
+#boxploty_konf(west_density, west_teams, wyniki_west_14_15)   
 #rysuj_wykres(dict_champs,'mistrzowie')
 #rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
 #rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
@@ -383,8 +383,8 @@ for i in range(len(gestosci)):
 #rysuj_wykres(przejscia_final,'przejscia do finalow')
 #rysuj_gestosc(gestosci,0)
 #rysuj_histogram(1,10)
-testy_norm(gestosci, 0)
-rysuj_qqplot(gestosci,0)
+#testy_norm(gestosci, 0)
+#rysuj_qqplot(gestosci,0)
 print('najczestsze czworki ' ,most_common(finalowe4))
 
 

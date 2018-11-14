@@ -24,6 +24,36 @@ schedule_14_15 = schedule_14_15_df.values.tolist()
 west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR','SAC','SAS','SEA','UTA']
 east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
 gestosci = []
+wyniki_east_14_15 = {'ATL':60, 
+    'BOS':40,
+    'CHA':33,
+    'CHI':50,
+    'CLE':53,
+    'DET':32,
+    'IND':38,
+    'MIA':37,
+    'MIL':41,
+    'NJN':38,
+    'NYK':17,
+    'ORL':25,
+    'PHI':18,
+    'TOR':49,
+    'WAS':46} 
+wyniki_west_14_15 = {'DAL':50,
+    'DEN':30,
+    'GSW':67,
+    'HOU':56,
+    'LAC':56,
+    'LAL':21,
+    'MEM':55,
+    'MIN':16,
+    'NOH':45,
+    'PHO':39,
+    'POR':51,
+    'SAC':29,
+    'SAS':55,
+    'SEA':45,
+    'UTA':38} 
 
 def find_indeks(indeks_fd):
     for indeks_i in range(1,len(dane_10_lat)+1):
@@ -80,10 +110,13 @@ def testy_norm(lista_gestosci, indeks):
     print('Anderson-Darling test')
     print(dane_10_lat[indeks][0], stats.anderson(lista_gestosci[indeks]), 'norm')    
 
-def boxploty_konf(lista_gest, lista_nazw):        
+def boxploty_konf(lista_gest, lista_nazw, wyniki_dict):        
     fig, ax = plt.subplots()
     ax.boxplot(lista_gest)
     plt.xticks([i for i in range(1,16)], lista_nazw)
+    names = list(wyniki_dict.keys())
+    values = list(wyniki_dict.values())
+    plt.scatter(range(1,len(wyniki_dict)+1),values)
     plt.show()
     
 def rysuj_qqplot(lista, numer):    
@@ -129,4 +162,6 @@ def rysuj_qqplot(lista, numer):
     
     
  ##################################################################3   
-    
+  
+
+
