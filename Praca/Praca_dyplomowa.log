@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  14 NOV 2018 20:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  19 NOV 2018 18:07
 entering extended mode
 **./Praca_dyplomowa.tex
 (Praca_dyplomowa.tex
@@ -1410,13 +1410,47 @@ l.35 \maketitle
 
 ]
 Rozdzia\l  1.
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 48.
-("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
-File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 48.
- [5] [6]
+
+Underfull \hbox (badness 4048) in paragraph at lines 127--127
+[]|\T1/lmr/m/n/12 (+20) Oklahoma City Thun-der
+ []
+
+
+Underfull \hbox (badness 4168) in paragraph at lines 127--127
+\T1/lmr/m/n/12 (+20) (daw-nej Se-at-tle Su-per-So-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--133
+
+ []
+
+
+Overfull \hbox (9.1472pt too wide) in paragraph at lines 47--133
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--133
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--133
+
+ []
+
+
+Overfull \hbox (9.1472pt too wide) in paragraph at lines 47--133
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--133
+
+ []
+
+[5] [6]
 Rozdzia\l  2.
 [7
 
@@ -1426,12 +1460,24 @@ Rozdzia\l  2.
 
 ]
 Rozdzia\l  3.
-[9] [10
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--164
+
+ []
 
 
-]
+LaTeX Warning: Command \. invalid in math mode on input line 167.
+
+
+Underfull \vbox (badness 2744) has occurred while \output is active []
+
+ [9]
+[10]
 Rozdzia\l  4.
-[11] [12
+[11
+
+
+] [12
 
 
 ]
@@ -1450,33 +1496,34 @@ Rozdzia\l  5.
 
 ]
 No file Praca_dyplomowa.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 154.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 154.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 208.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 208.
 (Praca_dyplomowa.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 154.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 154.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 208.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 208.
 Package rerunfilecheck Info: File `Praca_dyplomowa.out' has not changed.
-(rerunfilecheck)             Checksum: 27A5D186665BE47FFDFAFECBE33D7E80;419.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 154.
+(rerunfilecheck)             Checksum: 9074DAAE50A3971CD354C9D49E53E2CD;764.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 208.
  ) 
 Here is how much of TeX's memory you used:
- 23124 strings out of 493323
- 412799 string characters out of 3139065
- 842943 words of memory out of 3000000
- 26132 multiletter control sequences out of 15000+200000
- 64847 words of font info for 75 fonts, out of 3000000 for 9000
+ 23127 strings out of 493323
+ 412679 string characters out of 3139065
+ 842949 words of memory out of 3000000
+ 26111 multiletter control sequences out of 15000+200000
+ 65844 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,14n,62p,1182b,2387s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Fil
-es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
-r10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Progra
-m Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/lm/lmsy10.pfb>
-Output written on Praca_dyplomowa.pdf (21 pages, 207462 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/M
+iKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
+nc/dvips/lm/lm-ec.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb>
+Output written on Praca_dyplomowa.pdf (21 pages, 219464 bytes).
 PDF statistics:
- 172 PDF objects out of 1000 (max. 8388607)
- 31 named destinations out of 1000 (max. 500000)
- 21069 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 206 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
+ 21109 words of extra memory for PDF output out of 24883 (max. 10000000)
 

@@ -1,8 +1,13 @@
 \BOOKMARK [0][-]{chapter*.2}{Wstep}{}% 1
 \BOOKMARK [0][-]{chapter.1}{Opis ligi NBA, jak wyglada sezon}{}% 2
 \BOOKMARK [0][-]{chapter.2}{Teoria, matematyka}{}% 3
-\BOOKMARK [0][-]{chapter.3}{Metodologia, algorytmy}{}% 4
-\BOOKMARK [0][-]{chapter.4}{Wyniki, porownanie modeli}{}% 5
-\BOOKMARK [0][-]{chapter.5}{Wnioski}{}% 6
-\BOOKMARK [0][-]{chapter*.3}{Podsumowanie}{}% 7
-\BOOKMARK [0][-]{chapter*.4}{Dodatek}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Zasada bootstrap}{chapter.2}% 4
+\BOOKMARK [0][-]{chapter.3}{Metodologia, algorytmy}{}% 5
+\BOOKMARK [1][-]{section.3.1}{Model prosty bez wag}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.2}{Model z\233ozony bez wag}{chapter.3}% 7
+\BOOKMARK [1][-]{section.3.3}{Model prosty z wagami}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.4}{Model z\233ozony z wagami}{chapter.3}% 9
+\BOOKMARK [0][-]{chapter.4}{Wyniki, porownanie modeli}{}% 10
+\BOOKMARK [0][-]{chapter.5}{Wnioski}{}% 11
+\BOOKMARK [0][-]{chapter*.3}{Podsumowanie}{}% 12
+\BOOKMARK [0][-]{chapter*.4}{Dodatek}{}% 13

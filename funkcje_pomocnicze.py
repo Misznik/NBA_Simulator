@@ -122,45 +122,62 @@ def boxploty_konf(lista_gest, lista_nazw, wyniki_dict):
 def rysuj_qqplot(lista, numer):    
     stats.probplot(lista[numer], dist="norm", plot=pylab)
     pylab.show()
-        
-#def predykcja():
-#    rnd1_east = list(przejscia_1rnd.items())
-#    rnd1_east.sort(key=lambda x: x[1], reverse=True)
-#    rnd1_east=rnd1_east[0:8]
-#    print('PLAYOFFS 1st Round:')   
-#    print('East:')
-#    print(rnd1_east)
-#    
-#    rnd1_east = list(przejscia_1rnd.items())
-#    rnd1_east.sort(key=lambda x: x[1], reverse=True)
-#    rnd1_east=rnd1_east[0:8]
-#    print('PLAYOFFS 1st Round:')   
-#    print('East:')
-#    print(rnd1_east)
-#    print('West:')
-#    print(rnd1_west)
-#    print('PLAYOFFS 2nd Round:')   
-#    print('East:')
-#    print(rnd2_east)
-#    print('West:')
-#    print(rnd2_west)
-#    print('Conference finals:')   
-#    print('East:')
-#    print(rnd3_east)
-#    print('West:')
-#    print(rnd3_west)
-#    print('Finals:')
-#    print(final)
-#    print('Champion:')
-#    print(champion)
-#    przejscia(rnd1_east, przejscia_1rnd)
-#    przejscia(rnd1_west, przejscia_1rnd)
-#    przejscia(rnd2_east, przejscia_2rnd)
-#    przejscia(rnd2_west, przejscia_2rnd)
-#    przejscia(rnd3_east, przejscia_3rnd)
-#    przejscia(rnd3_west, przejscia_3rnd)
+      
+#a = [x+1 for x in a]
+def predykcja():
+    rnd1_east = list(x for x in przejscia_1rnd.items() if x[0] in east_teams)
+    rnd1_east.sort(key=lambda x: x[1], reverse=True)
+    rnd1_east=rnd1_east[0:8]
+    print('PLAYOFFS 1st Round:')   
+    print('East:')
+    print(rnd1_east)
     
+    rnd1_west = list(x for x in przejscia_1rnd.items() if x[0] in west_teams)
+    rnd1_west.sort(key=lambda x: x[1], reverse=True)
+    rnd1_west=rnd1_west[0:8]
+    print('PLAYOFFS 1st Round:')   
+    print('west:')
+    print(rnd1_west)
+
+    rnd2_east = list(x for x in przejscia_2rnd.items() if x[0] in east_teams)
+    rnd2_east.sort(key=lambda x: x[1], reverse=True)
+    rnd2_east=rnd2_east[0:4]
+    print('PLAYOFFS 2nd Round:')   
+    print('East:')
+    print(rnd2_east)
     
+    rnd2_west = list(x for x in przejscia_2rnd.items() if x[0] in west_teams)
+    rnd2_west.sort(key=lambda x: x[1], reverse=True)
+    rnd2_west=rnd2_west[0:4]
+    print('PLAYOFFS 2nd Round:')   
+    print('west:')
+    print(rnd2_west)   
+    
+    rnd3_east = list(x for x in przejscia_3rnd.items() if x[0] in east_teams)
+    rnd3_east.sort(key=lambda x: x[1], reverse=True)
+    rnd3_east=rnd3_east[0:2]
+    print('PLAYOFFS 3rd Round:')   
+    print('East:')
+    print(rnd3_east)
+    
+    rnd3_west = list(x for x in przejscia_3rnd.items() if x[0] in west_teams)
+    rnd3_west.sort(key=lambda x: x[1], reverse=True)
+    rnd3_west=rnd3_west[0:2]
+    print('PLAYOFFS 3rd Round:')   
+    print('west:')
+    print(rnd3_west)
+    
+    final_pred = list(przejscia_final.items())
+    final_pred.sort(key=lambda x: x[1], reverse=True)
+    final_pred=final_pred[0:2]
+    print('PLAYOFFS Finals:')
+    print(final_pred) 
+
+    champs_pred = list(dict_champs.items())
+    champs_pred.sort(key=lambda x: x[1], reverse=True)
+    champs_pred=champs_pred[0]
+    print('Champions:')
+    print(champs_pred)       
  ##################################################################3   
   
 

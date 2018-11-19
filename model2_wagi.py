@@ -18,8 +18,8 @@ from statsmodels.stats.diagnostic import lilliefors
 import pylab
 
 #dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi')
-dane_10_lat_df = pd.read_excel('team_v_team_5_makra.xlsm', sheetname='stosunki_wagi')
-schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+dane_10_lat_df = pd.read_excel('team_v_team_last_5.xlsm', sheetname='stosunki_wagi')
+schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='18-19')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist()
@@ -363,8 +363,10 @@ print('Champion:')
 print(champion)
 
 srednie = []
+mediany = []
 for i in range(len(gestosci)):
     srednie.append([dane_10_lat[i][0], np.mean(gestosci[i])])
+    mediany.append([dane_10_lat[i][0], np.median(gestosci[i])])
 
 east_density = []
 west_density = []
@@ -374,7 +376,7 @@ for i in range(len(gestosci)):
     elif dane_10_lat[i][0] in west_teams:
         west_density.append(gestosci[i])
 
-boxploty_konf(east_density, east_teams, wyniki_east_14_15)  
+#boxploty_konf(east_density, east_teams, wyniki_east_14_15)  
 #boxploty_konf(west_density, west_teams, wyniki_west_14_15)   
 #rysuj_wykres(dict_champs,'mistrzowie')
 #rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
@@ -387,6 +389,7 @@ boxploty_konf(east_density, east_teams, wyniki_east_14_15)
 #rysuj_qqplot(gestosci,0)
 print('najczestsze czworki ' ,most_common(finalowe4))
 
+#a = [x+1 for x in a]
 
 #dodac prawdopodobienstwa(done), sprawdzic gestosci przejscia(done? - sprawdz dla kazdej druzyny), 
 #(playoffy z przesloszci? optional), 
