@@ -4,7 +4,7 @@
 \autor{Michał Cerazy}
 \tytul{Tytuł pracy dyplomowej} 
 \tytulang{Tytuł pracy dyplomowej w języku angielskim}
-\opiekun{prof. dr hab. Jan Kowalski}
+\opiekun{dr hab. inż. Krzysztof Burnecki}
 \kierunekstudiow{Matematyka stosowana}
 \kierunekstudiowang{Applied Mathematics}
 \specjalnosc{--} 
@@ -163,14 +163,62 @@ Z powodu losowości w rozkładzie sezonu (drużyny z jednej konferencji grające
 \\
 
 
-\section{Model prosty bez wag}
-Najprostszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięstw do porażek dla każdej drużyny w wybranym okresie --- wszystkie wygrane zespołu zostają podzielone przez łączną liczbę rozegranych spotkań, wynikiem czego jest liczba z przedziału $[0,1]$ określana jako $P_{druż}$. 
+\section{Model uśredniony}
+Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięstw do porażek dla każdej drużyny w wybranym okresie --- wszystkie wygrane zespołu zostają podzielone przez łączną liczbę rozegranych spotkań, wynikiem czego jest liczba z przedziału $[0,1]$ określana jako $P_{i}$, gdzie $i$ to $i-$ta drużyna. Algorytm symulowania wyników spotkań między drużynami wygląda następująco:
+\begin{enumerate}
+	\item wstaw $i=1$
+	\begin{enumerate}
+		\item wstaw $j=i$
+		\item znajdź drużyny $D_i$ i $D_j$
+		\item odczytaj średnie ilości zwycięstw $W_i$ i $W_j$ dla drużyn $D_i$ i $D_j$ 
+		\item wyznacz prawdopodobieństwo zwycięstwa $W_{ij}$ przez drużynę  $D_i$ równe $W_{ij}=\frac{W_i}{W_i + W_j}$   
+		\item w terminarzu znajdź liczbę spotkań $S_{ij}$ pomiędzy drużynami $D_i$ i $D_j$
+			\begin{enumerate}
+				\item symuluj liczbę $U$ z rozkładu jednostajnego $U\sim U[0,1]$ 
+			\item jeżeli $W_{ij} \leq U,$ to zwiększ licznik zwycięstw drużyny $D_i$, w przeciwnym razie zwiększ licznik zwycięstw drużyny $D_j$
+			\item powtórz $S_{ij}$ razy
+			\end{enumerate}
+		\item wstaw $j=j+1$
+	\end{enumerate}
+	\item wstaw $i=i+1$
+	\item jeżeli $i> 30$, to zakończ algorytm
+\end{enumerate} 
 
-\section{Model złożony bez wag}
+\section{Model rywalizacji}
+Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki przeciwko konkretnej drużynie. W zawodowym sporcie niejednokrotnie można trafić na zażarte rywalizacje między dwoma klubami lub zwykłą łatwość w pokonaniu szczególnego przeciwnika. Algorytm symulowania wyników spotkań między drużynami wygląda następująco:
+\begin{enumerate}
+	\item wstaw $i=1$
+	\begin{enumerate}
+		\item wstaw $j=i$
+		\item znajdź drużyny $D_i$ i $D_j$
+		\item odczytaj z macierzy wyników stosunek zwycięstw $W_{ij}$ drużyny $D_i$ przeciw drużynie $D_j$   
+		\item w terminarzu znajdź liczbę spotkań $S_{ij}$ pomiędzy drużynami $D_i$ i $D_j$
+		\begin{enumerate}
+			\item symuluj liczbę $U$ z rozkładu jednostajnego $U\sim U[0,1]$ 
+			\item jeżeli $W_{ij} \leq U,$ to zwiększ licznik zwycięstw drużyny $D_i$, w przeciwnym razie zwiększ licznik zwycięstw drużyny $D_j$
+			\item powtórz $S_{ij}$ razy
+		\end{enumerate}
+		\item wstaw $j=j+1$
+	\end{enumerate}
+	\item wstaw $i=i+1$
+	\item jeżeli $i> 30$, to zakończ algorytm
+\end{enumerate} 
 
-\section{Model prosty z wagami}
-
-\section{Model złożony z wagami}
+\section{Model symulacji fazy pucharowej}
+Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każdej konferencji przechodzi do fazy Playoff, gdzie toczy rozgrywki zgodnie z systemem opisanym we WSTĘPIE. Na tym etapie rozgrywek symulacja spotkań różni się od części zasadniczej: zamiast jednego z zasugerowanych wcześniej modeli korzysta się ze wcześniejszej symulacji fazy zasadniczej. W celu oddania trendów panujących w wygenerowanych rozgrywkach (a mianowicie potencjalnych kontuzjach, spadkach lub zwyżkach formy), użyta zostaje jedynie informacja o ilości wygranych przed rozpoczęciem Playoffów. Algorytm symulowania tej fazy jest postaci:
+\begin{enumerate}
+	\item wybierz drużyny $D_i$ i $D_j$
+	\item odczytaj symulowane ilości zwycięstw $W_i$ i $W_j$ dla wybranych drużyn $D_i$ i $D_i$
+	\item wyznacz prawdopodobieństwo zwycięstwa $W_{ij}$ przez drużynę  $D_i$ równe $W_{ij}=\frac{W_i}{W_i + W_j}$ 
+	\item wstaw liczniki zwycięstw $Z_i=0$ i $Z_j=0$ 
+		\begin{enumerate}
+			\item symuluj liczbę $U$ z rozkładu jednostajnego $U\sim U[0,1]$ 
+			\item jeżeli $W_{ij} \leq U,$ wstaw $Z_i=Z_i+1$, w przeciwnym razie wstaw $Z_j=Z_j+1$
+			\item powtarzaj dopóki  $Z_i=4$ lub $Z_j=4$
+		\end{enumerate}
+	\item jeżeli $Z_i=4$, to przenieś drużynę $D_i$ do następnego etapu, w przeciwnym razie przenieś drużynę $D_j$
+	
+\end{enumerate} 
 
 \chapter{Wyniki, porownanie modeli}
 modelowanie okresem, sezonem, wagami, długością próbki?
