@@ -5,7 +5,7 @@
 \tytul{Tytuł pracy dyplomowej} 
 \tytulang{Tytuł pracy dyplomowej w języku angielskim}
 \opiekun{dr hab. inż. Krzysztof Burnecki}
-\kierunekstudiow{Matematyka stosowana}
+\kierunekstudiow{Matematyka Stosowana}
 \kierunekstudiowang{Applied Mathematics}
 \specjalnosc{--} 
 \specjalnoscang{--} 
@@ -150,17 +150,24 @@ test shapiro-wilka, gęstość rozkładu, rozklad normalny, qqplot?
 \chapter{Metodologia, algorytmy}
 Czy znając wyniki zakończonych rozgrywek jesteśmy w stanie przewidzieć rezultaty przyszłych zawodów?
 \\
-Dane, które będziemy wykorzystywać do symulacji sezonu zostały zebrane ze strony besketballreference.com i przerobione w odpowiedni sposób CZY MAM PODAWAĆ TRANSFORMACJE DANYCH, JAK DO TEGO DOSZŁO?
+Dane, które będą wykorzystywane do symulacji sezonu zostały zebrane ze strony besketballreference.com i przerobione w odpowiedni sposób CZY MAM PODAWAĆ TRANSFORMACJE DANYCH, JAK DO TEGO DOSZŁO?
 \\
 Na potrzeby tej pracy zebrano wyniki starć pomiędzy drużynami począwszy od sezonu 2004/2005 aż do 2017/2018. Początkowo symulowano rozgrywki w sezonie 2014/2015 w celu wybrania najlepszego modelu, a następnie skorzystano z niego, aby przewidzieć wyniki rozgrywek we wciąż trwającym sezonie 2018/2019.
 Posiadając ilość wygranych jednej drużyny z drugą na przestrzeni lat dokonano następujących transformacji danych:
 \\
 W zależności od interwału czasowego, jaki będziemy rozpatrywać, zebrano wyniki w określonych rozgrywkach (na przykład, przy wyznaczaniu wyników sezony 2014/2015 i interwale 5 lat, używać będziemy danych z lat 2009 do 2014). Dzięki uzyskanej w ten sposób liczbie wygranych w możemy stosunek zwycięstw do porażek dla wybranych zespołów (załóżmy, że Boston Celtics i Atlanta Hawks grali ze sobą 10 razy, Jastrzębie wygrały zaledwie 4 razy, dlatego też w starciu z Celtami jej stosunek wygranych do przegranych wynosi $0.4$). Po zastosowaniu tej metody dla wszystkich zespołów uzyskamy macierz o rozmiarze 30 wierszy i kolumn zawierającą prawdopodobieństwa na wygraną z każdym zespołem w lidze.
 \\
+Podczas prób symulacji dokonano intuicyjnego założenia, wedle którego największy wpływ na postawę sezonu mają rozgrywki bezpośrednio go poprzedzające. W tym celu dobrano system wag --- z powodu dynamicznych zmian w lidze, najstarsze sezony otrzymują najmniejszą rangę, która stopniowo zwiększa się, im bliżej do zawodów rozpatrywanych w symulacji. Ważona ilość zwycięstw $Z_i$ $i-$tej drużyny $D_i$ z $j-$tą drużyną $D_j$ wynosi
+\begin{equation}
+	Z_{ij} = \sum_{k=1}^{n} (1+x\cdot k)\cdot R_{ijk}, 
+\end{equation}
+gdzie $n$ to ilość sezonów, z których zaciągamy dane, $x$ ustalona waga kolejnych rozgrywek, a $R_{ijk}$ to wynik starć drużyny $D_i$ z drużyną $D_j$ w $k-$tym sezonie.     
+\\
 Podczas symulacji program przechodzi przez terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w ROZDZIALE Z MODELAMI
 \\
 Z powodu losowości w rozkładzie sezonu (drużyny z jednej konferencji grające ze sobą 3 albo 4 razy w zależności od sezonu) skorzystano z gotowych terminarzy dla symulowanych sezonów.
 \\
+
 
 
 \section{Model uśredniony}
@@ -183,6 +190,8 @@ Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięst
 	\item wstaw $i=i+1$
 	\item jeżeli $i> 30$, to zakończ algorytm
 \end{enumerate} 
+
+Przy testowaniu skuteczności tego modelu 
 
 \section{Model rywalizacji}
 Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki przeciwko konkretnej drużynie. W zawodowym sporcie niejednokrotnie można trafić na zażarte rywalizacje między dwoma klubami lub zwykłą łatwość w pokonaniu szczególnego przeciwnika. Algorytm symulowania wyników spotkań między drużynami wygląda następująco:
@@ -217,8 +226,10 @@ Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każde
 			\item powtarzaj dopóki  $Z_i=4$ lub $Z_j=4$
 		\end{enumerate}
 	\item jeżeli $Z_i=4$, to przenieś drużynę $D_i$ do następnego etapu, w przeciwnym razie przenieś drużynę $D_j$
-	
 \end{enumerate} 
+
+Ilości zwycięstw drużyn w kolejnych symulowanych rozgrywkach są zapisywane i zapamiętywane, podobnie jak informacje o przejściach do kolejnych faz rozgrywek pucharowych. 
+
 
 \chapter{Wyniki, porownanie modeli}
 modelowanie okresem, sezonem, wagami, długością próbki?

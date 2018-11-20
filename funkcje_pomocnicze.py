@@ -21,19 +21,19 @@ dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist()
-west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR','SAC','SAS','SEA','UTA']
-east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
+west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOP','PHO','POR','SAC','SAS','OKC','UTA']
+east_teams = ['ATL','BOS','CHO','CHI','CLE','DET','IND','MIA','MIL','BRK','NYK','ORL','PHI','TOR','WAS']
 gestosci = []
 wyniki_east_14_15 = {'ATL':60, 
     'BOS':40,
-    'CHA':33,
+    'CHO':33,
     'CHI':50,
     'CLE':53,
     'DET':32,
     'IND':38,
     'MIA':37,
     'MIL':41,
-    'NJN':38,
+    'BRK':38,
     'NYK':17,
     'ORL':25,
     'PHI':18,
@@ -47,12 +47,12 @@ wyniki_west_14_15 = {'DAL':50,
     'LAL':21,
     'MEM':55,
     'MIN':16,
-    'NOH':45,
+    'NOP':45,
     'PHO':39,
     'POR':51,
     'SAC':29,
     'SAS':55,
-    'SEA':45,
+    'OKC':45,
     'UTA':38} 
 
 def find_indeks(indeks_fd):

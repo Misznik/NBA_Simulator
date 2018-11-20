@@ -29,9 +29,19 @@ gestosci = []
 for i in range(len(dane_10_lat)):
     gestosci.append([])
 
+for i in range(len(dane_10_lat)):
+    if dane_10_lat[i][0] == 'CHA':
+        dane_10_lat[i][0] = 'CHO'
+    if dane_10_lat[i][0] == 'NJN':
+        dane_10_lat[i][0] = 'BRK'
+    if dane_10_lat[i][0] == 'NOH':
+        dane_10_lat[i][0] = 'NOP'
+    if dane_10_lat[i][0] == 'SEA':
+        dane_10_lat[i][0] = 'OKC'
+        
 dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'BOS':0,
-'CHA':0,
+'CHO':0,
 'CHI':0,
 'CLE':0,
 'DAL':0,
@@ -46,8 +56,8 @@ dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'MIA':0,
 'MIL':0,
 'MIN':0,
-'NJN':0,
-'NOH':0,
+'BRK':0,
+'NOP':0,
 'NYK':0,
 'ORL':0,
 'PHI':0,
@@ -55,7 +65,7 @@ dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'POR':0,
 'SAC':0,
 'SAS':0,
-'SEA':0,
+'OKC':0,
 'TOR':0,
 'UTA':0,
 'WAS':0}
@@ -65,18 +75,16 @@ przejscia_1rnd = copy.deepcopy(dict_champs)
 przejscia_2rnd = copy.deepcopy(dict_champs)
 przejscia_3rnd = copy.deepcopy(dict_champs)
 przejscia_final = copy.deepcopy(dict_champs)
+                    #listy z konferencjami
+west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOP','PHO','POR','SAC','SAS','OKC','UTA']
+east_teams = ['ATL','BOS','CHO','CHI','CLE','DET','IND','MIA','MIL','BRK','NYK','ORL','PHI','TOR','WAS']
 finalowe4 = []
 
-west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR','SAC','SAS','SEA','UTA']
-east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
-
 N = 1000 #Ilosc symulacji
-
-#############################  LOOPING
 for n in range(1,N+1):
     wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
-    ['CHA',0],
+    ['CHO',0],
     ['CHI',0],
     ['CLE',0],
     ['DAL',0],
@@ -91,8 +99,8 @@ for n in range(1,N+1):
     ['MIA',0],
     ['MIL',0],
     ['MIN',0],
-    ['NJN',0],
-    ['NOH',0],
+    ['BRK',0],
+    ['NOP',0],
     ['NYK',0],
     ['ORL',0],
     ['PHI',0],
@@ -100,7 +108,7 @@ for n in range(1,N+1):
     ['POR',0],
     ['SAC',0],
     ['SAS',0],
-    ['SEA',0],
+    ['OKC',0],
     ['TOR',0],
     ['UTA',0],
     ['WAS',0]]
@@ -344,29 +352,6 @@ for n in range(1,N+1):
     czworka_sort = ([rnd3_east[0][0],rnd3_east[1][0],rnd3_west[0][0],rnd3_west[1][0]])
     finalowe4.append(sorted(czworka_sort))
 
-print('Eastern conference:')
-print(east)
-print('Western conference:')
-print(west)
-print('PLAYOFFS 1st Round:')   
-print('East:')
-print(rnd1_east)
-print('West:')
-print(rnd1_west)
-print('PLAYOFFS 2nd Round:')   
-print('East:')
-print(rnd2_east)
-print('West:')
-print(rnd2_west)
-print('Conference finals:')   
-print('East:')
-print(rnd3_east)
-print('West:')
-print(rnd3_west)
-print('Finals:')
-print(final)
-print('Champion:')
-print(champion)
 
 srednie = []
 for i in range(len(gestosci)):
@@ -391,28 +376,4 @@ rysuj_wykres(dict_champs,'mistrzowie')
 #rysuj_histogram(1,10)
 #testy_norm(gestosci)
 print('najczestsze czworki ' ,most_common(finalowe4))
-
-   
-##################################################  PRZEJSCIA
-#names2 = list(przejscia_1rnd.keys())             #przyklad rysowania wykresu
-#values2 = list(przejscia_1rnd.values())
-#plt.figure(2)
-#plt.subplot(211)
-#plt.title('do 1 rundy')
-#plt.bar(range(len(przejscia_1rnd)),values2,tick_label=names2)
-#plt.show()
-
-#suma = 0
-#for i in range(len(dane_10_lat)):
-#    suma += dane_10_lat[i][1]
-#for i in range(len(dane_10_lat)):
-#    prawdopodobienstwa[dane_10_lat[i][0]] = dane_10_lat[i][1]/suma*N #- 25  #zblizony ksztalt
-#names2=[]
-#values2=[]
-#for i in range(len(dane_10_lat)):
-#    names2.append(dane_10_lat[i][0])
-#    values2.append(dane_10_lat[i][1])
-#plt.figure(4)
-#plt.title('Stosunek ilosci wygranych do ilosci meczy wygranych do rozegranych w 10 lat')
-#plt.bar(range(len(dane_10_lat)),values2,tick_label=names2)
-#plt.show()
+predykcja()

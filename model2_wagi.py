@@ -27,10 +27,20 @@ schedule_14_15 = schedule_14_15_df.values.tolist()
 gestosci = []
 for i in range(len(dane_10_lat)):
     gestosci.append([])
-            
+    
+for i in range(len(dane_10_lat)):
+    if dane_10_lat[i][0] == 'CHA':
+        dane_10_lat[i][0] = 'CHO'
+    if dane_10_lat[i][0] == 'NJN':
+        dane_10_lat[i][0] = 'BRK'
+    if dane_10_lat[i][0] == 'NOH':
+        dane_10_lat[i][0] = 'NOP'
+    if dane_10_lat[i][0] == 'SEA':
+        dane_10_lat[i][0] = 'OKC'
+        
 dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'BOS':0,
-'CHA':0,
+'CHO':0,
 'CHI':0,
 'CLE':0,
 'DAL':0,
@@ -45,8 +55,8 @@ dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'MIA':0,
 'MIL':0,
 'MIN':0,
-'NJN':0,
-'NOH':0,
+'BRK':0,
+'NOP':0,
 'NYK':0,
 'ORL':0,
 'PHI':0,
@@ -54,7 +64,7 @@ dict_champs = {'ATL':0, #slownik ilosci wygranych mistrzostw
 'POR':0,
 'SAC':0,
 'SAS':0,
-'SEA':0,
+'OKC':0,
 'TOR':0,
 'UTA':0,
 'WAS':0}
@@ -65,15 +75,15 @@ przejscia_2rnd = copy.deepcopy(dict_champs)
 przejscia_3rnd = copy.deepcopy(dict_champs)
 przejscia_final = copy.deepcopy(dict_champs)
                     #listy z konferencjami
-west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOH','PHO','POR','SAC','SAS','SEA','UTA']
-east_teams = ['ATL','BOS','CHA','CHI','CLE','DET','IND','MIA','MIL','NJN','NYK','ORL','PHI','TOR','WAS']
+west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOP','PHO','POR','SAC','SAS','OKC','UTA']
+east_teams = ['ATL','BOS','CHO','CHI','CLE','DET','IND','MIA','MIL','BRK','NYK','ORL','PHI','TOR','WAS']
 finalowe4 = []
 
 N = 1000 #Ilosc symulacji
 for n in range(1,N+1):
     wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
-    ['CHA',0],
+    ['CHO',0],
     ['CHI',0],
     ['CLE',0],
     ['DAL',0],
@@ -88,8 +98,8 @@ for n in range(1,N+1):
     ['MIA',0],
     ['MIL',0],
     ['MIN',0],
-    ['NJN',0],
-    ['NOH',0],
+    ['BRK',0],
+    ['NOP',0],
     ['NYK',0],
     ['ORL',0],
     ['PHI',0],
@@ -97,7 +107,7 @@ for n in range(1,N+1):
     ['POR',0],
     ['SAC',0],
     ['SAS',0],
-    ['SEA',0],
+    ['OKC',0],
     ['TOR',0],
     ['UTA',0],
     ['WAS',0]]
@@ -338,30 +348,6 @@ for n in range(1,N+1):
     czworka_sort = ([rnd3_east[0][0],rnd3_east[1][0],rnd3_west[0][0],rnd3_west[1][0]])
     finalowe4.append(sorted(czworka_sort))
 
-print('Eastern conference:')
-print(east)
-print('Western conference:')
-print(west)
-print('PLAYOFFS 1st Round:')   
-print('East:')
-print(rnd1_east)
-print('West:')
-print(rnd1_west)
-print('PLAYOFFS 2nd Round:')   
-print('East:')
-print(rnd2_east)
-print('West:')
-print(rnd2_west)
-print('Conference finals:')   
-print('East:')
-print(rnd3_east)
-print('West:')
-print(rnd3_west)
-print('Finals:')
-print(final)
-print('Champion:')
-print(champion)
-
 srednie = []
 mediany = []
 for i in range(len(gestosci)):
@@ -388,8 +374,7 @@ for i in range(len(gestosci)):
 #testy_norm(gestosci, 0)
 #rysuj_qqplot(gestosci,0)
 print('najczestsze czworki ' ,most_common(finalowe4))
-
-#a = [x+1 for x in a]
+predykcja()
 
 #dodac prawdopodobienstwa(done), sprawdzic gestosci przejscia(done? - sprawdz dla kazdej druzyny), 
 #(playoffy z przesloszci? optional), 

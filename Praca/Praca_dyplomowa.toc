@@ -4,7 +4,7 @@
 \contentsline {chapter}{\numberline {2}Teoria, matematyka}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Zasada bootstrap}{7}{section.2.1}
 \contentsline {chapter}{\numberline {3}Metodologia, algorytmy}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Model u\IeC {\'s}redniony}{9}{section.3.1}
+\contentsline {section}{\numberline {3.1}Model u\IeC {\'s}redniony}{10}{section.3.1}
 \contentsline {section}{\numberline {3.2}Model rywalizacji}{10}{section.3.2}
 \contentsline {section}{\numberline {3.3}Model symulacji fazy pucharowej}{11}{section.3.3}
 \contentsline {chapter}{\numberline {4}Wyniki, porownanie modeli}{13}{chapter.4}
