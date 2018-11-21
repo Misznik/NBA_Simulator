@@ -373,4 +373,4 @@ for i in range(len(gestosci)):
 #rysuj_histogram(1,10)
 #testy_norm(gestosci)
 print('najczestsze czworki ' ,most_common(finalowe4))
-predykcja()
+#predykcja()

@@ -44,92 +44,44 @@ Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej
 W niniejszej pracy inżynierskiej podjęto próbę przewidzenia rezultatów wybranego sezonu ligi NBA przy pomocy informacji o wynikach poszczególnych drużyn w poprzednich sezonach. 
 
 \chapter{Opis ligi NBA, jak wyglada sezon}
-National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of America, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Od 2004 roku w NBA gra 30 zespołów, 29 z USA i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 ekip. TU WSTAW OBRAZ Z MAPKĄ!!!!!!!!!!!!!!!!. Nazwy wszystkich drużyn z podziałem na konferencje i dywizje:
-%\begin{itemize}
-%	\item Konferencja Wschodnia   / do tabeli?
-%	\begin{itemize}
-%		\item Atlantic Division
-%		\begin{itemize}
-%			\item Boston Celtics
-%			\item Brooklyn Nets
-%			\item New York Knicks
-%			\item Philadelphia 76ers
-%			\item Toronto Raptors
-%		\end{itemize}
-%		\item Southeast Division
-%		\begin{itemize}
-%			\item Atlanta Hawks
-%			\item Charlotte Hornets
-%			\item Miami Heat
-%			\item Orlando Magic
-%			\item Washington Wizards
-%		\end{itemize}
-%		\item Central Division
-%		\begin{itemize}
-%			\item Chicago Bulls
-%			\item Cleveland Cavaliers
-%			\item Detroit Pistons
-%			\item Indiana Pacers
-%			\item Milwaukee Bucks
-%		\end{itemize}
-%	\end{itemize}	
-%	\item Konferencja Zachodnia
-%	\begin{itemize}
-%		\item Northwest Division
-%		\begin{itemize}
-%			\item Denver Nuggets
-%			\item Minnesota Timberwolves
-%			\item Oklahoma City Thunder
-%			\item Portland Trail Blazers
-%			\item Utah Jazz
-%		\end{itemize}
-%		\item Southwest Division
-%		\begin{itemize}
-%			\item Dallas Mavericks
-%			\item Houston Rockets
-%			\item Memphis Grizzlies
-%			\item New Orleans Pelicans
-%			\item San Antonio Spurs
-%		\end{itemize}
-%		\item Pacific Division
-%		\begin{itemize}
-%			\item Golden State Warriors
-%			\item Los Angeles Clippers
-%			\item Los Angeles Lakers
-%			\item Phoenix Suns
-%			\item Sacramento Kings
-%		\end{itemize}
-%	\end{itemize}
-%\end{itemize} 
-\\\\
+National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of Americai składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Od 2004 roku w NBA gra 30 zespołów, 29 z USA i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 ekip. TU WSTAW OBRAZ Z MAPKĄ!!!!!!!!!!!!!!!!. Nazwy wszystkich drużyn z podziałem na konferencje i dywizje:
+\begin{table}[]
 \begin{tabular}{ |p{5cm}|p{5cm}|p{5cm}|  }
 	\hline
 	\multicolumn{3}{|c|}{Konferencja Wschodnia} \\
 	\hline
 	Atlantic Division& Southeast Division&Central Division\\
 	\hline
-	Boston Celtics& Atlanta Hawks &Chicago Bulls\\
-	Brooklyn Nets (dawniej New Jersey Nets)&Charlotte Hornets (dawniej Charlotte Bobcats)&Cleveland Cavaliers\\
-	New York Knicks &Miami Heat &Detroit Pistons\\
-	Philadelphia 76ers&Orlando Magic &Indiana Pacers\\
-	Toronto Raptors&Washington Wizards&Milwaukee Bucks\\
+	Boston Celtics& Atlanta Hawks &Chicago Bulls\\\hline
+	Brooklyn Nets&Charlotte Hornets&Cleveland Cavaliers\\\hline
+	New York Knicks &Miami Heat &Detroit Pistons\\\hline
+	Philadelphia 76ers&Orlando Magic &Indiana Pacers\\\hline
+	Toronto Raptors&Washington Wizards&Milwaukee Bucks\\\hline
 	\hline
 \end{tabular}
-\\\\\\
+\end{table}
+\begin{table}[]
 \begin{tabular}{ |p{5cm}|p{5cm}|p{5cm}|  }
 	\hline
 	\multicolumn{3}{|c|}{Konferencja Zachodnia} \\
 	\hline
 	Northwest Division& Southwest Division&Pacific Division\\
 	\hline
-	Denver Nuggets& Dallas Mavericks &Golden State Warriors\\
-	Minnesota Timberwolves&Houston Rockets &Los Angeles Clippers\\
-	Oklahoma City Thunder (dawnej Seattle SuperSonics)&Memphis Grizzlies &Los Angeles Lakers\\
-	Portland Trail Blazers&New Orleans Pelicans &Phoenix Suns\\
+	Denver Nuggets& Dallas Mavericks &Golden State Warriors\\\hline
+	Minnesota Timberwolves&Houston Rockets &Los Angeles Clippers\\\hline
+	Oklahoma City Thunder&Memphis Grizzlies &Los Angeles Lakers\\\hline
+	Portland Trail Blazers&New Orleans Pelicans &Phoenix Suns\\\hline
 	Utah Jazztors&San Antonio Spurs&Sacramento Kings\\
 	\hline
 \end{tabular}
-\\
+\end{table}
+Dodatkowo, od 2004 roku niektóre kluby zmieniły swoje nazwy lub lokalizacje. W niektórych historycznych zestawieniach lub zbiorach danych mogą widnieć jako (podane w formacie nazwa obecna --- poprzednia):
+\begin{itemize}
+	\item Charlotte Hornets --- Charlotte Bobcats
+	\item Brooklyn Nets --- New Jersey Nets
+	\item Oklahoma City Thunder --- Seattle SuperSonics
+	\item New Orleans Pelicans --- New Orleans Hornets
+\end{itemize}
 
 Sezon w NBA składa się z dwóch części: zasadniczej i następującej po niej pucharowej (playoffs). W sezonie zasadniczym każda drużyna rozgrywa 82 mecze, grając z każdym innym zespołem od 2 do 4 gier. Terminarz wyznaczany jest wedle następujących reguł:
 \begin{enumerate}
@@ -139,35 +91,111 @@ Sezon w NBA składa się z dwóch części: zasadniczej i następującej po niej
 \end{enumerate}
 Mecze koszykówki nie mogą zakończyć się remisem (w razie remisu po regulaminowym czasie gry rozgrywa się dogrywki aż do wyłonienia zwycięzcy).
 Po zakończeniu sezonu następuje wspomniana wyżej faza pucharowa; wchodzi do niej po 8 najlepszych zespołów z każdej konferencji (w razie takiej samej ilości zwycięstw dla obu zespołów decydują mecze bezpośrednie pomiędzy nimi). W tej fazie drużyny grają ze sobą maksymalnie 7 meczów, czyli zespół, który pierwszy wygra 4 mecze, przechodzi do następnego etapu. W fazie Playoff jasno zdefiniowane są lokalizacje odgrywania spotkań --- lepszy bilans zwycięstw w sezonie zasadniczym skutkuje przewagą parkietu. Seria spotkań grana jest w formacie 2–2–1–1–1, czyli mecze numer 1, 2, 5 i 7 grane są u lepszej z drużyn. Przy doborze przeciwników w tej fazie bierze się pod uwagę pozycję w tabeli konferencji: drużyna z miejsca pierwszego gra z zespołem o ósmym bilansie w danej konferencji, druga z siódmą, i tak dalej. Zwycięzca serii przechodzi do następnego etapu z czterema drużynami, po którym następują finały konferencji --- najlepsze drużyny ze swoich konferencji spotykają się w finałach NBA. Dla lepszego zrozumienia systemu rozgrywek Playoff ZAMIESZCZONO DRZEWKO PONIŻEJ!!!!!!!!!!!!! 
+\\
+CZY ZAMIEŚCIĆ OPIS GRY? PODSTAWOWE ZASADY ITP?
+\\
+Wyniki z sezonu regularnego 2015/2015 prezentują się następująco:
+\begin{table}[]
+\begin{tabular}{|p{6cm}|p{4cm}|}
+	\hline
+	\textbf{Drużyna}      & \textbf{Ilość zwycięstw} \\ \hline
+	Golden State Warriors & 67 \\ \hline
+	Atlanta Hawks & 60 \\ \hline
+	Houston Rockets & 56 \\ \hline
+	Los Angeles Clippers & 56 \\ \hline
+	Memphis Grizzlies & 55 \\ \hline
+	San Antonio Spurs & 55 \\ \hline
+	Cleveland Cavaliers & 53 \\ \hline
+	Portland Trail Blazers & 51 \\ \hline	
+	Chicago Bulls & 50 \\ \hline	
+	Dallas Mavericks & 50 \\ \hline	
+	Toronto Raptors & 49 \\ \hline
+	Washington Wizards & 46 \\ \hline
+	New Orleans Pelicans & 45 \\ \hline
+	Oklahoma City Thunder & 45 \\ \hline
+	Milwaukee Bucks & 41 \\ \hline
+	Boston Celtics & 40 \\ \hline
+	Phoenix Suns & 39 \\ \hline
+	Brooklyn Nets & 38 \\ \hline
+	Indiana Pacers & 38 \\ \hline
+	Utah Jazz & 38 \\ \hline
+	Miami Heat & 37 \\ \hline
+	Charlotte Hornets & 33 \\ \hline
+	Detroit Pistons & 32 \\ \hline
+	Denver Nuggets & 30\\ \hline
+	Sacramento Kings & 29 \\ \hline
+	Orlando Magic & 25 \\ \hline
+	Los Angeles Lakers & 21 \\ \hline
+	Philadelphia 76ers & 18 \\ \hline
+	New York Knicks & 17 \\ \hline
+	Minnesota Timberwolves & 16 \\ \hline
+\end{tabular}	
+\end{table}
+
+Playoffs 2015:
+\begin{table}[]
+	\begin{tabular}{ |p{5cm}|p{5cm}|p{5cm}|  }
+		\hline
+		\textbf{Zwycięzca}& \textbf{Przegrany} &\textbf{Wynik}\\\hline		
+		\multicolumn{3}{|c|}{Eastern Conference First Round} \\\hline
+		Atlanta Hawks& Brooklyn Nets &4-2\\\hline
+		Chicago Bulls& Milwaukee Bucks&4-2\\\hline
+		Cleveland Cavaliers& Boston Celtics &4-0\\\hline
+		Washington Wizards& Toronto Raptors&4-0\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{Western Conference First Round} \\\hline
+		Golden State Warriors &New Orleans Pelicans &4-0\\\hline
+		Houston Rockets& Dallas Mavericks&4-1\\\hline
+		Los Angeles Clippers& San Antonio Spurs &4-3\\\hline
+		Memphis Grizzlies& Portland Trail Blazers&4-1\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+
+		\multicolumn{3}{|c|}{Eastern Conference Semifinals} \\\hline
+		Atlanta Hawks& Washington Wizards &4-2\\\hline
+		Cleveland Cavaliers& Chicago Bulls&4-2\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{Western Conference Semifinals} \\\hline
+		Golden State Warriors& Memphis Grizzlies &4-2\\\hline
+		Houston Rockets& Los Angeles Clippers&4-3\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{Eastern Conference Finals} \\\hline
+		Cleveland Cavaliers& Atlanta Hawks&4-0\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{Western Conference Finals} \\\hline
+		Golden State Warriors& Houston Rockets&4-1\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{Finals} \\\hline
+		Golden State Warriors& Cleveland Cavaliers &4-2\\\hline
+	\end{tabular}
+\end{table}
 
 \chapter{Teoria, matematyka}
-Monte Carlo, rozkład jednostajny, bootstrap, rozkład, estymacja, metod nieparametryczne, boxplot, dystrybuanta, wartość oczekiwana?
-test shapiro-wilka, gęstość rozkładu, rozklad normalny, qqplot?
-
-\section{Zasada bootstrap}
-
+Monte Carlo, rozkład jednostajny, bootstrap, rozkład, estymacja, metod nieparametryczne, boxplot, dystrybuanta, wartość oczekiwana?\\
+CZY BADAMY NORMALNOŚĆ? test shapiro-wilka, gęstość rozkładu, rozklad normalny, qqplot?
 
 \chapter{Metodologia, algorytmy}
 Czy znając wyniki zakończonych rozgrywek jesteśmy w stanie przewidzieć rezultaty przyszłych zawodów?
 \\
-Dane, które będą wykorzystywane do symulacji sezonu zostały zebrane ze strony besketballreference.com i przerobione w odpowiedni sposób CZY MAM PODAWAĆ TRANSFORMACJE DANYCH, JAK DO TEGO DOSZŁO?
+Dane, które będą wykorzystywane do symulacji sezonu zostały zebrane ze strony sportowej basketballreference.com.
 \\
 Na potrzeby tej pracy zebrano wyniki starć pomiędzy drużynami począwszy od sezonu 2004/2005 aż do 2017/2018. Początkowo symulowano rozgrywki w sezonie 2014/2015 w celu wybrania najlepszego modelu, a następnie skorzystano z niego, aby przewidzieć wyniki rozgrywek we wciąż trwającym sezonie 2018/2019.
 Posiadając ilość wygranych jednej drużyny z drugą na przestrzeni lat dokonano następujących transformacji danych:
 \\
-W zależności od interwału czasowego, jaki będziemy rozpatrywać, zebrano wyniki w określonych rozgrywkach (na przykład, przy wyznaczaniu wyników sezony 2014/2015 i interwale 5 lat, używać będziemy danych z lat 2009 do 2014). Dzięki uzyskanej w ten sposób liczbie wygranych w możemy stosunek zwycięstw do porażek dla wybranych zespołów (załóżmy, że Boston Celtics i Atlanta Hawks grali ze sobą 10 razy, Jastrzębie wygrały zaledwie 4 razy, dlatego też w starciu z Celtami jej stosunek wygranych do przegranych wynosi $0.4$). Po zastosowaniu tej metody dla wszystkich zespołów uzyskamy macierz o rozmiarze 30 wierszy i kolumn zawierającą prawdopodobieństwa na wygraną z każdym zespołem w lidze.
+W zależności od interwału czasowego, jaki będziemy rozpatrywać, zebrano wyniki w określonych rozgrywkach (na przykład, przy wyznaczaniu wyników sezony 2014/2015 i interwale 5 lat, używać będziemy danych z lat 2009 do 2014). Dzięki uzyskanej w ten sposób liczbie wygranych w możemy stosunek zwycięstw do porażek dla wybranych zespołów (przykład: Boston Celtics i Atlanta Hawks grały ze sobą 10 razy, Jastrzębie wygrały zaledwie 4 razy, dlatego też w starciu z Celtami ich stosunek wygranych do przegranych wynosi $0.4$). Po zastosowaniu tej metody dla wszystkich zespołów uzyskano macierz o rozmiarze 30 wierszy i kolumn zawierającą prawdopodobieństwa na wygraną z każdym zespołem w lidze.
 \\
 Podczas prób symulacji dokonano intuicyjnego założenia, wedle którego największy wpływ na postawę sezonu mają rozgrywki bezpośrednio go poprzedzające. W tym celu dobrano system wag --- z powodu dynamicznych zmian w lidze, najstarsze sezony otrzymują najmniejszą rangę, która stopniowo zwiększa się, im bliżej do zawodów rozpatrywanych w symulacji. Ważona ilość zwycięstw $Z_i$ $i-$tej drużyny $D_i$ z $j-$tą drużyną $D_j$ wynosi
 \begin{equation}
 	Z_{ij} = \sum_{k=1}^{n} (1+x\cdot k)\cdot R_{ijk}, 
 \end{equation}
-gdzie $n$ to ilość sezonów, z których zaciągamy dane, $x$ ustalona waga kolejnych rozgrywek, a $R_{ijk}$ to wynik starć drużyny $D_i$ z drużyną $D_j$ w $k-$tym sezonie.     
+gdzie $n$ to ilość sezonów, z których zaciągamy dane, $x$ ustalona waga kolejnych rozgrywek, a $R_{ijk}$ to wynik starć drużyny $D_i$ z drużyną $D_j$ w $k-$tym sezonie. Podczas testowania skuteczności modeli dobierano różne wagi w celu znalezienia tego zwracającego najlepsze predykcje.    
 \\
-Podczas symulacji program przechodzi przez terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w ROZDZIALE Z MODELAMI
+Podczas symulacji program przechodzi przez dokładnie określony terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w ROZDZIALE Z MODELAMI.
 \\
-Z powodu losowości w rozkładzie sezonu (drużyny z jednej konferencji grające ze sobą 3 albo 4 razy w zależności od sezonu) skorzystano z gotowych terminarzy dla symulowanych sezonów.
-\\
-
 
 
 \section{Model uśredniony}

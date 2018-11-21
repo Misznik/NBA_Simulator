@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  20 NOV 2018 13:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  21 NOV 2018 22:04
 entering extended mode
 **./Praca_dyplomowa.tex
 (Praca_dyplomowa.tex
@@ -1411,99 +1411,102 @@ l.35 \maketitle
 ]
 Rozdzia\l  1.
 
-Underfull \hbox (badness 4048) in paragraph at lines 127--127
-[]|\T1/lmr/m/n/12 (+20) Oklahoma City Thun-der
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 48.
+
+
+Overfull \hbox (9.1472pt too wide) in paragraph at lines 49--62
+[][] 
  []
 
 
-Underfull \hbox (badness 4168) in paragraph at lines 127--127
-\T1/lmr/m/n/12 (+20) (daw-nej Se-at-tle Su-per-So-
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 63.
+
+
+Overfull \hbox (9.1472pt too wide) in paragraph at lines 64--77
+[][] 
  []
 
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 80.
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 80.
 
-Underfull \hbox (badness 10000) in paragraph at lines 47--133
 
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 98.
+
+[5]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 136.
+
+
+Overfull \hbox (9.1472pt too wide) in paragraph at lines 137--175
+[][] 
  []
 
-
-Overfull \hbox (9.1472pt too wide) in paragraph at lines 47--133
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 47--133
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 47--133
-
- []
-
-
-Overfull \hbox (9.1472pt too wide) in paragraph at lines 47--133
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 47--133
-
- []
-
-[5] [6]
+[6] [7] [8]
 Rozdzia\l  2.
-[7
+[9
 
 
-] [8
+] [10
 
 
 ]
 Rozdzia\l  3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--170
+Underfull \hbox (badness 10000) in paragraph at lines 194--199
 
  []
 
-[9] [10] [11] [12
+
+Underfull \vbox (badness 4479) has occurred while \output is active []
+
+ [11]
+[12] [13] [14
 
 
 ]
 Rozdzia\l  4.
-[13] [14
+[15] [16
 
 
 ]
 Rozdzia\l  5.
-[15] [16
-
-
-] [17
-
-
-] [18
+[17] [18
 
 
 ] [19
 
 
+] [20
+
+
+] [21
+
+
 ]
 No file Praca_dyplomowa.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 267.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 267.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 295.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 295.
 (Praca_dyplomowa.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 267.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 267.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 295.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 295.
 Package rerunfilecheck Info: File `Praca_dyplomowa.out' has not changed.
-(rerunfilecheck)             Checksum: 5C114D9A1926A7A5E362B9998F70D288;690.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 267.
+(rerunfilecheck)             Checksum: FA58F2F7A9750AD801A612B017BB8606;626.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 295.
  ) 
 Here is how much of TeX's memory you used:
- 23169 strings out of 493323
- 413008 string characters out of 3139065
- 842955 words of memory out of 3000000
- 26114 multiletter control sequences out of 15000+200000
- 66113 words of font info for 89 fonts, out of 3000000 for 9000
+ 23207 strings out of 493323
+ 413568 string characters out of 3139065
+ 851952 words of memory out of 3000000
+ 26138 multiletter control sequences out of 15000+200000
+ 66386 words of font info for 92 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,14n,62p,1182b,2387s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
@@ -1519,9 +1522,9 @@ e1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.
 pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/lm/lmsy10.pfb>
-Output written on Praca_dyplomowa.pdf (23 pages, 261697 bytes).
+Output written on Praca_dyplomowa.pdf (25 pages, 265923 bytes).
 PDF statistics:
- 267 PDF objects out of 1000 (max. 8388607)
- 69 named destinations out of 1000 (max. 500000)
- 21101 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 277 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
+ 21093 words of extra memory for PDF output out of 24883 (max. 10000000)
 

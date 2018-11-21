@@ -374,7 +374,7 @@ for i in range(len(gestosci)):
 #testy_norm(gestosci, 0)
 #rysuj_qqplot(gestosci,0)
 print('najczestsze czworki ' ,most_common(finalowe4))
-predykcja()
+#predykcja()
 
 #dodac prawdopodobienstwa(done), sprawdzic gestosci przejscia(done? - sprawdz dla kazdej druzyny), 
 #(playoffy z przesloszci? optional), 

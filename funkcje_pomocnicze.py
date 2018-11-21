@@ -167,9 +167,12 @@ def predykcja():
     print('west:')
     print(rnd3_west)
     
-    final_pred = list(przejscia_final.items())
-    final_pred.sort(key=lambda x: x[1], reverse=True)
-    final_pred=final_pred[0:2]
+    final_pred_east = list(x for x in przejscia_final.items() if x[0] in east_teams)
+    final_pred_east.sort(key=lambda x: x[1], reverse=True)
+    final_pred=final_pred_east[0:1]
+    final_pred_west = list(x for x in przejscia_final.items() if x[0] in west_teams)
+    final_pred_west.sort(key=lambda x: x[1], reverse=True)
+    final_pred.append(final_pred_west[0:1])
     print('PLAYOFFS Finals:')
     print(final_pred) 
 
