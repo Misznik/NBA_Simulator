@@ -94,7 +94,7 @@ Po zakończeniu sezonu następuje wspomniana wyżej faza pucharowa; wchodzi do n
 \\
 CZY ZAMIEŚCIĆ OPIS GRY? PODSTAWOWE ZASADY ITP?
 \\
-Wyniki z sezonu regularnego 2015/2015 prezentują się następująco:
+Wyniki z sezonu regularnego 2014/2015 prezentują się następująco:
 \begin{table}[]
 \begin{tabular}{|p{6cm}|p{4cm}|}
 	\hline
@@ -196,12 +196,17 @@ gdzie $n$ to ilość sezonów, z których zaciągamy dane, $x$ ustalona waga kol
 \\
 Podczas symulacji program przechodzi przez dokładnie określony terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w ROZDZIALE Z MODELAMI.
 \\
-
+Każdy spośród zaproponowanych w tej pracy modeli został przeanalizowany pod względem okresu pobieranych danych oraz wag wpływających na istotność poszczególnych sezonów. Wszystkie symulacje wykonano 10000 razy.
+\\
+5, 10, 15 lat
+\\
+k=0, k=0.5, k=1
 
 \section{Model uśredniony}
 Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięstw do porażek dla każdej drużyny w wybranym okresie --- wszystkie wygrane zespołu zostają podzielone przez łączną liczbę rozegranych spotkań, wynikiem czego jest liczba z przedziału $[0,1]$ określana jako $P_{i}$, gdzie $i$ to $i-$ta drużyna. Algorytm symulowania wyników spotkań między drużynami wygląda następująco:
 \begin{enumerate}
-	\item wstaw $i=1$
+	\item wstaw $i=0$
+	\item wstaw $i=i+1$ 
 	\begin{enumerate}
 		\item wstaw $j=i$
 		\item znajdź drużyny $D_i$ i $D_j$
@@ -214,19 +219,18 @@ Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięst
 			\item powtórz $S_{ij}$ razy
 			\end{enumerate}
 		\item wstaw $j=j+1$
+		\item jeżeli $j\leq 30$, to wróć do Punktu $($a$)$ 
 	\end{enumerate}
-	\item wstaw $i=i+1$
-	\item jeżeli $i> 30$, to zakończ algorytm
+	\item jeżeli $i\leq 30$, to wróć do Punktu 2
 \end{enumerate} 
-
-Przy testowaniu skuteczności tego modelu 
+ 
 
 \section{Model rywalizacji}
 Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki przeciwko konkretnej drużynie. W zawodowym sporcie niejednokrotnie można trafić na zażarte rywalizacje między dwoma klubami lub zwykłą łatwość w pokonaniu szczególnego przeciwnika. Algorytm symulowania wyników spotkań między drużynami wygląda następująco:
 \begin{enumerate}
-	\item wstaw $i=1$
-	\begin{enumerate}
-		\item wstaw $j=i$
+	\item wstaw $i=0$
+	\item wstaw $i=i+1$ oraz $j=i$
+	\begin{enumerate} 
 		\item znajdź drużyny $D_i$ i $D_j$
 		\item odczytaj z macierzy wyników stosunek zwycięstw $W_{ij}$ drużyny $D_i$ przeciw drużynie $D_j$   
 		\item w terminarzu znajdź liczbę spotkań $S_{ij}$ pomiędzy drużynami $D_i$ i $D_j$
@@ -236,9 +240,10 @@ Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki pr
 			\item powtórz $S_{ij}$ razy
 		\end{enumerate}
 		\item wstaw $j=j+1$
+		\item jeżeli $j< 30$, to wróć do Punktu $($a$)$ 
 	\end{enumerate}
 	\item wstaw $i=i+1$
-	\item jeżeli $i> 30$, to zakończ algorytm
+	\item jeżeli $i\leq 30$, to wróć do Punktu 2
 \end{enumerate} 
 
 \section{Model symulacji fazy pucharowej}
@@ -263,7 +268,7 @@ Ilości zwycięstw drużyn w kolejnych symulowanych rozgrywkach są zapisywane i
 modelowanie okresem, sezonem, wagami, długością próbki?
 symulacja dla 2018-19?
 \chapter{Wnioski}
-gęstości symulacji powinny mieć rozkład normalny?
+gęstości symulacji powinny mieć rozkład normalny? niekoniecznie?
 
 {\backmatter \chapter{Podsumowanie}}
 %Podsumowanie w pracach matematycznych nie jest obligatoryjne. Warto jednak na zakończenie krótko napisać, co udało nam się zrobić w pracy, a czasem także o tym, czego nie udało się zrobić.

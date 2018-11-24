@@ -16,9 +16,26 @@ from statsmodels.graphics.gofplots import qqplot
 import seaborn as sns; sns.set()
 from funkcje_pomocnicze import *
 
-#dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki')
 dane_10_lat_df = pd.read_excel('team_v_team_5_makra.xlsm', sheetname='stosunki_wagi')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+#dane_10_lat_df = pd.read_excel('team_v_team_15_makra.xlsm', sheetname='stosunki_wagi')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+
+#dane_10_lat_df = pd.read_excel('team_v_team_5_makra.xlsm', sheetname='stosunki_wagi1')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi1')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+#dane_10_lat_df = pd.read_excel('team_v_team_15_makra.xlsm', sheetname='stosunki_wagi1')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+
+#dane_10_lat_df = pd.read_excel('team_v_team_5_makra.xlsm', sheetname='stosunki')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+#dane_10_lat_df = pd.read_excel('team_v_team_15_makra.xlsm', sheetname='stosunki')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist()
@@ -76,7 +93,10 @@ przejscia_final = copy.deepcopy(dict_champs)
                     #listy z konferencjami
 west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOP','PHO','POR','SAC','SAS','OKC','UTA']
 east_teams = ['ATL','BOS','CHO','CHI','CLE','DET','IND','MIA','MIL','BRK','NYK','ORL','PHI','TOR','WAS']
+finalowe16 = []
+finalowe8 = []
 finalowe4 = []
+finalowe2 = []
 
 N = 1000 #Ilosc symulacji
 for n in range(1,N+1):
@@ -344,8 +364,21 @@ for n in range(1,N+1):
     for i in range(len(dane_10_lat)):
         gestosci[i].append(wyniki[i][1])
         
+    szesnastka_sort = ([rnd1_east[0][0],rnd1_east[1][0],rnd1_east[2][0],rnd1_east[3][0],
+                        rnd1_east[4][0],rnd1_east[5][0],rnd1_east[6][0],rnd1_east[7][0],
+                        rnd1_west[0][0],rnd1_west[1][0],rnd1_west[2][0],rnd1_west[3][0],
+                        rnd1_west[4][0],rnd1_west[5][0],rnd1_west[6][0],rnd1_west[7][0]])
+    finalowe16.append(szesnastka_sort)
+
+    osemka_sort = ([rnd2_east[0][0],rnd2_east[1][0],rnd2_east[2][0],rnd2_east[3][0],
+                    rnd2_west[0][0],rnd2_west[1][0],rnd2_west[2][0],rnd2_west[3][0]])
+    finalowe8.append(osemka_sort)
+    
     czworka_sort = ([rnd3_east[0][0],rnd3_east[1][0],rnd3_west[0][0],rnd3_west[1][0]])
-    finalowe4.append(sorted(czworka_sort))
+    finalowe4.append(czworka_sort)
+    
+    dwojka_sort = ([final[0][0],final[1][0]])
+    finalowe2.append(dwojka_sort)  
 
 srednie = []
 for i in range(len(gestosci)):
@@ -358,9 +391,8 @@ for i in range(len(gestosci)):
         east_density.append(gestosci[i])
     elif dane_10_lat[i][0] in west_teams:
         west_density.append(gestosci[i])
-
-#boxploty_konf(east_density, east_teams)  
-#boxploty_konf(west_density, west_teams)   
+#boxploty_konf(east_density, east_teams, wyniki_east_14_15)  
+#boxploty_konf(west_density, west_teams, wyniki_west_14_15)  
 #rysuj_wykres(dict_champs,'mistrzowie')
 #rysuj_wykres(przejscia_1rnd,'przejscia do 1 rundy')
 #rysuj_wykres(przejscia_2rnd,'przejscia do 2 rundy')
@@ -369,5 +401,8 @@ for i in range(len(gestosci)):
 #rysuj_gestosc(gestosci,4)
 #rysuj_histogram(1,10)
 #testy_norm(gestosci)
+print('najczestsze szesnastki ' ,most_common(finalowe16))
+print('najczestsze osemki ' ,most_common(finalowe8))
 print('najczestsze czworki ' ,most_common(finalowe4))
+print('najczestsze dwojki ' ,most_common(finalowe2))
 #predykcja()

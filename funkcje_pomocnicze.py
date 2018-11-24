@@ -66,11 +66,13 @@ def przejscia(lista, slownik):
     for key in lista:
         slownik[key[0]] += 1
             
-def rysuj_wykres(slownik, tytul):
+def rysuj_wykres(slownik, tytul, osx, osy):
     names = list(slownik.keys())
     values = list(slownik.values())
     plt.bar(range(len(slownik)),values,tick_label=names)
     plt.title(tytul)
+    plt.xlabel(osx)    
+    plt.ylabel(osy)
     plt.show() 
 
 def rysuj_histogram(numer, mody):
@@ -110,13 +112,17 @@ def testy_norm(lista_gestosci, indeks):
     print('Anderson-Darling test')
     print(dane_10_lat[indeks][0], stats.anderson(lista_gestosci[indeks]), 'norm')    
 
-def boxploty_konf(lista_gest, lista_nazw, wyniki_dict):        
+def boxploty_konf(lista_gest, lista_nazw, wyniki_dict, tytul):        
     fig, ax = plt.subplots()
     ax.boxplot(lista_gest)
     plt.xticks([i for i in range(1,16)], lista_nazw)
     names = list(wyniki_dict.keys())
     values = list(wyniki_dict.values())
-    plt.scatter(range(1,len(wyniki_dict)+1),values)
+    plt.scatter(range(1,len(wyniki_dict)+1), values, label='Wynik w sezonie 2014/2015', color='k')
+    ax.set_title(tytul)
+    ax.set_xlabel('Drużyna')
+    ax.set_ylabel('Ilość zwycięstw')
+    leg = plt.legend()
     plt.show()
     
 def rysuj_qqplot(lista, numer):    
