@@ -2,10 +2,14 @@
 \BOOKMARK [0][-]{chapter.1}{Opis ligi NBA, jak wyglada sezon}{}% 2
 \BOOKMARK [0][-]{chapter.2}{Teoria, matematyka}{}% 3
 \BOOKMARK [0][-]{chapter.3}{Metodologia, algorytmy}{}% 4
-\BOOKMARK [1][-]{section.3.1}{Model usredniony}{chapter.3}% 5
-\BOOKMARK [1][-]{section.3.2}{Model rywalizacji}{chapter.3}% 6
-\BOOKMARK [1][-]{section.3.3}{Model symulacji fazy pucharowej}{chapter.3}% 7
-\BOOKMARK [0][-]{chapter.4}{Wyniki, porownanie modeli}{}% 8
-\BOOKMARK [0][-]{chapter.5}{Wnioski}{}% 9
-\BOOKMARK [0][-]{chapter*.8}{Podsumowanie}{}% 10
-\BOOKMARK [0][-]{chapter*.9}{Dodatek}{}% 11
+\BOOKMARK [1][-]{section.3.1}{Modele bootstrapowe}{chapter.3}% 5
+\BOOKMARK [2][-]{subsection.3.1.1}{Model usredniony}{section.3.1}% 6
+\BOOKMARK [2][-]{subsection.3.1.2}{Model rywalizacji}{section.3.1}% 7
+\BOOKMARK [2][-]{subsection.3.1.3}{Model symulacji spotkan fazy pucharowej}{section.3.1}% 8
+\BOOKMARK [1][-]{section.3.2}{Predykcja wynik\363w na podstawie symulacji}{chapter.3}% 9
+\BOOKMARK [2][-]{subsection.3.2.1}{Predykcja wynik\363w sezonu zasadniczego}{section.3.2}% 10
+\BOOKMARK [2][-]{subsection.3.2.2}{Modele predykcji wynik\363w fazy pucharowej}{section.3.2}% 11
+\BOOKMARK [0][-]{chapter.4}{Wyniki, porownanie modeli}{}% 12
+\BOOKMARK [0][-]{chapter.5}{Wnioski}{}% 13
+\BOOKMARK [0][-]{chapter*.11}{Podsumowanie}{}% 14
+\BOOKMARK [0][-]{chapter*.12}{Dodatek}{}% 15

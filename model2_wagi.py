@@ -416,11 +416,13 @@ for n in range(1,N+1):
     finalowe2.append(dwojka_sort)    
 
 
+sred_med = []
 srednie = []
 mediany = []
 for i in range(len(gestosci)):
     srednie.append([dane_10_lat[i][0], np.mean(gestosci[i])])
     mediany.append([dane_10_lat[i][0], np.median(gestosci[i])])
+    sred_med.append([dane_10_lat[i][0], np.median(gestosci[i]), np.mean(gestosci[i])])
 
 east_density = []
 west_density = []
@@ -445,5 +447,6 @@ print('najczestsze szesnastki ' ,most_common(finalowe16))
 print('najczestsze osemki ' ,most_common(finalowe8))
 print('najczestsze czworki ' ,most_common(finalowe4))
 print('najczestsze dwojki ' ,most_common(finalowe2))
+
 
 
