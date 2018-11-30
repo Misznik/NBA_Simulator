@@ -1,9 +1,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[inzynierska]{pwr_wmat_praca_dyplomowa}
+\usepackage{graphicx}
+\graphicspath{{C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/}} 
+
 \autor{Michał Cerazy}
-\tytul{Tytuł pracy dyplomowej} 
-\tytulang{Tytuł pracy dyplomowej w języku angielskim}
+\tytul{Zastosowanie metod bootstrapowych do prognozowania wyników w zawodach sportowych} 
+\tytulang{Application of bootstrap methods to the forecasting of sporting event results}
 \opiekun{dr hab. inż. Krzysztof Burnecki}
 \kierunekstudiow{Matematyka Stosowana}
 \kierunekstudiowang{Applied Mathematics}
@@ -45,6 +48,14 @@ W niniejszej pracy inżynierskiej podjęto próbę przewidzenia rezultatów wybr
 
 \chapter{Opis ligi NBA, jak wyglada sezon}
 National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of Americai składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Od 2004 roku w NBA gra 30 zespołów, 29 z USA i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 ekip. TU WSTAW OBRAZ Z MAPKĄ!!!!!!!!!!!!!!!!. Nazwy wszystkich drużyn z podziałem na konferencje i dywizje:
+
+\begin{figure}[t]
+	\label{mapa_stany}
+	\includegraphics[width=16cm]{conf_map.pdf}
+	\caption{POPRAW NAZWY NOP I CHO}
+	\centering
+\end{figure}
+
 \begin{table}[]
 \begin{tabular}{ |p{5cm}|p{5cm}|p{5cm}|  }
 	\hline
@@ -75,6 +86,7 @@ National Basketball Association (NBA) została założona 6 czerwca 1946 roku. P
 	\hline
 \end{tabular}
 \end{table}
+
 Dodatkowo, od 2004 roku niektóre kluby zmieniły swoje nazwy lub lokalizacje. W niektórych historycznych zestawieniach lub zbiorach danych mogą widnieć jako (podane w formacie nazwa obecna --- poprzednia):
 \begin{itemize}
 	\item Charlotte Hornets --- Charlotte Bobcats

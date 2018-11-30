@@ -17,26 +17,45 @@ from funkcje_pomocnicze import *
 from statsmodels.stats.diagnostic import lilliefors
 import pylab
 
-#dane_10_lat_df = pd.read_excel('team_v_team_5_makra.xlsm', sheetname='stosunki_wagi')
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla14.xlsm', sheetname='stosunki_wagi')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
-#dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi')
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla14.xlsm', sheetname='stosunki_wagi1')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
-#dane_10_lat_df = pd.read_excel('team_v_team_15_makra.xlsm', sheetname='stosunki_wagi')
-#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
-
-dane_10_lat_df = pd.read_excel('team_v_team_5_makra.xlsm', sheetname='stosunki_wagi1')
-schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
-#dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi1')
-#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
-#dane_10_lat_df = pd.read_excel('team_v_team_15_makra.xlsm', sheetname='stosunki_wagi1')
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla14.xlsm', sheetname='stosunki_wagi')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
-#dane_10_lat_df = pd.read_excel('team_v_team_5_makra.xlsm', sheetname='stosunki')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_dla14.xlsm', sheetname='stosunki_wagi')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
-#dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_dla14.xlsm', sheetname='stosunki_wagi1')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
-#dane_10_lat_df = pd.read_excel('team_v_team_15_makra.xlsm', sheetname='stosunki')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_dla14.xlsm', sheetname='stosunki')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
+dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi1')
+schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
+
+#dane_10_lat_df = pd.read_excel('team_v_team_10_dla17.xlsm', sheetname='stosunki_wagi')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_dla17.xlsm', sheetname='stosunki_wagi1')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_dla17.xlsm', sheetname='stosunki')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
+
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla18.xlsm', sheetname='stosunki_wagi')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='18-19')
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla18.xlsm', sheetname='stosunki')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='1819')
+
+#dane_10_lat_df = pd.read_excel('team_v_team_10_dla18.xlsm', sheetname='stosunki_wagi')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='18-19')
+#dane_10_lat_df = pd.read_excel('team_v_team_10_dla18.xlsm', sheetname='stosunki')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='1819')
+
+
 
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist()
@@ -99,7 +118,7 @@ finalowe8 = []
 finalowe4 = []
 finalowe2 = []
 
-N = 10000 #Ilosc symulacji
+N = 1000 #Ilosc symulacji
 for n in range(1,N+1):
     wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
@@ -411,13 +430,13 @@ for i in range(len(gestosci)):
     elif dane_10_lat[i][0] in west_teams:
         west_density.append(gestosci[i])
 
-#boxploty_konf(east_density, east_teams, wyniki_east_14_15, 'Boxplot Wschodniej Konferencji')  
-#boxploty_konf(west_density, west_teams, wyniki_west_14_15, 'Boxplot Zachodniej Konferencji')   
-#rysuj_wykres(dict_champs,'Drużyny wygrywające mistrzostwa ligi','Drużyna','Ilość zwycięstw')
-#rysuj_wykres(przejscia_1rnd,'Drużyny przechodzące do pierwszej rundy','Drużyna','Ilość przejść')
-#rysuj_wykres(przejscia_2rnd,'Drużyny przechodzące do drugiej rundy','Drużyna','Ilość przejść')
-#rysuj_wykres(przejscia_3rnd,'Drużyny przechodzące do finałów konferencji','Drużyna','Ilość przejść')
-#rysuj_wykres(przejscia_final,'Drużyny przechodzące do finałów','Drużyna','Ilość przejść')
+#boxploty_konf(east_density, east_teams, wyniki_east_17_18, 'Boxplot Wschodniej Konferencji', 'Wynik w sezonie 2014/2015')  
+#boxploty_konf(west_density, west_teams, wyniki_west_17_18, 'Boxplot Zachodniej Konferencji', 'Wynik w sezonie 2014/2015' )   
+#rysuj_wykres(dict_champs,'Drużyny wygrywające mistrzostwa ligi','Drużyna','Liczba zwycięstw')
+#rysuj_wykres(przejscia_1rnd,'Drużyny przechodzące do pierwszej rundy','Drużyna','Liczba przejść')
+#rysuj_wykres(przejscia_2rnd,'Drużyny przechodzące do drugiej rundy','Drużyna','Liczba przejść')
+#rysuj_wykres(przejscia_3rnd,'Drużyny przechodzące do finałów konferencji','Drużyna','Liczba przejść')
+#rysuj_wykres(przejscia_final,'Drużyny przechodzące do finałów','Drużyna','Liczba przejść')
 #rysuj_gestosc(gestosci,0)
 #rysuj_histogram(1,10)
 #testy_norm(gestosci, 0)
@@ -426,16 +445,5 @@ print('najczestsze szesnastki ' ,most_common(finalowe16))
 print('najczestsze osemki ' ,most_common(finalowe8))
 print('najczestsze czworki ' ,most_common(finalowe4))
 print('najczestsze dwojki ' ,most_common(finalowe2))
-#predykcja()
 
-#dodac prawdopodobienstwa(done), sprawdzic gestosci przejscia(done? - sprawdz dla kazdej druzyny), 
-#(playoffy z przesloszci? optional), 
-#zmiana wag; premiowac ostatnie lata w wagach (done?)
-#rozszerzyc do tego sezonu (done)
-#zebrać dane z playoffow
-#zrobic testy (done)
-#boxplot długi (done)
-#zapamietac czworki finalowe (done)
-#moze mapa jakas? (done)
-#dla moedlu 18-19 dane z 5 lat zebrac (done)
-# pie charts? (czy to ma sens?)
+

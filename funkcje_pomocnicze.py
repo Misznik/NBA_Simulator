@@ -17,8 +17,9 @@ import seaborn as sns; sns.set()
 from statsmodels.stats.diagnostic import lilliefors
 import pylab
 
-dane_10_lat_df = pd.read_excel('team_v_team_10_makra.xlsm', sheetname='stosunki_wagi')
-schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
+dane_10_lat_df = pd.read_excel('team_v_team_5_dla18.xlsm', sheetname='stosunki_wagi')
+schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='18-19')
+
 dane_10_lat = dane_10_lat_df.values.tolist() #list of lists
 schedule_14_15 = schedule_14_15_df.values.tolist()
 west_teams = ['DAL','DEN','GSW','HOU','LAC','LAL','MEM','MIN','NOP','PHO','POR','SAC','SAS','OKC','UTA']
@@ -54,6 +55,37 @@ wyniki_west_14_15 = {'DAL':50,
     'SAS':55,
     'OKC':45,
     'UTA':38} 
+
+wyniki_east_17_18 = {'ATL':24, 
+    'BOS':55,
+    'CHO':36,
+    'CHI':27,
+    'CLE':50,
+    'DET':39,
+    'IND':48,
+    'MIA':44,
+    'MIL':44,
+    'BRK':28,
+    'NYK':29,
+    'ORL':25,
+    'PHI':52,
+    'TOR':59,
+    'WAS':43} 
+wyniki_west_17_18 = {'DAL':24,
+    'DEN':46,
+    'GSW':58,
+    'HOU':65,
+    'LAC':42,
+    'LAL':35,
+    'MEM':22,
+    'MIN':47,
+    'NOP':48,
+    'PHO':21,
+    'POR':49,
+    'SAC':27,
+    'SAS':47,
+    'OKC':48,
+    'UTA':48}
 
 def find_indeks(indeks_fd):
     for indeks_i in range(1,len(dane_10_lat)+1):
@@ -112,13 +144,13 @@ def testy_norm(lista_gestosci, indeks):
     print('Anderson-Darling test')
     print(dane_10_lat[indeks][0], stats.anderson(lista_gestosci[indeks]), 'norm')    
 
-def boxploty_konf(lista_gest, lista_nazw, wyniki_dict, tytul):        
+def boxploty_konf(lista_gest, lista_nazw, wyniki_dict, tytul, etykieta):        
     fig, ax = plt.subplots()
     ax.boxplot(lista_gest)
     plt.xticks([i for i in range(1,16)], lista_nazw)
     names = list(wyniki_dict.keys())
     values = list(wyniki_dict.values())
-    plt.scatter(range(1,len(wyniki_dict)+1), values, label='Wynik w sezonie 2014/2015', color='k')
+    plt.scatter(range(1,len(wyniki_dict)+1), values, label=etykieta, color='k')
     ax.set_title(tytul)
     ax.set_xlabel('Drużyna')
     ax.set_ylabel('Ilość zwycięstw')

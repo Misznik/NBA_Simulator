@@ -8,5 +8,5 @@
 \contentsline {section}{\numberline {3.3}Model symulacji fazy pucharowej}{13}{section.3.3}
 \contentsline {chapter}{\numberline {4}Wyniki, porownanie modeli}{15}{chapter.4}
 \contentsline {chapter}{\numberline {5}Wnioski}{17}{chapter.5}
-\contentsline {chapter}{Podsumowanie}{19}{chapter*.7}
-\contentsline {chapter}{Dodatek}{21}{chapter*.8}
+\contentsline {chapter}{Podsumowanie}{19}{chapter*.8}
+\contentsline {chapter}{Dodatek}{21}{chapter*.9}
