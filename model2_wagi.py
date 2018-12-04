@@ -31,10 +31,10 @@ import pylab
 #dane_10_lat_df = pd.read_excel('team_v_team_10_dla14.xlsm', sheetname='stosunki')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
-#dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi')
-#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
-dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi1')
+dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi')
 schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi1')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
 #dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
 
@@ -432,9 +432,9 @@ for i in range(len(gestosci)):
     elif dane_10_lat[i][0] in west_teams:
         west_density.append(gestosci[i])
 
-#boxploty_konf(east_density, east_teams, wyniki_east_17_18, 'Boxplot Wschodniej Konferencji', 'Wynik w sezonie 2014/2015')  
-#boxploty_konf(west_density, west_teams, wyniki_west_17_18, 'Boxplot Zachodniej Konferencji', 'Wynik w sezonie 2014/2015' )   
-#rysuj_wykres(dict_champs,'Drużyny wygrywające mistrzostwa ligi','Drużyna','Liczba zwycięstw')
+#boxploty_konf(east_density, east_teams, wyniki_east_17_18, 'Konderencja Wschodnia', 'Wynik w sezonie 2017/2018')  
+#boxploty_konf(west_density, west_teams, wyniki_west_17_18, 'Konderencja Zachodnia', 'Wynik w sezonie 2017/2018' )   
+#rysuj_wykres(dict_champs,'Mistrzowie symulowanych rozgrywek','Drużyna','Liczba zwycięstw')
 #rysuj_wykres(przejscia_1rnd,'Drużyny przechodzące do pierwszej rundy','Drużyna','Liczba przejść')
 #rysuj_wykres(przejscia_2rnd,'Drużyny przechodzące do drugiej rundy','Drużyna','Liczba przejść')
 #rysuj_wykres(przejscia_3rnd,'Drużyny przechodzące do finałów konferencji','Drużyna','Liczba przejść')
@@ -447,6 +447,6 @@ print('najczestsze szesnastki ' ,most_common(finalowe16))
 print('najczestsze osemki ' ,most_common(finalowe8))
 print('najczestsze czworki ' ,most_common(finalowe4))
 print('najczestsze dwojki ' ,most_common(finalowe2))
-
+#predykcja()
 
 

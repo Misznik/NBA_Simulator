@@ -2,12 +2,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[inzynierska]{pwr_wmat_praca_dyplomowa}
 \usepackage{graphicx}
+\usepackage{ amssymb }
+\usepackage{ dsfont }
+\usepackage{amsmath}
 \graphicspath{{C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/}} 
 
 \autor{Michał Cerazy}
 \tytul{Zastosowanie metod bootstrapowych do prognozowania wyników w zawodach sportowych} 
 \tytulang{Application of bootstrap methods to the forecasting of sporting event results}
-\opiekun{dr hab. inż. Krzysztof Burnecki}
+\opiekun{dr hab.\ inż.\ Krzysztof Burnecki}
 \kierunekstudiow{Matematyka Stosowana}
 \kierunekstudiowang{Applied Mathematics}
 \specjalnosc{--} 
@@ -43,16 +46,14 @@
 
 {\backmatter \chapter{Wstęp}}
 %We wstępie zapowiadamy, o czym będzie praca. Próbujemy zachęcić czytelnika do dalszej lektury, np. krótko informując, dlaczego wybraliśmy właśnie ten temat i co nas w nim zainteresowało.
-Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej amerykańska liga koszykarska NBA zyskała popularność na całym świecie, przyciągając do siebie najlepszych graczy i masy fanów. Dzięki nieprzewidywalności i złożoności tego sportu podejmowano wiele prób przewidywania wyników rozgrywek, które często toczyły się inaczej, niż by zakładano (najlepszym tego przykładem może być sezon 2003/2004, kiedy to nisko notowani Detroit Pistons pokonali faworytów w postaci Los Angeles Lakers). Najlepsi analitycy sportowi starają się ?analizować? każdy aspekt gry i jego wpływ na sytuację na boisku, lecz nikt do tej pory nie był w stanie zaproponować skutecznego modelu opisującego przebieg rozgrywek. 
-W niniejszej pracy inżynierskiej podjęto próbę przewidzenia rezultatów wybranego sezonu ligi NBA przy pomocy informacji o wynikach poszczególnych drużyn w poprzednich sezonach. 
+Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej amerykańska liga koszykarska NBA zyskała popularność na całym świecie, przyciągając do siebie najlepszych graczy i masy fanów. Z powodu nieprzewidywalności i złożoności tego sportu podejmowano wiele prób przewidywania wyników rozgrywek, które często toczyły się inaczej, niż by zakładano (najlepszym tego przykładem może być sezon 2003/2004, kiedy to nisko notowani Detroit Pistons pokonali faworytów w postaci Los Angeles Lakers). Trudność w przewidzeniu wyników wynika bezpośrednio z zasad ligi --- dozwolone są w niej wymiany zawodników między klubami, liczne i często katastrofalne kontuzje, czy nabory do ligi, w których najgorsze drużyny mają pierwszeństwo wyboru nowych zawodników chcących dołączyć do NBA (z tego powodu wiele organizacji celowo przegrywa mecze w celu wylosowania najwyższych miejsc w naborze). Najlepsi analitycy sportowi podejmują starania badać każdy aspekt gry i jego wpływ na przebieg meczu. Niemal wszystkie zaproponowane dotąd modele symulacji rozgrywek opierają się na statystykach zawodników, ich wpływie na atak i obronę, oraz udziale w zwycięstwach. Celem tej pracy inżynierskiej jest próba przewidzenia rezultatów wybranego sezonu ligi NBA przy pomocy bardzo prostego modelu, używając wyłącznie informacji o wynikach poszczególnych drużyn w poprzednich sezonach --- indywidualny wpływ graczy na przebieg spotkań nie jest rozpatrywany. Na potrzeby tego zadania zaprojektowano kilka algorytmów opierających się na metodzie \textbf{bootstrapu parametrycznego}, sprawdzono ich skuteczność dla kilku wybranych sezonów w zależności od okresu używanych danych i nadawania wag, a następnie przy pomocy najskuteczniejszych modeli dokonano predykcji wyników trwającego sezonu 2018/2019. 
 
-\chapter{Opis ligi NBA, jak wyglada sezon}
-National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of Americai składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Od 2004 roku w NBA gra 30 zespołów, 29 z USA i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 ekip. TU WSTAW OBRAZ Z MAPKĄ!!!!!!!!!!!!!!!!. Nazwy wszystkich drużyn z podziałem na konferencje i dywizje:
+\chapter{Opis ligi NBA, jak wyglada sezon}\label{rodzial1}
+National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of Americai składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Od 2004 roku w NBA gra 30 zespołów, 29 ze Stanów Zjednoczonych i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 organizacji. Szczegółowy podział konferencje i dywizje, oraz nazwy wszystkich drużyn zawarte zostały w Tabelach \ref{tabela_wschod} i \ref{tabela_zachod}, natomiast dokładne rozmieszczenie na mapie kontynentu znajduje się na Rysunku \ref{mapa_stany}.
 
 \begin{figure}[t]
-	\label{mapa_stany}
 	\includegraphics[width=16cm]{conf_map.pdf}
-	\caption{POPRAW NAZWY NOP I CHO}
+	\caption{Rozmieszczenie drużyn NBA}\label{mapa_stany}
 	\centering
 \end{figure}
 
@@ -70,6 +71,7 @@ National Basketball Association (NBA) została założona 6 czerwca 1946 roku. P
 	Toronto Raptors (TOR)&Washington Wizards (WAS)&Milwaukee Bucks (MIL)\\\hline
 	\hline
 \end{tabular}
+\caption{Drużyny Konferencji Wschodniej}\label{tabela_wschod}
 \end{table}
 \begin{table}[]
 \begin{tabular}{ |p{5.8cm}|p{5.4cm}|p{5.6cm}|  }
@@ -85,6 +87,7 @@ National Basketball Association (NBA) została założona 6 czerwca 1946 roku. P
 	Utah Jazz (UTA)&San Antonio Spurs (SAS)&Sacramento Kings (SAC)\\
 	\hline
 \end{tabular}
+\caption{Drużyny Konferencji Zachodniej}\label{tabela_zachod}
 \end{table}
 
 Dodatkowo, od 2004 roku niektóre kluby zmieniły swoje nazwy lub lokalizacje. W niektórych historycznych zestawieniach lub zbiorach danych mogą widnieć jako (podane w formacie nazwa obecna --- poprzednia):
@@ -102,10 +105,14 @@ Sezon w NBA składa się z dwóch części: zasadniczej i następującej po niej
 	\item drużyny z tej samej konferencji oraz różnych dywizji grają ze sobą 3 albo 4 spotkania (przynajmniej po jednym na wyjedzie i własnym boisku).
 \end{enumerate}
 Mecze koszykówki nie mogą zakończyć się remisem (w razie remisu po regulaminowym czasie gry rozgrywa się dogrywki aż do wyłonienia zwycięzcy).
-Po zakończeniu sezonu następuje wspomniana wyżej faza pucharowa; wchodzi do niej po 8 najlepszych zespołów z każdej konferencji (w razie takiej samej ilości zwycięstw dla obu zespołów decydują mecze bezpośrednie pomiędzy nimi). W tej fazie drużyny grają ze sobą maksymalnie 7 meczów, czyli zespół, który pierwszy wygra 4 mecze, przechodzi do następnego etapu. W fazie Playoff jasno zdefiniowane są lokalizacje odgrywania spotkań --- lepszy bilans zwycięstw w sezonie zasadniczym skutkuje przewagą parkietu. Seria spotkań grana jest w formacie 2–2–1–1–1, czyli mecze numer 1, 2, 5 i 7 grane są u lepszej z drużyn. Przy doborze przeciwników w tej fazie bierze się pod uwagę pozycję w tabeli konferencji: drużyna z miejsca pierwszego gra z zespołem o ósmym bilansie w danej konferencji, druga z siódmą, i tak dalej. Zwycięzca serii przechodzi do następnego etapu z czterema drużynami, po którym następują finały konferencji --- najlepsze drużyny ze swoich konferencji spotykają się w finałach NBA. Dla lepszego zrozumienia systemu rozgrywek Playoff ZAMIESZCZONO DRZEWKO PONIŻEJ!!!!!!!!!!!!! 
-\\
-CZY ZAMIEŚCIĆ OPIS GRY? PODSTAWOWE ZASADY ITP?
-\\
+Po zakończeniu sezonu następuje wspomniana wyżej faza pucharowa; wchodzi do niej po 8 najlepszych zespołów z każdej konferencji (w razie takiej samej ilości zwycięstw dla obu zespołów decydują mecze bezpośrednie pomiędzy nimi). W tej fazie drużyny grają ze sobą maksymalnie 7 meczów, czyli zespół, który pierwszy wygra 4 mecze, przechodzi do następnego etapu. W fazie Playoff jasno zdefiniowane są lokalizacje odgrywania spotkań --- lepszy bilans zwycięstw w sezonie zasadniczym skutkuje przewagą parkietu. Seria spotkań grana jest w formacie 2–2–1–1–1, czyli mecze numer 1, 2, 5 i 7 grane są u lepszej z drużyn. Przy doborze przeciwników w tej fazie bierze się pod uwagę pozycję w tabeli konferencji: drużyna z miejsca pierwszego gra z zespołem o ósmym bilansie w danej konferencji, druga z siódmą, i tak dalej. Zwycięzca serii przechodzi do następnego etapu z czterema drużynami, po którym następują finały konferencji --- najlepsze drużyny ze swoich konferencji spotykają się w finałach NBA. Dla lepszego zrozumienia systemu rozgrywek pucharowych na Rysunku \ref{po_tree} zamieszczono tzw. ,,drzewko Playoff''.  
+
+\begin{figure}[t]
+	\includegraphics[width=16cm]{po_tree.pdf}
+	\caption{Drzewko Playoff}\label{po_tree}
+	\centering
+\end{figure}
+
 Wyniki z sezonu regularnego 2014/2015 prezentują się następująco:
 
 \begin{table}[]
@@ -143,12 +150,13 @@ Wyniki z sezonu regularnego 2014/2015 prezentują się następująco:
 	Toronto Raptors & 49 & 59\\ \hline
 	Utah Jazz & 38 & 48 \\\hline
 	Washington Wizards & 46 & 43\\ \hline
-\end{tabular}	
+\end{tabular}
+\caption{Liczby zwycięstw drużyn w wybranych sezonach}\label{tabela_wygrane_rzeczywiste}	
 \end{table}
 
-Playoffs 2015:
 \begin{table}[]
-	\begin{tabular}{ |p{5cm}|p{5cm}|p{5cm}|  }
+	\centering
+	\begin{tabular}{ |p{5cm}|p{5cm}|c|  }
 		\hline
 		\textbf{Zwycięzca}& \textbf{Przegrany} &\textbf{Wynik}\\\hline		
 		\multicolumn{3}{|c|}{Eastern Conference First Round} \\\hline
@@ -186,13 +194,70 @@ Playoffs 2015:
 		\multicolumn{3}{|c|}{Finals} \\\hline
 		Golden State Warriors& Cleveland Cavaliers &4-2\\\hline
 	\end{tabular}
+\caption{Rozgrywki pucharowe w 2015 roku}\label{tabela_playoffs2015}
 \end{table}
 
 \chapter{Teoria, matematyka}
-Monte Carlo, rozkład jednostajny, bootstrap, rozkład, estymacja, metod nieparametryczne, boxplot, dystrybuanta, wartość oczekiwana?\\
-CZY BADAMY NORMALNOŚĆ? test shapiro-wilka, gęstość rozkładu, rozklad normalny, qqplot?
+%, estymacja, boxplot, zmienna losowa, symulowanie z dystrybuanty
+%wartość oczekiwana, CZY BADAMY NORMALNOŚĆ? test shapiro-wilka, gęstość rozkładu, rozklad normalny, qqplot?
 
-\chapter{Metodologia, algorytmy}
+\section{Rozkład jednostajny}
+Ciągła zmienna losowa $X$ ma rozkład jednostajny o parametrach $a$ i $b$, takich że $a,b\in \mathds{R}$ oraz $a<b$, oznaczany jako $\mathcal{U}(a,b)$ wtedy, gdy jej gęstość jest postaci
+\begin{equation}
+f(x)=\frac{1}{b-a}\mathds{1}_{(a,b)}(x).
+\end{equation}
+Wartość oczekiwana wynosi
+\begin{equation}
+E(X)=\frac{a+b}{2},
+\end{equation}
+natomiast wariancja jest równa
+\begin{equation}
+Var(X)=\frac{(b-a)^2}{12}.
+\end{equation} 
+Funkcja charakterystyczna tego rozkładu wyrażana jest wzorem
+\begin{equation}
+\phi(t)=\frac{e^{itb}-e^{ita}}{(b-a)it}.
+\end{equation}
+W przypadku, gdy zmienna losowa $X$ posiada ciągłą dystrybuantę $F(x)$, to $U=F(x)$ ma rozkład $\mathcal{U}(0,1).$
+
+\section{Generatory liczb pseudolosowych} %(str 427)
+
+\section{Metoda Monte Carlo}
+Załóżmy, że $\theta$ to parametr zmiennej losowej $X$ oraz można go przedstawić jako $\theta=Eh(X)$, przy czym $h$ to pewna znana funkcja, dodatkowym założeniem jest, że można wygenerować próbę o rozkładzie $X$. 
+\begin{definition}
+	Niech $X_1,X_2,\dots,X_m$ będzie próbą pseudolosową pewnego rozkładu $X$ dla pewnego $m$. Średnia $\bar{h}=m^{-1}(h(X_1)+h(X_2)+\dots +h(X_m))$ nazywana jest estymatorem $Eh(X)=\theta$ wyznaczonym metodą Monte Carlo.
+\end{definition}
+Można zauważyć, że $\bar{h}$ to średnia próbkowa próby $h(X_1),h(X_2),\dots ,h(X_m)$, użycie jej do oszacowania parametru $\theta$ jest możliwe dzięki prawu wielkich liczb. Głównym problemem tego zagadnienia jest estymacja parametru $\theta$, który nie musi posiadać interpretacji probabilistycznej. Całość tej metody opiera się na generowaniu próby losowej lub pseudolosowej rozkładu jednostajnego , zastosowaniu funkcji $h$ do przekształcenia elementów tej próby, a następnie wyznaczeniu estymatora $\bar{h}$ parametru $\theta$. 
+W celu dokładnego opisania metody posłużmy się przykładem: obliczmy
+\begin{equation}
+	\theta:=\int_{0}^{1}g(x)\,dx.
+\end{equation}
+W przypadku, gdy nie jesteśmy w stanie policzyć tej całki analitycznie, pozostaje nam zastosowanie metod numerycznych lub symulacyjnych. Algorytm szacowania parametru $\theta$ przy użyciu metody Monte Carlo:
+\begin{enumerate}
+	\item wygeneruj $U_1,U_2,\dots, U_n \sim \text{IID}\,\,\,\, \mathcal{U}(0,1)$,
+	\item oszacuj $\theta$ korzystając z
+	\begin{equation}
+		\hat{\theta_n}:= \frac{g(U_1)+g(U_2)+\dots+g(U_n)}{n}.
+	\end{equation}
+\end{enumerate} 
+
+Modelowanie przy pomocy metody Monte Carlo jest przydatne przy badaniu skomplikowanych procesów losowych, które można rozbić na dwie kategorie. Pierwsza skupia w sobie systemy, w których proces jest sprecyzowany, ale poprzez jego złożoność trudno obliczyć jego parametry teoretyczne. Druga kategoria to eksperymenty losowe o modelu matematycznym trudnym do skonstruowania --- dzięki metodzie Monte Carlo można dokonać ich klasyfikacji generując wyniki modelowe, po czym przyrównać je z danymi eksperymentalnymi. Omawiana w następnym Rozdziale metoda bootstrap w swoich założeniach wywodzi się z symulacji Monte Carlo.
+
+\section{Zasada bootstrap}
+Próba bootstrap (pol. samowsporna) to metoda służąca do oceny rozkładu pewnego estymatora przy pomocy wielu symulacji prób z nieznanego rozkładu.????????????????? Narzędzie to zostało stworzone przez Bradleya Efrona i opublikowane w artykule ,,Bootstrap methods: another look at the jackknife'' z 1979 roku. Załóżmy, że $x_1, x_2 \dots x_n$ to realizacja pewnej próby losowej, a $\hat{F}$ jest dystrybuantą empiryczną tej próby. Dystrybuanta $\hat{F}$ to znane przybliżenie pewnego nieznanego rozkładu $F$, dlatego też rozkład $\hat{\Theta}$ estymować będziemy przy pomocy $\hat{F}$, czyli dokonamy oceny rozkładu estymatora $\hat{\Theta}$ w oparciu o generowanie prób z rozkładu $\hat{F}$. 
+\begin{definition}
+	Próba losowa $X^* = (X_1^*, X_2^*, \dots, X_n^*)$ o rozkładzie $\hat{F}$ dla ustalonej realizacji $x = (x_1, x_2, \dots, x_n)$ nazywana jest próbą bootstrap.
+\end{definition}
+Otrzymywanie realizacji próby bootstrap bazuje na wykonaniu $n$-krotnego losowania ze zwracaniem elementów próby pierwotnej, tak więc losowość w próbie $X^*$ polega na losowym wyborze elementu $x_1, x_2, \dots, x_n$. W ten sposób powstaje populacja, w której każda zmienna $X_i^*$ jest niezależna od pozostałych, oraz z jednakowym prawdopodobieństwem  przyjmuje dowolną wartość próby. Efron wykazał, że rozkład $T(X^*)$ dla ustalonych $x_1, x_2, \dots, x_n$ ma kształt zbliżony do rozkładu $T(X)$, ponadto rozkład statystyki $(T(X^*)-\hat{\Theta})$ jest bliski rozkładowi statystyki $(T(X)-\Theta)$. Dzięki temu można dokonać oceny rozkładu $\Theta=T(X)$ wykonując poniższe kroki:
+\begin{enumerate}
+	\item dokonaj losowania niezależnych prób bootsrap $X_1^*, X_2^*, \dots, X_k^*$ korzystając z realizacji $x_1, x_2, \dots, x_n$,
+	\item wyznacz $\Theta_1^*=T(X_1^*)-\hat{\Theta}$, $\Theta_2^*=T(X_2^*)-\hat{\Theta}$, \dots, $\Theta_k^*=T(X_k^*)-\hat{\Theta}$.
+\end{enumerate}
+Otrzymany w ten sposób rozkład $(\Theta_1^*, \Theta_2^*, \dots, \Theta_k^*)$ to przybliżenie rozkładu błędów estymacji $\hat{\Theta}-\Theta$ przy pomocy statystyki $T$. Histogram tego rozkładu nazywany jest estymatorem rozkładu $\hat{\Theta}$ otrzymanym metodą bootstrap. Dla zadowalającego przybliżenia rozkładu $(T(X^*)-\hat{\Theta})$ wymagane jest przynajmniej $k=1000$ prób bootstrap, a im większa ich ilość, tym dokładniejsze oszacowanie.  
+
+
+ 
+\chapter{Metodologia, algorytmy}\label{rodzial_algorytmy}
 Czy znając wyniki zakończonych rozgrywek jesteśmy w stanie przewidzieć rezultaty przyszłych zawodów?
 \\
 Dane, które będą wykorzystywane do symulacji sezonu zostały zebrane ze strony sportowej basketballreference.com.
@@ -208,7 +273,7 @@ Podczas prób symulacji dokonano intuicyjnego założenia, wedle którego najwi�
 \end{equation}
 gdzie $n$ to ilość sezonów, z których zaciągamy dane, $x$ ustalona waga kolejnych rozgrywek, a $R_{ijk}$ to wynik starć drużyny $D_i$ z drużyną $D_j$ w $k-$tym sezonie. Podczas testowania skuteczności modeli dobierano różne wagi w celu znalezienia tego zwracającego najlepsze predykcje.    
 \\
-Podczas symulacji program przechodzi przez dokładnie określony terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w ROZDZIALE Z MODELAMI.
+Podczas symulacji program przechodzi przez dokładnie określony terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w Rozdziale \ref{rodzial1}.
 \\
 Każdy spośród zaproponowanych w tej pracy modeli został przeanalizowany pod względem okresu pobieranych danych oraz wag wpływających na istotność poszczególnych sezonów. Wszystkie symulacje wykonano 10000 razy.
 \\
@@ -248,7 +313,7 @@ Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki pr
 	\item wstaw $i=i+1$ oraz $j=i$
 	\begin{enumerate} 
 		\item znajdź drużyny $D_i$ i $D_j$
-		\item odczytaj z macierzy wyników stosunek zwycięstw $W_{ij}$ drużyny $D_i$ przeciw drużynie $D_j$   
+		\item odczytaj z macierzy wyników stosunek zwycięstw $W_{ij}=\frac{Z_{ij}}{Z_{ij}+Z_{ji}}$ drużyny $D_i$ przeciw drużynie $D_j$   
 		\item w terminarzu znajdź liczbę spotkań $S_{ij}$ pomiędzy drużynami $D_i$ i $D_j$
 		\begin{enumerate}
 			\item symuluj liczbę $U$ z rozkładu jednostajnego $U\sim U[0,1]$ 
@@ -281,10 +346,10 @@ Ilości zwycięstw drużyn w kolejnych symulowanych rozgrywkach są zapisywane i
 
 \section{Predykcja wyników na podstawie symulacji}
 Korzystając z metod bootstrapowych zaproponowano kilka modeli pozwalających na oszacowanie przebiegu rozgrywek w analizowanym sezonie.
-Przed korzystaniem z opisanych poniżej modeli przeprowadzono symulację opartą na algorytmach zdefiniowanych w ROZDZIALE POPRZEDNIM, dzięki czemu do symulacji podchodzono z przygotowanymi wcześniej danymi.
+Przed korzystaniem z opisanych poniżej modeli przeprowadzono symulację opartą na algorytmach zdefiniowanych w Rozdziale \ref{rodzial_algorytmy}, dzięki czemu do symulacji podchodzono z przygotowanymi wcześniej danymi.
 
 \subsection{Predykcja wyników sezonu zasadniczego}
-Sezon zasadniczy odgrywa bardzo ważną rolę w rozgrywkach NBA --- w trakcie jego trwania drużyny toczą walkę o najlepsze miejsca w fazie pucharowej, sprawdzają swoje siły w trakcie gier z potencjalnymi rywalami w Playoff, a także wzmacniają swoje drużyny poprzez rotację zawodnikami. Podczas przejść symulacji zapisywano łączną liczbę wygranych każdego zespołu, dzięki czemu otrzymano rozkłady zwycięstw wszystkich składów. Po przeanalizowaniu rozkładów zauważono, że mediany i wartości średnie nie różnią się znacznie od siebie, dlatego w dalszych rozważaniach jako przyszłą liczbę wygranych zespołu w sezonie zasadniczym przyjmuje się medianę rozkładu zwycięstw w symulacji. Wyniki porównania zawarto w  TABELA Z POROWNANIEM?
+Sezon zasadniczy odgrywa bardzo ważną rolę w rozgrywkach NBA --- w trakcie jego trwania drużyny toczą walkę o najlepsze miejsca w fazie pucharowej, sprawdzają swoje siły w trakcie gier z potencjalnymi rywalami w Playoff, a także wzmacniają swoje drużyny poprzez rotację zawodnikami. Podczas przejść symulacji zapisywano łączną liczbę wygranych każdego zespołu, dzięki czemu otrzymano rozkłady zwycięstw wszystkich składów. Po przeanalizowaniu rozkładów zauważono, że mediany i wartości średnie nie różnią się znacznie od siebie, dlatego w dalszych rozważaniach jako przyszłą liczbę wygranych zespołu w sezonie zasadniczym przyjmuje się medianę rozkładu zwycięstw w symulacji. Wyniki porównania zawarto w Tabeli \ref{srednie_mediany}?
 \begin{table}[]
 	\centering
 	\begin{tabular}{|c|c|c|}
@@ -304,7 +369,7 @@ Sezon zasadniczy odgrywa bardzo ważną rolę w rozgrywkach NBA --- w trakcie je
 		LAC & 54 & 53.97\\ \hline
 		LAL & 24 & 23.98\\ \hline
 		MEM & 47 & 47.20\\ \hline
-		MIA & 46 &  45.59\\ \hline
+		MIA & 46 & 45.59\\ \hline
 		MIL & 36 & 28.79\\ \hline
 		MIN & 29 & 35.97\\ \hline
 		BRK & 29 & 29.23\\ \hline
@@ -313,24 +378,25 @@ Sezon zasadniczy odgrywa bardzo ważną rolę w rozgrywkach NBA --- w trakcie je
 		ORL & 28 & 28.33\\ \hline
 		PHI & 21 & 20.83\\ \hline
 		POR & 45 & 45.09\\ \hline
-		SAC & 31 &  31.06\\ \hline
+		SAC & 31 & 31.06\\ \hline
 		SAS & 61 & 61.38\\ \hline
 		OKC & 51 & 51.16\\ \hline
 		TOR & 50 & 50.36\\ \hline
 		UTA & 41 & 41.46\\ \hline
 		WAS & 44 & 43.80\\ \hline
-	\end{tabular}	
+	\end{tabular}
+\caption{Porównanie średnich i median wygranych spotkań w symulacji}\label{srednie_mediany}	
 \end{table}
 \subsection{Modele predykcji wyników fazy pucharowej}
 Rozgrywki Playoff są niezwykle trudne do przewidzenia --- niejednokrotnie zdarzyło się już, że faworyci zostali pokonani przez znacznie niżej notowanego przeciwnika (najlepszy przykład to seria DAL-GSW w 2007 roku, kiedy Dallas Mavericks kończąc sezon z najlepszym bilansem zwycięstw w lidze, przegrali pierwszą rundę w 6 meczach z ósmą drużną konferencji).
 Do symulacji tego etapu zaproponowano 2 odmienne od siebie modele, bazujące na innych założeniach.
 
 \subsubsection{Model I --- Prawdopodobieństwo przejść}
-Model ten polega na oszacowaniu szans poszczególnych drużyn na przejście do wybranych etapów rozgrywek pucharowych. Podczas każdej z symulacji sezonu zbierano informacje o przejściach zespołów do kolejnych faz Playoff. W ten sposób estymowano DYSTRYBUANTY EMPIRYCZNE? rozkładów przejść do odpowiednio Pierwszej Rundy, Drugiej Rundy, Finałów Konferencji oraz Finałów. Według zaproponowanego schematu do kolejnych etapów awansują zespoły z największą ilością przejść, a więc największym prawdopodobieństwem awansu. Do Rundy Pierwszej każdej konferencji dostanie się 8 najczęściej zakwalifikowanych drużyn, kolejne etapy wyznaczane są analogicznie  
+Model ten polega na oszacowaniu szans poszczególnych drużyn na przejście do wybranych etapów rozgrywek pucharowych. Podczas każdej z symulacji sezonu zbierano informacje o przejściach zespołów do kolejnych faz Playoff. W ten sposób estymowano prawdopodobieństwa przejść do odpowiednio Pierwszej Rundy, Drugiej Rundy, Finałów Konferencji oraz Finałów. Według zaproponowanego schematu do kolejnych etapów awansują zespoły z największą ilością przejść, a więc największym prawdopodobieństwem awansu. Do Rundy Pierwszej każdej konferencji dostanie się 8 drużyn najczęściej zakwalifikowanych do Rundy Pierwszej w symulacjach, do Drugiej 4 zespoły o największym prawdopodobieństwie przejścia do drugiego etapu, kolejne etapy wyznaczane są analogicznie.  
 PRZYKĄŁDOWA TABELA
 
 \subsubsection{Model II --- Najczęstsze kombinacje}
-Drugi z badanych modeli porównuje najczęściej pojawiające się kombinacje zespołów w poszczególnych etapach. Podczas symulacji rozgrywek pucharowych zapisywano listy z drużynami przechodzącymi do kolejnych etapów Playoff, dzięki czemu zachowane zostały również układy, w jakich toczyły się rozgrywki. Mechanizm ten jest w stanie zwrócić bardzo precyzyjną prognozę, jednak wymaga dużej liczby powtórzeń symulacji do poprawnego działania. 
+Drugi z badanych modeli porównuje najczęściej pojawiające się kombinacje zespołów w poszczególnych etapach. Podczas symulacji rozgrywek pucharowych zapisywano listy z drużynami przechodzącymi do kolejnych etapów Playoff, dzięki czemu zachowane zostały również układy, w jakich toczyły się rozgrywki. Innymi słowy, dla Rundy Pierwszej wyszukiwana jest najczęściej pojawiająca się kombinacja zespołów w Pierwszej Rundzie, czynność ta jest powtarzana w kolejnych etapach. Mechanizm ten jest w stanie zwrócić bardzo precyzyjną prognozę, jednak wymaga dużej liczby powtórzeń symulacji do poprawnego działania. 
 
 \chapter{Wyniki, porownanie modeli}
 modelowanie okresem, sezonem, wagami, długością próbki?
@@ -366,3 +432,7 @@ tabele z prawdopodobieństwami, terminarz sezonu
 % w nawiasie klamrowym wpisujemy nazwę pliku z bibliografią w formacie .bib
 \bibliografia{bibliografia} 
 \end{document}
+
+%Parametric bootstrap
+%In this case a parametric model is fitted to the data, often by maximum likelihood, and samples of random numbers are drawn from this fitted model. Usually the sample drawn has the same sample size as the original data. Then the quantity, or estimate, of interest is calculated from these data. This sampling process is repeated many times as for other bootstrap methods. The use of a parametric model at the sampling stage of the bootstrap methodology leads to procedures which are different from those obtained by applying basic statistical theory to inference for the same model.
+%The theory of the parametric bootstrap is quite similar to that of the nonparametric bootstrap, the only difference is that instead of simulating bootstrap samples that are IID from the empirical distribution (the nonparametric estimate of the distribution of the data) we simulate bootstrap samples that are IID from the estimated parametric model.

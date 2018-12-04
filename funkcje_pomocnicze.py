@@ -153,7 +153,7 @@ def boxploty_konf(lista_gest, lista_nazw, wyniki_dict, tytul, etykieta):
     plt.scatter(range(1,len(wyniki_dict)+1), values, label=etykieta, color='k')
     ax.set_title(tytul)
     ax.set_xlabel('Drużyna')
-    ax.set_ylabel('Ilość zwycięstw')
+    ax.set_ylabel('Liczba zwycięstw')
     leg = plt.legend()
     plt.show()
     

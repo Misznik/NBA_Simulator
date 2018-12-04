@@ -413,8 +413,8 @@ for i in range(len(gestosci)):
     elif dane_10_lat[i][0] in west_teams:
         west_density.append(gestosci[i])
     
-#boxploty_konf(east_density, east_teams, wyniki_east_17_18, 'Boxplot Wschodniej Konferencji', 'Wynik w sezonie 2017/2018')  
-#boxploty_konf(west_density, west_teams, wyniki_west_17_18, 'Boxplot Zachodniej Konferencji', 'Wynik w sezonie 2017/2018' )   
+#boxploty_konf(east_density, east_teams, wyniki_east_17_18, 'Konderencja Wschodnia', 'Wynik w sezonie 2017/2018')  
+#boxploty_konf(west_density, west_teams, wyniki_west_17_18, 'Konderencja Zachodnia', 'Wynik w sezonie 2017/2018' )   
 #rysuj_wykres(dict_champs,'Drużyny wygrywające mistrzostwa ligi','Drużyna','Liczba zwycięstw')
 #rysuj_wykres(przejscia_1rnd,'Drużyny przechodzące do pierwszej rundy','Drużyna','Liczba przejść')
 #rysuj_wykres(przejscia_2rnd,'Drużyny przechodzące do drugiej rundy','Drużyna','Liczba przejść')
@@ -427,4 +427,4 @@ print('najczestsze szesnastki ' ,most_common(finalowe16))
 print('najczestsze osemki ' ,most_common(finalowe8))
 print('najczestsze czworki ' ,most_common(finalowe4))
 print('najczestsze dwojki ' ,most_common(finalowe2))
-predykcja()
+#predykcja()
