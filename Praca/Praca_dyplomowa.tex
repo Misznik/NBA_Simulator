@@ -35,7 +35,7 @@
 \numberwithin{theorem}{chapter}
 \newtheorem{definition}[theorem]{Definicja} 
 \newtheorem{algorytm}[theorem]{Algorytm}
-\newtheorem{pseudokod}[theorem]{Pseudokod algorytmu}
+\newtheorem{pseudokod}[theorem]{Pseudokod}
 \newtheorem{example}[theorem]{Przykład}
 \newtheorem{note}[theorem]{Uwaga}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -274,8 +274,6 @@ W tym przypadku do danych dopasowany jest pewien model teoretyczny (często przy
 \begin{definition}
 	Próbę bootstrap, której nieznany rozkład $F$ można przybliżyć pewnym znanym rozkładem parametrycznym $\hat{F}$ nazywamy \textbf{parametryczną próbą bootstrap}. 
 \end{definition}
-%In this case a parametric model is fitted to the data, often by maximum likelihood, and samples of random numbers are drawn from this fitted model. Usually the sample drawn has the same sample size as the original data. Then the quantity, or estimate, of interest is calculated from these data. This sampling process is repeated many times as for other bootstrap methods. The use of a parametric model at the sampling stage of the bootstrap methodology leads to procedures which are different from those obtained by applying basic statistical theory to inference for the same model.\\
-%The theory of the parametric bootstrap is quite similar to that of the nonparametric bootstrap, the only difference is that instead of simulating bootstrap samples that are IID from the empirical distribution (the nonparametric estimate of the distribution of the data) we simulate bootstrap samples that are IID from the estimated parametric model.
  
 \chapter{Metodologia, algorytmy}\label{rodzial_algorytmy}
 Czy znając wyniki zakończonych rozgrywek jesteśmy w stanie przewidzieć rezultaty przyszłych zawodów?
@@ -301,12 +299,14 @@ Każdy spośród zaproponowanych w tej pracy modeli został przeanalizowany pod 
 \\
 k=0, k=0.5, k=1
 
-\section{Modele bootstrapowe}
+\section{Modele symulacji rozgrywek}
+
+Zaproponowane w tym rozdziale modele opierają się na zasadzie bootstrapu parametrycznego. Podchodząc do symulacji znane są prawdopodobieństwa poszczególnych drużyn na wygraną, co pozwala na przybliżenie rozkładu teoretycznego danego sezonu. 
 
 \subsection{Model uśredniony}
 Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięstw do porażek dla każdej drużyny w wybranym okresie --- wszystkie wygrane zespołu zostają podzielone przez łączną liczbę rozegranych spotkań, wynikiem czego jest liczba z przedziału $[0,1]$ określana jako $P_{i}$, gdzie $i$ to $i-$ta drużyna. Schemat symulowania wyników spotkań między drużynami wygląda następująco:
 
-\begin{algorytm} \textbf{Algorytm modelu uśrednionego}
+\begin{algorytm} \textbf{Model uśredniony}
 	\begin{enumerate}
 	\item wstaw liczniki zwycięstw drużyn $B_1= 0,B_2= 0,\dots, B_{30}= 0$
 	\item dla $i=1$, $i=2$, \dots $i=30$: 
@@ -328,6 +328,7 @@ Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięst
 \end{algorytm} 
  
 \begin{pseudokod}
+	\textbf{Model uśredniony}
 	\begin{algorithmic}[1]
 		\State $B_1\gets 0,B_2\gets 0,\dots, B_{30}\gets 0$
 		\State $i\gets 1$
@@ -354,7 +355,7 @@ Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięst
 \subsection{Model rywalizacji}
 Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki przeciwko konkretnej drużynie. W zawodowym sporcie niejednokrotnie można trafić na zażarte rywalizacje między dwoma klubami lub zwykłą łatwość w pokonaniu szczególnego przeciwnika. Algorytm symulowania wyników spotkań między drużynami wygląda następująco:
 
-\begin{algorytm} \textbf{Algorytm modelu rywalizacji}
+\begin{algorytm} \textbf{Model rywalizacji}
 	\begin{enumerate}
 		\item wstaw liczniki zwycięstw drużyn $B_1= 0,B_2= 0,\dots, B_{30}= 0$
 		\item dla $i=1$, $i=2$, \dots $i=30$: 
@@ -374,24 +375,71 @@ Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki pr
 	\end{enumerate}
 \end{algorytm} 
 
+\begin{pseudokod} 
+	\textbf{Model rywalizacji}
+	\begin{algorithmic}[1]
+		\State $Z_i\gets 0,Z_j\gets 0,\dots, B_{30}\gets 0$
+		\State $i\gets 1$
+		\While{$i\leq 30$}
+		\For{$j\gets i$ to 30}
+		\State znajdź drużyny $D_i$ i $D_j$
+		\State znajdź $Z_{ij}$ i $Z_{ji}$ 
+		\State $W_{ij}=\frac{Z_{ij}}{Z_{ij}+Z_{ji}}$
+		\State znajdź liczbę spotkań $S_{ij}$ pomiędzy $D_i$ i $D_j$
+		\For{$p\gets1$ to $S_{ij}$}
+		\State $U\sim \mathcal{U}[0,1]$
+		\If {$W_{ij} \leq U$}
+		\State $B_i \gets B_i+1$
+		\Else
+		\State $B_j \gets B_j+1$
+		\EndIf
+		\EndFor
+		\EndFor
+		\State $i\gets i+1$
+		\EndWhile
+	\end{algorithmic}
+\end{pseudokod}
 
 \subsection{Model symulacji spotkań fazy pucharowej}
 Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każdej konferencji przechodzi do fazy Playoff, gdzie toczy rozgrywki zgodnie z systemem opisanym we WSTĘPIE. Na tym etapie rozgrywek symulacja spotkań różni się od części zasadniczej: zamiast jednego z zasugerowanych wcześniej modeli korzysta się ze wcześniejszej symulacji fazy zasadniczej. W celu oddania trendów panujących w wygenerowanych rozgrywkach (a mianowicie potencjalnych kontuzjach, spadkach lub zwyżkach formy), użyta zostaje jedynie informacja o ilości wygranych przed rozpoczęciem Playoffów. Algorytm symulowania tej fazy jest postaci: 
 
-\begin{algorytm} \textbf{Algorytm modelu Playoff}
+\begin{algorytm} \textbf{Model Playoff}
 	\begin{enumerate}
 		\item wybierz drużyny $D_i$ i $D_j$
-		\item wstaw liczniki zwycięstw $Z_i=0$ i $Z_j=0$
-		\item odczytaj symulowane ilości zwycięstw z sezonu zasadniczego $W_i$ i $W_j$ dla wybranych drużyn $D_i$ i $D_j$
-		\item wyznacz prawdopodobieństwo zwycięstwa $W_{ij}$ przez drużynę  $D_i$ równe $W_{ij}=\frac{W_i}{W_i + W_j}$
-		\item powtarzaj dopóki  $Z_i=4$ albo $Z_j=4$
+		\item wstaw liczniki zwycięstw $ZW_i=0$ i $ZW_j=0$
+		\item odczytaj symulowane ilości zwycięstw z sezonu zasadniczego $B_i$ i $B_j$ dla wybranych drużyn $D_i$ i $D_j$
+		\item wyznacz prawdopodobieństwo zwycięstwa drużyny $D_i$ nad drużyną $D_j$ równe $W_{ij}=\frac{B_i}{B_i + B_j}$
+		\item powtarzaj dopóki  $ZW_i=4$ albo $ZW_j=4$
 		\begin{enumerate}
 			\item symuluj liczbę $U$ z rozkładu jednostajnego $U\sim U[0,1]$ 
-			\item jeżeli $W_{ij} \leq U,$ wstaw $Z_i=Z_i+1$, w przeciwnym razie wstaw $Z_j=Z_j+1$
+			\item jeżeli $W_{ij} \leq U,$ wstaw $ZW_i=ZW_i+1$, w przeciwnym razie wstaw $ZW_j=ZW_j+1$
 		\end{enumerate}
-		\item jeżeli $Z_i=4$, to przenieś drużynę $D_i$ do następnego etapu, w przeciwnym razie przenieś drużynę $D_j$
+		\item jeżeli $ZW_i=4$, to przenieś drużynę $D_i$ do następnego etapu, w przeciwnym razie przenieś drużynę $D_j$
 	\end{enumerate}
 \end{algorytm} 
+
+\begin{pseudokod} 
+	\textbf{Model Playoff}
+	\begin{algorithmic}[1]
+		\State znajdź drużyny $D_i$ i $D_j$
+		\State $ZW_i\gets 0,ZW_j\gets 0$
+		\State znajdź $B_{i}$ i $B_{j}$ 
+		\State $W_{ij}=\frac{B_i}{B_i + B_j}$
+		\While{$ZW_i<4$ and $ZW_j<4$}
+		\State $U\sim \mathcal{U}[0,1]$
+		\If {$W_{ij} \leq U$}
+		\State $B_i \gets B_i+1$
+		\Else
+		\State $B_j \gets B_j+1$
+		\EndIf
+		\EndWhile
+		\If {$ZW_i=4$}
+		\State $D_i$ przechodzi do następnej rundy
+		\Else
+		\State $D_j$ przechodzi do następnej rundy
+		\EndIf
+	\end{algorithmic}
+\end{pseudokod}
 
 Ilości zwycięstw drużyn w kolejnych symulowanych rozgrywkach są zapisywane i zapamiętywane, podobnie jak informacje o przejściach do kolejnych faz rozgrywek pucharowych. 
 
@@ -483,14 +531,31 @@ tabele z prawdopodobieństwami, terminarz sezonu
 % w nawiasie klamrowym wpisujemy nazwę pliku z bibliografią w formacie .bib
 \bibliografia{bibliografia} 
 
-\begin{algorithmic}
-	\If {$i\geq maxval$}
-	\State $i\gets 0$
-	\Else
-	\If {$i+k\leq maxval$}
-	\State $i\gets i+k$
-	\EndIf
-	\EndIf
-\end{algorithmic}
+\begin{figure}[t]
+	\includegraphics[width=16cm]{m1_dla14_5lat_waga0_box_wschod.pdf}
+	\caption{Model I, 5 lat, waga 0}
+	\centering
+\end{figure}
+
+\begin{figure}[t]
+	\includegraphics[width=16cm]{m1_dla14_5lat_waga0_box_zachod.pdf}
+	\caption{Model I, 5 lat, waga 0}
+	\centering
+\end{figure}
+
+\begin{figure}[t]
+	\hspace*{-3cm}  
+	\includegraphics[width=22cm]{m1_dla14_5lat_waga1_box_wschod.pdf}
+	\caption{Model I, 5 lat, waga 1}
+	\centering
+\end{figure}
+
+\begin{figure}[t]
+	\hspace*{-3cm}  
+	\includegraphics[width=22cm]{m1_dla14_5lat_waga1_box_zachod.pdf}
+	\caption{Model I, 5 lat, waga 1}
+	\centering
+\end{figure}
+
 \end{document}
 
