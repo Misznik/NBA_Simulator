@@ -5,6 +5,7 @@
 \usepackage{ amssymb }
 \usepackage{ dsfont }
 \usepackage{amsmath}
+\usepackage{algpseudocode}
 \graphicspath{{C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/}} 
 
 \autor{Michał Cerazy}
@@ -15,7 +16,7 @@
 \kierunekstudiowang{Applied Mathematics}
 \specjalnosc{--} 
 \specjalnoscang{--} 
-\streszczenie{Tutaj piszemy krótkie streszczenie pracy (nie powinno być dłuższe niż 530 znaków).}
+\streszczenie{Praca dotyczy aktualnego problemu z matematyki stosowanej, a mianowicie stworzenia symulatora ligi NBA przy użyciu znanych technik matematycznych/statystycznych. Celem pracy jest stworzenie symulatora rozgrywek w lidze NBA przy użyciu metod bootstrapowych. Wynikiem pracy będzie oprogramowanie do symulacji rozgrywek w lidze NBA umożliwiające prognozowanie wyników w następnym roku.}
 \streszczenieang{Tutaj piszemy krótkie streszczenie pracy w języku angielskim (nie powinno być dłuższe niż 530 znaków).}
 \slowakluczowe{tutaj podajemy najważniejsze słowa kluczowe (łącznie nie powinny być dłuższe niż 150 znaków).}  
 \slowakluczoweang{tutaj podajemy najważniejsze słowa kluczowe w języku angielskim (łącznie nie powinny być dłuższe niż 150 znaków)}
@@ -33,6 +34,8 @@
 \theoremstyle{definition}
 \numberwithin{theorem}{chapter}
 \newtheorem{definition}[theorem]{Definicja} 
+\newtheorem{algorytm}[theorem]{Algorytm}
+\newtheorem{pseudokod}[theorem]{Pseudokod algorytmu}
 \newtheorem{example}[theorem]{Przykład}
 \newtheorem{note}[theorem]{Uwaga}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -220,12 +223,20 @@ Funkcja charakterystyczna tego rozkładu wyrażana jest wzorem
 \end{equation}
 W przypadku, gdy zmienna losowa $X$ posiada ciągłą dystrybuantę $F(x)$, to $U=F(x)$ ma rozkład $\mathcal{U}(0,1).$
 
-\section{Generatory liczb pseudolosowych} %(str 427)
+\section{Generatory liczb pseudolosowych rozkładu jednostajnego} %(str 427)
+Załóżmy, że $F$ to dystrybuanta rozkładu normalnego $\mathcal{U}(0,1)$. Podczas generowania ciągu zbliżonego do realizacji rozkładu jednostajnego zazwyczaj stosuje się następującą metodę: wybierzmy funkcję $G$ określoną i mająca wartości na odcinku $[0,1]$, o wartości początkowej $u_0 \in [0,1]$, i zdefiniujmy
+\begin{equation}
+	u_1=G(u_0), \,\, u_2=G(u_1), \,\, \dots, \,\,u_i=G(u_{i-1}), \,\, i=1,\,2,\,\dots 
+\end{equation}
+Znając postać funkcji $G$ i początkową wartość $u_0$ możliwe jest ponowne wygenerowanie każdego elementu zdefiniowanego powyżej ciągu. Prowadzi to do następującej definicji:
+\begin{definition}
+	Generator liczb pseudolosowych z rozkładu jednostajnego $\mathcal{U}(0,1)$ to taki algorytm dla funkcji $G$ o wartości startowej $u_0 \in [0,1]$, który wyznacza wartości $u_n$, mając przy okazji podaną własność: dla każdego $n$, wygenerowane $u_1,u_2,\dots,u_n$ oddają zachowanie próby losowej $U_1,U_2,\dots,U_n \sim \mathcal{U}(0,1)$ (popularne testy nie odrzucają hipotezy, wedle której $u_1,u_2,\dots,u_n$ to realizacja próby $U_1,U_2,\dots,U_n \sim \mathcal{U}(0,1)$).
+\end{definition}
 
 \section{Metoda Monte Carlo}
 Załóżmy, że $\theta$ to parametr zmiennej losowej $X$ oraz można go przedstawić jako $\theta=Eh(X)$, przy czym $h$ to pewna znana funkcja, dodatkowym założeniem jest, że można wygenerować próbę o rozkładzie $X$. 
 \begin{definition}
-	Niech $X_1,X_2,\dots,X_m$ będzie próbą pseudolosową pewnego rozkładu $X$ dla pewnego $m$. Średnia $\bar{h}=m^{-1}(h(X_1)+h(X_2)+\dots +h(X_m))$ nazywana jest estymatorem $Eh(X)=\theta$ wyznaczonym metodą Monte Carlo.
+	Niech $X_1,X_2,\dots,X_m$ będzie próbą pseudolosową pewnego rozkładu $X$ dla pewnego $m$. Średnia $\bar{h}=m^{-1}(h(X_1)+h(X_2)+\dots +h(X_m))$ nazywana jest \textbf{estymatorem $Eh(X)=\theta$ wyznaczonym metodą Monte Carlo}.
 \end{definition}
 Można zauważyć, że $\bar{h}$ to średnia próbkowa próby $h(X_1),h(X_2),\dots ,h(X_m)$, użycie jej do oszacowania parametru $\theta$ jest możliwe dzięki prawu wielkich liczb. Głównym problemem tego zagadnienia jest estymacja parametru $\theta$, który nie musi posiadać interpretacji probabilistycznej. Całość tej metody opiera się na generowaniu próby losowej lub pseudolosowej rozkładu jednostajnego , zastosowaniu funkcji $h$ do przekształcenia elementów tej próby, a następnie wyznaczeniu estymatora $\bar{h}$ parametru $\theta$. 
 W celu dokładnego opisania metody posłużmy się przykładem: obliczmy
@@ -244,9 +255,11 @@ W przypadku, gdy nie jesteśmy w stanie policzyć tej całki analitycznie, pozos
 Modelowanie przy pomocy metody Monte Carlo jest przydatne przy badaniu skomplikowanych procesów losowych, które można rozbić na dwie kategorie. Pierwsza skupia w sobie systemy, w których proces jest sprecyzowany, ale poprzez jego złożoność trudno obliczyć jego parametry teoretyczne. Druga kategoria to eksperymenty losowe o modelu matematycznym trudnym do skonstruowania --- dzięki metodzie Monte Carlo można dokonać ich klasyfikacji generując wyniki modelowe, po czym przyrównać je z danymi eksperymentalnymi. Omawiana w następnym Rozdziale metoda bootstrap w swoich założeniach wywodzi się z symulacji Monte Carlo.
 
 \section{Zasada bootstrap}
-Próba bootstrap (pol. samowsporna) to metoda służąca do oceny rozkładu pewnego estymatora przy pomocy wielu symulacji prób z nieznanego rozkładu.????????????????? Narzędzie to zostało stworzone przez Bradleya Efrona i opublikowane w artykule ,,Bootstrap methods: another look at the jackknife'' z 1979 roku. Załóżmy, że $x_1, x_2 \dots x_n$ to realizacja pewnej próby losowej, a $\hat{F}$ jest dystrybuantą empiryczną tej próby. Dystrybuanta $\hat{F}$ to znane przybliżenie pewnego nieznanego rozkładu $F$, dlatego też rozkład $\hat{\Theta}$ estymować będziemy przy pomocy $\hat{F}$, czyli dokonamy oceny rozkładu estymatora $\hat{\Theta}$ w oparciu o generowanie prób z rozkładu $\hat{F}$. 
+%In statistics, bootstrapping is any test or metric that relies on random sampling with replacement.
+Próba bootstrap to metoda służąca do oceny rozkładu pewnego estymatora (na przykład wariancji)  używając wielokrotnych symulacji opartych na znanej realizacji jego rozkładu.  
+ Narzędzie to zostało stworzone przez Bradleya Efrona i opublikowane w artykule ,,Bootstrap methods: another look at the jackknife'' z 1979 roku. Załóżmy, że $x_1, x_2 \dots x_n$ to realizacja pewnej próby losowej, a $\hat{F}$ jest dystrybuantą empiryczną tej próby. Dystrybuanta $\hat{F}$ to znane przybliżenie pewnego nieznanego rozkładu $F$, dlatego też rozkład $\hat{\Theta}$ estymować będziemy przy pomocy $\hat{F}$, czyli dokonamy oceny rozkładu estymatora $\hat{\Theta}$ w oparciu o generowanie prób z rozkładu $\hat{F}$. 
 \begin{definition}
-	Próba losowa $X^* = (X_1^*, X_2^*, \dots, X_n^*)$ o rozkładzie $\hat{F}$ dla ustalonej realizacji $x = (x_1, x_2, \dots, x_n)$ nazywana jest próbą bootstrap.
+	Próba losowa $X^* = (X_1^*, X_2^*, \dots, X_n^*)$ o rozkładzie $\hat{F}$ dla ustalonej realizacji $x = (x_1, x_2, \dots, x_n)$ nazywana jest \textbf{próbą bootstrap}.
 \end{definition}
 Otrzymywanie realizacji próby bootstrap bazuje na wykonaniu $n$-krotnego losowania ze zwracaniem elementów próby pierwotnej, tak więc losowość w próbie $X^*$ polega na losowym wyborze elementu $x_1, x_2, \dots, x_n$. W ten sposób powstaje populacja, w której każda zmienna $X_i^*$ jest niezależna od pozostałych, oraz z jednakowym prawdopodobieństwem  przyjmuje dowolną wartość próby. Efron wykazał, że rozkład $T(X^*)$ dla ustalonych $x_1, x_2, \dots, x_n$ ma kształt zbliżony do rozkładu $T(X)$, ponadto rozkład statystyki $(T(X^*)-\hat{\Theta})$ jest bliski rozkładowi statystyki $(T(X)-\Theta)$. Dzięki temu można dokonać oceny rozkładu $\Theta=T(X)$ wykonując poniższe kroki:
 \begin{enumerate}
@@ -255,7 +268,14 @@ Otrzymywanie realizacji próby bootstrap bazuje na wykonaniu $n$-krotnego losowa
 \end{enumerate}
 Otrzymany w ten sposób rozkład $(\Theta_1^*, \Theta_2^*, \dots, \Theta_k^*)$ to przybliżenie rozkładu błędów estymacji $\hat{\Theta}-\Theta$ przy pomocy statystyki $T$. Histogram tego rozkładu nazywany jest estymatorem rozkładu $\hat{\Theta}$ otrzymanym metodą bootstrap. Dla zadowalającego przybliżenia rozkładu $(T(X^*)-\hat{\Theta})$ wymagane jest przynajmniej $k=1000$ prób bootstrap, a im większa ich ilość, tym dokładniejsze oszacowanie.  
 
-
+\subsection{Bootstrap parametryczny}
+Założenia bootstrapu parametrycznego są podobne do bootstrapu klasycznego --- jedyną różnicą jest fakt, że zamiast symulowania niezależnych prób bootstrapowych z dystrybuanty empirycznej, generowane są niezależne próby z rozkładu pewnego parametrycznego modelu. 
+W tym przypadku do danych dopasowany jest pewien model teoretyczny (często przy pomocy metody największej wiarygodności), a próby liczb losowych generowane są z owego dopasowanego modelu. Proces symulowania tak zdefiniowanej proby przebiega podobnie do innych procesów bootstrapowych, przy czym wielkość takiej próby zazwyczaj odpowiada rozmiarowi oryginalnego zbioru danych. Prowadzi to do następującej definicji:
+\begin{definition}
+	Próbę bootstrap, której nieznany rozkład $F$ można przybliżyć pewnym znanym rozkładem parametrycznym $\hat{F}$ nazywamy \textbf{parametryczną próbą bootstrap}. 
+\end{definition}
+%In this case a parametric model is fitted to the data, often by maximum likelihood, and samples of random numbers are drawn from this fitted model. Usually the sample drawn has the same sample size as the original data. Then the quantity, or estimate, of interest is calculated from these data. This sampling process is repeated many times as for other bootstrap methods. The use of a parametric model at the sampling stage of the bootstrap methodology leads to procedures which are different from those obtained by applying basic statistical theory to inference for the same model.\\
+%The theory of the parametric bootstrap is quite similar to that of the nonparametric bootstrap, the only difference is that instead of simulating bootstrap samples that are IID from the empirical distribution (the nonparametric estimate of the distribution of the data) we simulate bootstrap samples that are IID from the estimated parametric model.
  
 \chapter{Metodologia, algorytmy}\label{rodzial_algorytmy}
 Czy znając wyniki zakończonych rozgrywek jesteśmy w stanie przewidzieć rezultaty przyszłych zawodów?
@@ -284,63 +304,94 @@ k=0, k=0.5, k=1
 \section{Modele bootstrapowe}
 
 \subsection{Model uśredniony}
-Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięstw do porażek dla każdej drużyny w wybranym okresie --- wszystkie wygrane zespołu zostają podzielone przez łączną liczbę rozegranych spotkań, wynikiem czego jest liczba z przedziału $[0,1]$ określana jako $P_{i}$, gdzie $i$ to $i-$ta drużyna. Algorytm symulowania wyników spotkań między drużynami wygląda następująco:
-\begin{enumerate}
-	\item wstaw $i=0$
-	\item wstaw $i=i+1$ 
+Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięstw do porażek dla każdej drużyny w wybranym okresie --- wszystkie wygrane zespołu zostają podzielone przez łączną liczbę rozegranych spotkań, wynikiem czego jest liczba z przedziału $[0,1]$ określana jako $P_{i}$, gdzie $i$ to $i-$ta drużyna. Schemat symulowania wyników spotkań między drużynami wygląda następująco:
+
+\begin{algorytm} \textbf{Algorytm modelu uśrednionego}
 	\begin{enumerate}
-		\item wstaw $j=i$
-		\item znajdź drużyny $D_i$ i $D_j$
+	\item wstaw liczniki zwycięstw drużyn $B_1= 0,B_2= 0,\dots, B_{30}= 0$
+	\item dla $i=1$, $i=2$, \dots $i=30$: 
+	\begin{enumerate}
+		\item dla $j=i$, $j=i+1$, \dots $j=30$: 
+		\begin{enumerate}
+			\item znajdź drużyny $D_i$ i $D_j$
 		\item odczytaj średnie ilości zwycięstw $W_i$ i $W_j$ dla drużyn $D_i$ i $D_j$ 
 		\item wyznacz prawdopodobieństwo zwycięstwa $W_{ij}$ przez drużynę  $D_i$ równe $W_{ij}=\frac{W_i}{W_i + W_j}$   
 		\item w terminarzu znajdź liczbę spotkań $S_{ij}$ pomiędzy drużynami $D_i$ i $D_j$
+		\item wykonaj $S_{ij}$ razy:
 			\begin{enumerate}
-				\item symuluj liczbę $U$ z rozkładu jednostajnego $U\sim U[0,1]$ 
-			\item jeżeli $W_{ij} \leq U,$ to zwiększ licznik zwycięstw drużyny $D_i$, w przeciwnym razie zwiększ licznik zwycięstw drużyny $D_j$
-			\item powtórz $S_{ij}$ razy
+				\item symuluj liczbę $U$ z rozkładu jednostajnego $\mathcal{U}\sim U[0,1]$ 
+			\item jeżeli $W_{ij} \leq U,$ to zwiększ licznik zwycięstw $B_i=B_i+1$, w przeciwnym razie zwiększ licznik zwycięstw $B_j=B_j+1$
 			\end{enumerate}
-		\item wstaw $j=j+1$
-		\item jeżeli $j\leq 30$, to wróć do Punktu $($a$)$ 
+		\end{enumerate}
 	\end{enumerate}
-	\item jeżeli $i\leq 30$, to wróć do Punktu 2
-\end{enumerate} 
+\end{enumerate}
+\end{algorytm} 
  
+\begin{pseudokod}
+	\begin{algorithmic}[1]
+		\State $B_1\gets 0,B_2\gets 0,\dots, B_{30}\gets 0$
+		\State $i\gets 1$
+		\While{$i\leq 30$}
+		\For{$j\gets i$ to 30}
+		\State znajdź drużyny $D_i$ i $D_j$
+		\State znajdź $W_i$ i $W_j$ 
+		\State $W_{ij}\gets\frac{W_i}{W_i + W_j}$
+		\State znajdź liczbę spotkań $S_{ij}$ pomiędzy $D_i$ i $D_j$
+		\For{$p\gets1$ to $S_{ij}$}
+		\State $U\sim \mathcal{U}[0,1]$
+		\If {$W_{ij} \leq U$}
+		\State $B_i \gets B_i+1$
+		\Else
+		\State $B_j \gets B_j+1$
+		\EndIf
+		\EndFor
+		\EndFor
+		\State $i\gets i+1$
+		\EndWhile
+	\end{algorithmic}
+\end{pseudokod}
 
 \subsection{Model rywalizacji}
 Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki przeciwko konkretnej drużynie. W zawodowym sporcie niejednokrotnie można trafić na zażarte rywalizacje między dwoma klubami lub zwykłą łatwość w pokonaniu szczególnego przeciwnika. Algorytm symulowania wyników spotkań między drużynami wygląda następująco:
-\begin{enumerate}
-	\item wstaw $i=0$
-	\item wstaw $i=i+1$ oraz $j=i$
-	\begin{enumerate} 
-		\item znajdź drużyny $D_i$ i $D_j$
-		\item odczytaj z macierzy wyników stosunek zwycięstw $W_{ij}=\frac{Z_{ij}}{Z_{ij}+Z_{ji}}$ drużyny $D_i$ przeciw drużynie $D_j$   
-		\item w terminarzu znajdź liczbę spotkań $S_{ij}$ pomiędzy drużynami $D_i$ i $D_j$
+
+\begin{algorytm} \textbf{Algorytm modelu rywalizacji}
+	\begin{enumerate}
+		\item wstaw liczniki zwycięstw drużyn $B_1= 0,B_2= 0,\dots, B_{30}= 0$
+		\item dla $i=1$, $i=2$, \dots $i=30$: 
 		\begin{enumerate}
-			\item symuluj liczbę $U$ z rozkładu jednostajnego $U\sim U[0,1]$ 
-			\item jeżeli $W_{ij} \leq U,$ to zwiększ licznik zwycięstw drużyny $D_i$, w przeciwnym razie zwiększ licznik zwycięstw drużyny $D_j$
-			\item powtórz $S_{ij}$ razy
+			\item dla $j=i$, $j=i+1$, \dots $j=30$: 
+			\begin{enumerate}
+				\item znajdź drużyny $D_i$ i $D_j$
+				\item odczytaj z macierzy wyników stosunek zwycięstw $W_{ij}=\frac{Z_{ij}}{Z_{ij}+Z_{ji}}$ drużyny $D_i$ przeciw drużynie $D_j$   
+				\item w terminarzu znajdź liczbę spotkań $S_{ij}$ pomiędzy drużynami $D_i$ i $D_j$
+				\item wykonaj $S_{ij}$ razy:
+				\begin{enumerate}
+					\item symuluj liczbę $U$ z rozkładu jednostajnego $\mathcal{U}\sim U[0,1]$ 
+					\item jeżeli $W_{ij} \leq U,$ to zwiększ licznik zwycięstw $B_i=B_i+1$, w przeciwnym razie zwiększ licznik zwycięstw $B_j=B_j+1$
+				\end{enumerate}
+			\end{enumerate}
 		\end{enumerate}
-		\item wstaw $j=j+1$
-		\item jeżeli $j< 30$, to wróć do Punktu $($a$)$ 
 	\end{enumerate}
-	\item wstaw $i=i+1$
-	\item jeżeli $i\leq 30$, to wróć do Punktu 2
-\end{enumerate} 
+\end{algorytm} 
+
 
 \subsection{Model symulacji spotkań fazy pucharowej}
-Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każdej konferencji przechodzi do fazy Playoff, gdzie toczy rozgrywki zgodnie z systemem opisanym we WSTĘPIE. Na tym etapie rozgrywek symulacja spotkań różni się od części zasadniczej: zamiast jednego z zasugerowanych wcześniej modeli korzysta się ze wcześniejszej symulacji fazy zasadniczej. W celu oddania trendów panujących w wygenerowanych rozgrywkach (a mianowicie potencjalnych kontuzjach, spadkach lub zwyżkach formy), użyta zostaje jedynie informacja o ilości wygranych przed rozpoczęciem Playoffów. Algorytm symulowania tej fazy jest postaci:
-\begin{enumerate}
-	\item wybierz drużyny $D_i$ i $D_j$
-	\item odczytaj symulowane ilości zwycięstw $W_i$ i $W_j$ dla wybranych drużyn $D_i$ i $D_i$
-	\item wyznacz prawdopodobieństwo zwycięstwa $W_{ij}$ przez drużynę  $D_i$ równe $W_{ij}=\frac{W_i}{W_i + W_j}$ 
-	\item wstaw liczniki zwycięstw $Z_i=0$ i $Z_j=0$ 
+Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każdej konferencji przechodzi do fazy Playoff, gdzie toczy rozgrywki zgodnie z systemem opisanym we WSTĘPIE. Na tym etapie rozgrywek symulacja spotkań różni się od części zasadniczej: zamiast jednego z zasugerowanych wcześniej modeli korzysta się ze wcześniejszej symulacji fazy zasadniczej. W celu oddania trendów panujących w wygenerowanych rozgrywkach (a mianowicie potencjalnych kontuzjach, spadkach lub zwyżkach formy), użyta zostaje jedynie informacja o ilości wygranych przed rozpoczęciem Playoffów. Algorytm symulowania tej fazy jest postaci: 
+
+\begin{algorytm} \textbf{Algorytm modelu Playoff}
+	\begin{enumerate}
+		\item wybierz drużyny $D_i$ i $D_j$
+		\item wstaw liczniki zwycięstw $Z_i=0$ i $Z_j=0$
+		\item odczytaj symulowane ilości zwycięstw z sezonu zasadniczego $W_i$ i $W_j$ dla wybranych drużyn $D_i$ i $D_j$
+		\item wyznacz prawdopodobieństwo zwycięstwa $W_{ij}$ przez drużynę  $D_i$ równe $W_{ij}=\frac{W_i}{W_i + W_j}$
+		\item powtarzaj dopóki  $Z_i=4$ albo $Z_j=4$
 		\begin{enumerate}
 			\item symuluj liczbę $U$ z rozkładu jednostajnego $U\sim U[0,1]$ 
 			\item jeżeli $W_{ij} \leq U,$ wstaw $Z_i=Z_i+1$, w przeciwnym razie wstaw $Z_j=Z_j+1$
-			\item powtarzaj dopóki  $Z_i=4$ lub $Z_j=4$
 		\end{enumerate}
-	\item jeżeli $Z_i=4$, to przenieś drużynę $D_i$ do następnego etapu, w przeciwnym razie przenieś drużynę $D_j$
-\end{enumerate} 
+		\item jeżeli $Z_i=4$, to przenieś drużynę $D_i$ do następnego etapu, w przeciwnym razie przenieś drużynę $D_j$
+	\end{enumerate}
+\end{algorytm} 
 
 Ilości zwycięstw drużyn w kolejnych symulowanych rozgrywkach są zapisywane i zapamiętywane, podobnie jak informacje o przejściach do kolejnych faz rozgrywek pucharowych. 
 
@@ -431,8 +482,15 @@ tabele z prawdopodobieństwami, terminarz sezonu
 \newpage
 % w nawiasie klamrowym wpisujemy nazwę pliku z bibliografią w formacie .bib
 \bibliografia{bibliografia} 
+
+\begin{algorithmic}
+	\If {$i\geq maxval$}
+	\State $i\gets 0$
+	\Else
+	\If {$i+k\leq maxval$}
+	\State $i\gets i+k$
+	\EndIf
+	\EndIf
+\end{algorithmic}
 \end{document}
 
-%Parametric bootstrap
-%In this case a parametric model is fitted to the data, often by maximum likelihood, and samples of random numbers are drawn from this fitted model. Usually the sample drawn has the same sample size as the original data. Then the quantity, or estimate, of interest is calculated from these data. This sampling process is repeated many times as for other bootstrap methods. The use of a parametric model at the sampling stage of the bootstrap methodology leads to procedures which are different from those obtained by applying basic statistical theory to inference for the same model.
-%The theory of the parametric bootstrap is quite similar to that of the nonparametric bootstrap, the only difference is that instead of simulating bootstrap samples that are IID from the empirical distribution (the nonparametric estimate of the distribution of the data) we simulate bootstrap samples that are IID from the estimated parametric model.

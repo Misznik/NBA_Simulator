@@ -30,8 +30,8 @@ from funkcje_pomocnicze import *
 #dane_10_lat_df = pd.read_excel('team_v_team_10_dla14.xlsm', sheetname='stosunki_simple')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='14-15')
 
-dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi_simple')
-schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi_simple')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
 #dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi_simple1')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
 #dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_simple')
@@ -116,7 +116,8 @@ finalowe8 = []
 finalowe4 = []
 finalowe2 = []
 
-N = 1000 #Ilosc symulacji
+rd.seed(1)
+N = 10000 #Ilosc symulacji
 for n in range(1,N+1):
     wyniki = [['ATL',0],  #lista z wynikami, dopisujemy do niej kolejne zwyciestwa
     ['BOS',0],
@@ -413,8 +414,8 @@ for i in range(len(gestosci)):
     elif dane_10_lat[i][0] in west_teams:
         west_density.append(gestosci[i])
     
-#boxploty_konf(east_density, east_teams, wyniki_east_17_18, 'Konderencja Wschodnia', 'Wynik w sezonie 2017/2018')  
-#boxploty_konf(west_density, west_teams, wyniki_west_17_18, 'Konderencja Zachodnia', 'Wynik w sezonie 2017/2018' )   
+boxploty_konf(east_density, east_teams, wyniki_east_17_18, 'Konderencja Wschodnia', 'Wynik w sezonie 2017/2018')  
+boxploty_konf(west_density, west_teams, wyniki_west_17_18, 'Konderencja Zachodnia', 'Wynik w sezonie 2017/2018' )   
 #rysuj_wykres(dict_champs,'Drużyny wygrywające mistrzostwa ligi','Drużyna','Liczba zwycięstw')
 #rysuj_wykres(przejscia_1rnd,'Drużyny przechodzące do pierwszej rundy','Drużyna','Liczba przejść')
 #rysuj_wykres(przejscia_2rnd,'Drużyny przechodzące do drugiej rundy','Drużyna','Liczba przejść')

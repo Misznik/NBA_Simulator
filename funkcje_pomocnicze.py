@@ -166,43 +166,43 @@ def predykcja():
     rnd1_east = list(x for x in przejscia_1rnd.items() if x[0] in east_teams)
     rnd1_east.sort(key=lambda x: x[1], reverse=True)
     rnd1_east=rnd1_east[0:8]
-    print('PLAYOFFS 1st Round:')   
-    print('East:')
+#    print('PLAYOFFS 1st Round:')   
+#    print('East:')
     print(rnd1_east)
     
     rnd1_west = list(x for x in przejscia_1rnd.items() if x[0] in west_teams)
     rnd1_west.sort(key=lambda x: x[1], reverse=True)
     rnd1_west=rnd1_west[0:8]
-    print('PLAYOFFS 1st Round:')   
-    print('west:')
+#    print('PLAYOFFS 1st Round:')   
+#    print('west:')
     print(rnd1_west)
 
     rnd2_east = list(x for x in przejscia_2rnd.items() if x[0] in east_teams)
     rnd2_east.sort(key=lambda x: x[1], reverse=True)
     rnd2_east=rnd2_east[0:4]
-    print('PLAYOFFS 2nd Round:')   
-    print('East:')
+#    print('PLAYOFFS 2nd Round:')   
+#    print('East:')
     print(rnd2_east)
     
     rnd2_west = list(x for x in przejscia_2rnd.items() if x[0] in west_teams)
     rnd2_west.sort(key=lambda x: x[1], reverse=True)
     rnd2_west=rnd2_west[0:4]
-    print('PLAYOFFS 2nd Round:')   
-    print('west:')
+#    print('PLAYOFFS 2nd Round:')   
+#    print('west:')
     print(rnd2_west)   
     
     rnd3_east = list(x for x in przejscia_3rnd.items() if x[0] in east_teams)
     rnd3_east.sort(key=lambda x: x[1], reverse=True)
     rnd3_east=rnd3_east[0:2]
-    print('PLAYOFFS 3rd Round:')   
-    print('East:')
+#    print('PLAYOFFS 3rd Round:')   
+#    print('East:')
     print(rnd3_east)
     
     rnd3_west = list(x for x in przejscia_3rnd.items() if x[0] in west_teams)
     rnd3_west.sort(key=lambda x: x[1], reverse=True)
     rnd3_west=rnd3_west[0:2]
-    print('PLAYOFFS 3rd Round:')   
-    print('west:')
+#    print('PLAYOFFS 3rd Round:')   
+#    print('west:')
     print(rnd3_west)
     
     final_pred_east = list(x for x in przejscia_final.items() if x[0] in east_teams)
@@ -211,13 +211,13 @@ def predykcja():
     final_pred_west = list(x for x in przejscia_final.items() if x[0] in west_teams)
     final_pred_west.sort(key=lambda x: x[1], reverse=True)
     final_pred.append(final_pred_west[0:1])
-    print('PLAYOFFS Finals:')
+#    print('PLAYOFFS Finals:')
     print(final_pred) 
 
     champs_pred = list(dict_champs.items())
     champs_pred.sort(key=lambda x: x[1], reverse=True)
     champs_pred=champs_pred[0]
-    print('Champions:')
+#    print('Champions:')
     print(champs_pred)       
  ##################################################################3   
   
