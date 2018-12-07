@@ -49,10 +49,19 @@
 
 {\backmatter \chapter{Wstęp}}
 %We wstępie zapowiadamy, o czym będzie praca. Próbujemy zachęcić czytelnika do dalszej lektury, np. krótko informując, dlaczego wybraliśmy właśnie ten temat i co nas w nim zainteresowało.
-Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej amerykańska liga koszykarska NBA zyskała popularność na całym świecie, przyciągając do siebie najlepszych graczy i masy fanów. Z powodu nieprzewidywalności i złożoności tego sportu podejmowano wiele prób przewidywania wyników rozgrywek, które często toczyły się inaczej, niż by zakładano (najlepszym tego przykładem może być sezon 2003/2004, kiedy to nisko notowani Detroit Pistons pokonali faworytów w postaci Los Angeles Lakers). Trudność w przewidzeniu wyników wynika bezpośrednio z zasad ligi --- dozwolone są w niej wymiany zawodników między klubami, liczne i często katastrofalne kontuzje, czy nabory do ligi, w których najgorsze drużyny mają pierwszeństwo wyboru nowych zawodników chcących dołączyć do NBA (z tego powodu wiele organizacji celowo przegrywa mecze w celu wylosowania najwyższych miejsc w naborze). Najlepsi analitycy sportowi podejmują starania badać każdy aspekt gry i jego wpływ na przebieg meczu. Niemal wszystkie zaproponowane dotąd modele symulacji rozgrywek opierają się na statystykach zawodników, ich wpływie na atak i obronę, oraz udziale w zwycięstwach. Celem tej pracy inżynierskiej jest próba przewidzenia rezultatów wybranego sezonu ligi NBA przy pomocy bardzo prostego modelu, używając wyłącznie informacji o wynikach poszczególnych drużyn w poprzednich sezonach --- indywidualny wpływ graczy na przebieg spotkań nie jest rozpatrywany. Na potrzeby tego zadania zaprojektowano kilka algorytmów opierających się na metodzie \textbf{bootstrapu parametrycznego}, sprawdzono ich skuteczność dla kilku wybranych sezonów w zależności od okresu używanych danych i nadawania wag, a następnie przy pomocy najskuteczniejszych modeli dokonano predykcji wyników trwającego sezonu 2018/2019. 
+Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej amerykańska liga koszykarska NBA zyskała popularność na całym świecie, przyciągając do siebie najlepszych graczy i masy fanów. Z powodu nieprzewidywalności i złożoności tego sportu podejmowano wiele prób przewidywania wyników rozgrywek, które często toczyły się inaczej, niż by zakładano (najlepszym tego przykładem może być sezon 2003/2004, kiedy to nisko notowani Detroit Pistons pokonali faworytów w postaci Los Angeles Lakers). Trudność w przewidzeniu wyników wynika bezpośrednio z zasad ligi --- dozwolone są w niej wymiany zawodników między klubami, liczne i często katastrofalne kontuzje, czy nabory do ligi, w których najgorsze drużyny mają pierwszeństwo wyboru nowych zawodników chcących dołączyć do NBA (z tego powodu wiele organizacji celowo przegrywa mecze w celu wylosowania najwyższych miejsc w naborze). W obecnych czasach każda drużyna zatrudnia sztab analityków, którzy badają wpływ każdego czynnika obecnego na parkiecie na losy meczu. Idealnym przykładem wpływu statystyki na styl gry zespołu są Houston Rockets, którzy od sezonu 2014/2015 porzucili rzuty z półdystansu na rzecz rzutów za 3 punkty i tych spod obręczy. Doprowadziło to do sytuacji, w której 82\% ich rzutów było oddawanych z tych pozycji, podczas gdy druga najlepsza drużyna w tym aspekcie osiągała poziom 71\%. Wizualizacja tego systemu znajduje się na Rysunku \ref{houston_shots}.
+\begin{figure}[h]
+	\hspace*{-1cm}
+	\includegraphics[width=18cm]{houston_shots.jpg}
+	\caption{Decyzje rzutowe Houston i reszty ligi}\label{houston_shots}
+	\centering
+\end{figure}
+ Poza analizowaniem przebiegu gry, analitycy oraz statystycy podejmują próby przewidywania wyników sezonu, co staje się bardzo istotne w razie kontuzji lub wymiany gracza. Niemal wszystkie zaproponowane dotąd modele symulacji rozgrywek opierają się na statystykach zawodników, ich wpływie na atak i obronę, udziale w zwycięstwach, oraz ulubionych pozycjach rzutowych. Celem tej pracy inżynierskiej jest próba przewidzenia rezultatów wybranego sezonu ligi NBA przy pomocy bardzo prostego modelu, używając wyłącznie informacji o wynikach poszczególnych drużyn w poprzednich sezonach --- indywidualny wpływ graczy na przebieg spotkań nie jest rozpatrywany. Na potrzeby tego zadania zaprojektowano kilka algorytmów opierających się na metodzie \textbf{bootstrapu parametrycznego}, sprawdzono ich skuteczność dla kilku wybranych sezonów w zależności od okresu używanych danych i nadawania wag, a następnie przy pomocy najskuteczniejszych modeli dokonano predykcji wyników trwającego sezonu 2018/2019. 
+
+
 
 \chapter{Opis ligi NBA, jak wyglada sezon}\label{rodzial1}
-National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of Americai składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Od 2004 roku w NBA gra 30 zespołów, 29 ze Stanów Zjednoczonych i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 organizacji. Szczegółowy podział konferencje i dywizje, oraz nazwy wszystkich drużyn zawarte zostały w Tabelach \ref{tabela_wschod} i \ref{tabela_zachod}, natomiast dokładne rozmieszczenie na mapie kontynentu znajduje się na Rysunku \ref{mapa_stany}.
+National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of America i składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Kolejna fuzja miała miejsce w 1976 roku, a mianowicie wchłonięcie połączenie z bardziej widowiskową American Basketball Association ocaliło ją od bankructwa i stagnacji. Po tym wydarzeniu NBA zyskała na atrakcyjności --- z ABA zaczerpnięto pomysły rzutów za trzy punkty i organizacji konkursu wsadów, jak i przyjęto cztery dodatkowe organizacje. Od 2004 roku w lidze gra 30 zespołów, 29 ze Stanów Zjednoczonych i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 organizacji. Szczegółowy podział konferencje i dywizje, oraz nazwy wszystkich drużyn zawarte zostały w Tabelach \ref{tabela_wschod} i \ref{tabela_zachod}, natomiast dokładne rozmieszczenie na mapie kontynentu znajduje się na Rysunku \ref{mapa_stany}.
 
 \begin{figure}[t]
 	\includegraphics[width=16cm]{conf_map.pdf}
@@ -276,34 +285,30 @@ W tym przypadku do danych dopasowany jest pewien model teoretyczny (często przy
 \end{definition}
  
 \chapter{Metodologia, algorytmy}\label{rodzial_algorytmy}
-Czy znając wyniki zakończonych rozgrywek jesteśmy w stanie przewidzieć rezultaty przyszłych zawodów?
-\\
+\section{Opis danych}
 Dane, które będą wykorzystywane do symulacji sezonu zostały zebrane ze strony sportowej basketballreference.com.
 \\
 Na potrzeby tej pracy zebrano wyniki starć pomiędzy drużynami począwszy od sezonu 2004/2005 aż do 2017/2018. Początkowo symulowano rozgrywki sezonów 2014/2015 oraz 2017/2018 w celu wybrania najlepszego modelu, a następnie skorzystano z niego, aby przewidzieć wyniki rozgrywek we wciąż trwającym sezonie 2018/2019.
 Posiadając ilość wygranych jednej drużyny z drugą na przestrzeni lat dokonano następujących transformacji danych:
 \\
 W zależności od interwału czasowego, jaki będziemy rozpatrywać, zebrano wyniki w określonych rozgrywkach (na przykład, przy wyznaczaniu wyników sezony 2014/2015 i interwale 5 lat, używać będziemy danych z lat 2009 do 2014). Dzięki uzyskanej w ten sposób liczbie wygranych w możemy stosunek zwycięstw do porażek dla wybranych zespołów (przykład: Boston Celtics i Atlanta Hawks grały ze sobą 10 razy, Jastrzębie wygrały zaledwie 4 razy, dlatego też w starciu z Celtami ich stosunek wygranych do przegranych wynosi $0.4$). Po zastosowaniu tej metody dla wszystkich zespołów uzyskano macierz o rozmiarze 30 wierszy i kolumn zawierającą prawdopodobieństwa na wygraną z każdym zespołem w lidze.
-\\
+
+\section{Własne oznaczenia} \label{wlasne_oznaczenia}
 Podczas prób symulacji dokonano intuicyjnego założenia, wedle którego największy wpływ na postawę sezonu mają rozgrywki bezpośrednio go poprzedzające. W tym celu dobrano system wag --- z powodu dynamicznych zmian w lidze, najstarsze sezony otrzymują najmniejszą rangę, która stopniowo zwiększa się, im bliżej do zawodów rozpatrywanych w symulacji. Ważona ilość zwycięstw $Z_i$ $i-$tej drużyny $D_i$ z $j-$tą drużyną $D_j$ wynosi
 \begin{equation}
 	Z_{ij} = \sum_{k=1}^{n} (1+x\cdot k)\cdot R_{ijk}, 
 \end{equation}
-gdzie $n$ to ilość sezonów, z których zaciągamy dane, $x$ ustalona waga kolejnych rozgrywek, a $R_{ijk}$ to wynik starć drużyny $D_i$ z drużyną $D_j$ w $k-$tym sezonie. Podczas testowania skuteczności modeli dobierano różne wagi w celu znalezienia tego zwracającego najlepsze predykcje.    
-\\
-Podczas symulacji program przechodzi przez dokładnie określony terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w Rozdziale \ref{rodzial1}.
-\\
-Każdy spośród zaproponowanych w tej pracy modeli został przeanalizowany pod względem okresu pobieranych danych oraz wag wpływających na istotność poszczególnych sezonów. Wszystkie symulacje wykonano 10000 razy.
-\\
-5, 10 lat
-\\
-k=0, k=0.5, k=1
+gdzie $n$ to ilość sezonów, z których zaciągamy dane, $x$ ustalona waga kolejnych rozgrywek, a $R_{ijk}$ to wynik starć drużyny $D_i$ z drużyną $D_j$ w $k-$tym sezonie. Podczas testowania skuteczności modeli dobierano różne wagi w celu znalezienia tego zwracającego najlepsze predykcje. Podczas symulacji program przechodzi przez dokładnie określony terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w Rozdziale \ref{rodzial1}. 
+Podczas testów mających na celu wyłonienie najlepszego modelu zdefiniowano współczynnik $G$ równy
+\begin{equation}\label{wskaznik_g}
+	G = \sum_{i=1}^{n}|\hat{\Theta_i} - \Theta_i|,
+\end{equation}
+gdzie $n$ to ilość drużyn (obecnie 30), $\hat{\Theta_i}$ to wartość estymowana przy pomocy próby bootstrap dla $i$-tej drużyny, a $\Theta_i$ to jej rzeczywisty wynik w porównywanym sezonie. Wartość $G$ to bezwzględna suma błędów modelu, a więc im jest ona mniejsza, tym lepszego dokonano dopasowania. 
 
 \section{Modele symulacji rozgrywek}
-
 Zaproponowane w tym rozdziale modele opierają się na zasadzie bootstrapu parametrycznego. Podchodząc do symulacji znane są prawdopodobieństwa poszczególnych drużyn na wygraną, co pozwala na przybliżenie rozkładu teoretycznego danego sezonu. 
 
-\subsection{Model uśredniony}
+\subsection{Model I --- uśredniony}
 Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięstw do porażek dla każdej drużyny w wybranym okresie --- wszystkie wygrane zespołu zostają podzielone przez łączną liczbę rozegranych spotkań, wynikiem czego jest liczba z przedziału $[0,1]$ określana jako $P_{i}$, gdzie $i$ to $i-$ta drużyna. Schemat symulowania wyników spotkań między drużynami wygląda następująco:
 
 \begin{algorytm} \textbf{Model uśredniony}
@@ -352,7 +357,7 @@ Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięst
 	\end{algorithmic}
 \end{pseudokod}
 
-\subsection{Model rywalizacji}
+\subsection{Model II --- rywalizacji}
 Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki przeciwko konkretnej drużynie. W zawodowym sporcie niejednokrotnie można trafić na zażarte rywalizacje między dwoma klubami lub zwykłą łatwość w pokonaniu szczególnego przeciwnika. Algorytm symulowania wyników spotkań między drużynami wygląda następująco:
 
 \begin{algorytm} \textbf{Model rywalizacji}
@@ -400,8 +405,8 @@ Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki pr
 	\end{algorithmic}
 \end{pseudokod}
 
-\subsection{Model symulacji spotkań fazy pucharowej}
-Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każdej konferencji przechodzi do fazy Playoff, gdzie toczy rozgrywki zgodnie z systemem opisanym we WSTĘPIE. Na tym etapie rozgrywek symulacja spotkań różni się od części zasadniczej: zamiast jednego z zasugerowanych wcześniej modeli korzysta się ze wcześniejszej symulacji fazy zasadniczej. W celu oddania trendów panujących w wygenerowanych rozgrywkach (a mianowicie potencjalnych kontuzjach, spadkach lub zwyżkach formy), użyta zostaje jedynie informacja o ilości wygranych przed rozpoczęciem Playoffów. Algorytm symulowania tej fazy jest postaci: 
+\subsection{Model III --- fazy pucharowej}
+Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każdej konferencji przechodzi do fazy Playoff, gdzie toczy rozgrywki zgodnie z systemem opisanym w Rozdziale \ref{rodzial1}. Na tym etapie rozgrywek symulacja spotkań różni się od części zasadniczej: zamiast jednego z zasugerowanych wcześniej modeli korzysta się ze wcześniejszej symulacji fazy zasadniczej. W celu oddania trendów panujących w wygenerowanych rozgrywkach (a mianowicie potencjalnych kontuzjach, spadkach lub zwyżkach formy), użyta zostaje jedynie informacja o ilości wygranych przed rozpoczęciem Playoffów. Algorytm symulowania tej fazy jest postaci: 
 
 \begin{algorytm} \textbf{Model Playoff}
 	\begin{enumerate}
@@ -447,7 +452,7 @@ Ilości zwycięstw drużyn w kolejnych symulowanych rozgrywkach są zapisywane i
 Korzystając z metod bootstrapowych zaproponowano kilka modeli pozwalających na oszacowanie przebiegu rozgrywek w analizowanym sezonie.
 Przed korzystaniem z opisanych poniżej modeli przeprowadzono symulację opartą na algorytmach zdefiniowanych w Rozdziale \ref{rodzial_algorytmy}, dzięki czemu do symulacji podchodzono z przygotowanymi wcześniej danymi.
 
-\subsection{Predykcja wyników sezonu zasadniczego}
+\subsection{Predykcja wyników sezonu zasadniczego} \label{predykcja_zasadniczego}
 Sezon zasadniczy odgrywa bardzo ważną rolę w rozgrywkach NBA --- w trakcie jego trwania drużyny toczą walkę o najlepsze miejsca w fazie pucharowej, sprawdzają swoje siły w trakcie gier z potencjalnymi rywalami w Playoff, a także wzmacniają swoje drużyny poprzez rotację zawodnikami. Podczas przejść symulacji zapisywano łączną liczbę wygranych każdego zespołu, dzięki czemu otrzymano rozkłady zwycięstw wszystkich składów. Po przeanalizowaniu rozkładów zauważono, że mediany i wartości średnie nie różnią się znacznie od siebie, dlatego w dalszych rozważaniach jako przyszłą liczbę wygranych zespołu w sezonie zasadniczym przyjmuje się medianę rozkładu zwycięstw w symulacji. Wyniki porównania zawarto w Tabeli \ref{srednie_mediany}?
 \begin{table}[]
 	\centering
@@ -486,20 +491,196 @@ Sezon zasadniczy odgrywa bardzo ważną rolę w rozgrywkach NBA --- w trakcie je
 	\end{tabular}
 \caption{Porównanie średnich i median wygranych spotkań w symulacji}\label{srednie_mediany}	
 \end{table}
-\subsection{Modele predykcji wyników fazy pucharowej}
+\subsection{Modele predykcji wyników fazy pucharowej}\label{modele_palyoff}
 Rozgrywki Playoff są niezwykle trudne do przewidzenia --- niejednokrotnie zdarzyło się już, że faworyci zostali pokonani przez znacznie niżej notowanego przeciwnika (najlepszy przykład to seria DAL-GSW w 2007 roku, kiedy Dallas Mavericks kończąc sezon z najlepszym bilansem zwycięstw w lidze, przegrali pierwszą rundę w 6 meczach z ósmą drużną konferencji).
 Do symulacji tego etapu zaproponowano 2 odmienne od siebie modele, bazujące na innych założeniach.
 
-\subsubsection{Model I --- Prawdopodobieństwo przejść}
+\subsubsection{Model IV --- Prawdopodobieństwo przejść}
 Model ten polega na oszacowaniu szans poszczególnych drużyn na przejście do wybranych etapów rozgrywek pucharowych. Podczas każdej z symulacji sezonu zbierano informacje o przejściach zespołów do kolejnych faz Playoff. W ten sposób estymowano prawdopodobieństwa przejść do odpowiednio Pierwszej Rundy, Drugiej Rundy, Finałów Konferencji oraz Finałów. Według zaproponowanego schematu do kolejnych etapów awansują zespoły z największą ilością przejść, a więc największym prawdopodobieństwem awansu. Do Rundy Pierwszej każdej konferencji dostanie się 8 drużyn najczęściej zakwalifikowanych do Rundy Pierwszej w symulacjach, do Drugiej 4 zespoły o największym prawdopodobieństwie przejścia do drugiego etapu, kolejne etapy wyznaczane są analogicznie.  
 PRZYKĄŁDOWA TABELA
 
-\subsubsection{Model II --- Najczęstsze kombinacje}
+\subsubsection{Model V --- Najczęstsze kombinacje}
 Drugi z badanych modeli porównuje najczęściej pojawiające się kombinacje zespołów w poszczególnych etapach. Podczas symulacji rozgrywek pucharowych zapisywano listy z drużynami przechodzącymi do kolejnych etapów Playoff, dzięki czemu zachowane zostały również układy, w jakich toczyły się rozgrywki. Innymi słowy, dla Rundy Pierwszej wyszukiwana jest najczęściej pojawiająca się kombinacja zespołów w Pierwszej Rundzie, czynność ta jest powtarzana w kolejnych etapach. Mechanizm ten jest w stanie zwrócić bardzo precyzyjną prognozę, jednak wymaga dużej liczby powtórzeń symulacji do poprawnego działania. 
 
-\chapter{Wyniki, porownanie modeli}
-modelowanie okresem, sezonem, wagami, długością próbki?
-symulacja dla 2018-19?
+\chapter{Dobór optymalnego modelu}
+Podczas testowania modeli badano zmiany wag poszczególnych sezonów oraz okres zbierania danych. Podjęto decyzję o przeprowadzaniu symulacji dla sezonów 2014/2015 oraz 2017/2018 o następujących parametrach:
+\begin{itemize}
+	\item wagi wynoszące odpowiednio $x=0$, $x=0.5$, $x=1$,
+	\item okresy zbierania danych wynoszące odpowiednio 5 i 10 lat, a zatem
+	\begin{itemize}
+		\item dla sezonu 2014/2015 wykorzystywano dane z lat 2009-2014 oraz 2004-2014
+		\item dla sezonu 2017/2018 wykorzystywano dane z lat 2012-2017 oraz 2007-2017
+	\end{itemize}
+\end{itemize}
+Wszystkie przeprowadzone w ten sposób symulacje zostały wykonane dla 10000 powtórzeń symulacji bootstrap. 
+
+\section{Wyniki symulacji dla sezonów zasadniczych}
+Podczas symulowania podstawowej części sezonu jako przewidzianą liczbę wygranych przyjęto medianę rozkładu symulowanych zwycięstw, co zostało opisane w Podrozdziale \ref{predykcja_zasadniczego}. Przy pomocy czynnika $G$ zdefiniowanego w Rozdziale \ref{wskaznik_g} dokonano oceny modeli dla określonych wcześniej parametrów. Dodatkowo, obliczono sumę błędów dla obu symulowanych sezonów, dzięki czemu wybór lepszego modelu będzie ułatwiony. Wyniki symulacji zawarto w Tabeli \ref{tabela_porownianie_modeli}.
+\begin{table}[]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Parametry} & \textbf{Sezon 14/15} & \textbf{Sezon 17/18} & \textbf{Suma} \\ \hline
+		M I, 5 lat, waga $0$ & 306  & 280 & 586\\ \hline
+		M I, 5 lat, waga $0,5$ & 295 & 275 & 570 \\ \hline
+		M I, 5 lat, waga $1$ & 293 & 270 & 563\\ \hline
+		M I, 10 lat, waga $0$ & 318 & 290 & 608\\ \hline
+		M I, 10 lat, waga $0,5$ & 304 & 275 & 579\\ \hline
+		M I, 10 lat, waga $1$ & 303 & 283 & 586\\ \hline
+		M II, 5 lat, waga $0$ &  304 & 308 & 612\\ \hline
+		M II, 5 lat, waga $0,5$ & 305 & 292 & 597\\ \hline
+		M II, 5 lat, waga $0$ & 305 & 289 & 594\\ \hline
+		M II, 10 lat, waga $0$ & 331 & 299 & 630\\ \hline
+		M II, 10 lat, waga $0,5$& 314 & 275 & 589 \\ \hline
+		M II, 10 lat, waga $1$ & 331 & 298 & 629 \\ \hline
+	\end{tabular}
+	\caption{Współczynnik $G$ jakości dopasowania modelu}\label{tabela_porownianie_modeli}	
+\end{table}
+Jak można zauważyć, najlepsze oceny otrzymał Model I dla danych z 5 lat i wagą $x=1$. Do dalszych rozważań zakwalifikowany został również Model 2 z zebranymi 10 sezonami o wadze $x=0.5$ (okazał być się najlepszy w prognozie drugiego symulowanego sezonu). Pomimo gorszej oceny, korzystne będzie przetestowanie dwóch różnych modeli w następnym etapie.  Po przeanalizowaniu wyników symulacji okazało się, że wyniki dla sezonu 2017/2018 były znacznie lepsze niż dla 2014/2015. Na Rysunkach \ref{m1_5lat_waga1_wschod_17}--\ref{m2_10lat_waga05_zachod_17} zawarto wykresy pudełkowe wygenerowanych rozkładów zwycięstw dla wszystkich drużyn w sezonie 2017/2018 przy użyciu wybranych wcześniej modeli i parametrów. 
+
+\begin{figure}[t]
+	\hspace*{-3cm}  
+	\includegraphics[width=22cm]{m1_dla17_5lat_waga1_box_wschod.pdf}
+	\caption{Model I, 5 lat, waga 1}
+	\label{m1_5lat_waga1_wschod_17}
+	\centering
+\end{figure}
+
+\begin{figure}[t]
+	\hspace*{-3cm}  
+	\includegraphics[width=22cm]{m1_dla17_5lat_waga1_box_zachod.pdf}
+	\caption{Model I, 5 lat, waga 1}
+	\label{m1_5lat_waga1_zachod_17}
+	\centering
+\end{figure}
+
+\begin{figure}[t]
+	\hspace*{-3cm}  
+	\includegraphics[width=22cm]{m2_dla17_10lat_waga05_box_wschod.pdf}
+	\caption{Model II, 10 lat, waga 0,5}
+	\label{m2_10lat_waga05_wschod_17}
+	\centering
+\end{figure}
+
+\begin{figure}[t]
+	\hspace*{-3cm}  
+	\includegraphics[width=22cm]{m2_dla17_10lat_waga05_box_zachod.pdf}
+	\caption{Model II, 10 lat, waga 0,5}
+	\label{m2_10lat_waga05_zachod_17}
+	\centering
+\end{figure}
+Analizując wykresy pudełkowe można zauważyć, że:
+\begin{itemize}
+	\item liczba dopasowań bardzo dobrych, czyli leżących w przedziale $[Q_1,Q_3]$ jest lepsza dla Modelu II i wynosi 6, podczas gdy dla Modelu I wartość ta jest równa 5,  OPISZ BOXPLOT!!!!!!!!!!!
+	\item liczba wartości odstających, leżących poza przedziałem $[Q_1-1.5IQR,Q_3+1.5IQR]$ jest większa dla Modelu II, jest równa 8, gdzie dla Modelu I równa się ona 7.
+\end{itemize}
+Patrząc na te wyniki nie można jednoznacznie odrzucić jednego modelu na korzyść drugiego, dlatego do wybrania najlepszego z nich dokonamy również analizy rozgrywek pucharowych. Ponownie analizując tabelę z wartościami $G$ można zauważyć, że w dla rozgrywek 2017/2018 symulacje były bardziej trafne. Wyraźnie większa dokładność w przypadku późniejszego sezonu wynika z faktu, że od kilku lat obserwuje się te same drużyny w czołówce ligi. Przed 2014 rokiem równowaga została zachwiana przez przejście jednego z najlepszych graczy ligi, LeBrona Jamesa z Miami Heat do Cleveland Cavaliers, jak i rozpowszechnienie przez Golden State Warriors systemu szybkiej gry opartej na rzutach z dystansu. W trakcie lata 2018 roku LeBron ponownie zmienił klub, tym razem na Los Angeles Lakers, co może mieć znaczący wpływ na jakość predykcji trwającego sezonu (drużyny, w których gra pojawiają się w Finałach NBA nieprzerwanie od 2010 roku). 
+
+\section{Wyniki symulacji dla fazy Playoff}
+Dla wybranych w poprzedniej części modeli i parametrów przeprowadzona została symulacja rozgrywek pucharowych, korzystając z algorytmów zdefiniowanych w Rozdziale \ref{modele_palyoff}. w TABELACH REFY!!! porównano przewidziane na ich podstawie serie wraz z rzeczywistym przebiegiem rozgrywek w 2018 roku. 
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{ll}
+
+	\begin{tabular}{ |c|c|c|  }
+		\hline
+		\multicolumn{3}{|c|}{\textbf{Prognozy dla Modelu I}} \\\hline
+		\multicolumn{3}{|c|}{} \\\hline	
+		\textbf{Model IV}& \textbf{Model V} &\textbf{Rzeczywistość}\\\hline	
+		
+		\multicolumn{3}{|c|}{} \\\hline	
+		\multicolumn{3}{|c|}{\textbf{Eastern Conference First Round}} \\\hline
+		MIA-WAS& CHI-CLE &TOR-WAS\\\hline
+		BOS-CLE&BOS-IND &CLE-IND\\\hline
+		CHI-TOR&MIA-TOR &PHI-MIA\\\hline
+		ATL-IND&ATL-BRK &BOS-MIL\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Western Conference First Round}} \\\hline
+		SAS-POR&SAS-DAL &HOU-MIN\\\hline
+		LAC-HOU&GSW-POR &OKC-UTA\\\hline
+		OKC-MEM& HOU-NOP&POR-NOP\\\hline
+		GSW-POR& LAC-OKC&GSW-SAS\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Eastern Conference Semifinals}} \\\hline
+		MIA-BOS& MIA-CLE&TOR-CLE\\\hline
+		ATL-CHI& ATL-BOS&BOS-PHI\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Western Conference Semifinals}} \\\hline
+		SAS-LAC& SAS-LAC&HOU-UTA\\\hline
+		OKC-GSW& OKC-GSW&GSW-NOP\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Eastern Conference Finals}} \\\hline
+		MIA-CHI& MIA-CHI&BOS-CLE\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Western Conference Finals}} \\\hline
+		SAS-GSW& SAS-GSW&HOU-GSW\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Finals}} \\\hline
+		MIA-SAS&  MIA-SAS&GSW-CLE\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Zwycięzca}} \\\hline
+		SAS&  SAS&GSW\\\hline
+	\end{tabular}
+
+	\begin{tabular}{|c|c|c|}
+	\hline
+	\multicolumn{3}{|c|}{\textbf{Prognozy dla Modelu II}} \\\hline
+	\multicolumn{3}{|c|}{} \\\hline	
+	\textbf{Model IV}& \textbf{Model V} &\textbf{Rzeczywistość}\\\hline	
+	
+	\multicolumn{3}{|c|}{} \\\hline	
+	\multicolumn{3}{|c|}{\textbf{Eastern Conference First Round}} \\\hline
+	CLE-WAS&TOR-CLE  &TOR-WAS\\\hline
+	MIA-BOS&WAS-CHI &CLE-IND\\\hline
+	ATL-CHI&ATL-BOS &PHI-MIA\\\hline
+	TOR-IND&BRK-MIA &BOS-MIL\\\hline
+	\multicolumn{3}{|c|}{} \\\hline
+	
+	\multicolumn{3}{|c|}{\textbf{Western Conference First Round}} \\\hline
+	GSW-DAL&NOP-OKC &HOU-MIN\\\hline
+	HOU-OKC&UTA-LAC &OKC-UTA\\\hline
+	LAC-MEM&POR-SAS &POR-NOP\\\hline
+	SAS-DAL&GSW-HOU &GSW-SAS\\\hline
+	\multicolumn{3}{|c|}{} \\\hline
+	
+	\multicolumn{3}{|c|}{\textbf{Eastern Conference Semifinals}} \\\hline
+	CLE-MIA&IND-TOR &TOR-CLE\\\hline
+	TOR-ATL&CHO-ATL &BOS-PHI\\\hline
+	\multicolumn{3}{|c|}{} \\\hline
+	
+	\multicolumn{3}{|c|}{\textbf{Western Conference Semifinals}} \\\hline
+	GSW-HOU&SAS-GSW &HOU-UTA\\\hline
+	SAS-LAC&UTA-MEM &GSW-NOP\\\hline
+	\multicolumn{3}{|c|}{} \\\hline
+	
+	\multicolumn{3}{|c|}{\textbf{Eastern Conference Finals}} \\\hline
+	CLE-TOR&CLE-CHI &BOS-CLE\\\hline
+	\multicolumn{3}{|c|}{} \\\hline
+	
+	\multicolumn{3}{|c|}{\textbf{Western Conference Finals}} \\\hline
+	GSW-SAS&GSW-SAS &HOU-GSW\\\hline
+	\multicolumn{3}{|c|}{} \\\hline
+	
+	\multicolumn{3}{|c|}{\textbf{Finals}} \\\hline
+	GSW-TOR& GSW-TOR &GSW-CLE\\\hline
+	\multicolumn{3}{|c|}{} \\\hline
+	
+	\multicolumn{3}{|c|}{\textbf{Zwycięzca}} \\\hline
+	GSW&  GSW&GSW\\\hline
+	\end{tabular}
+\end{tabular}
+	\caption{Przebieg serii Playoff w symulacjach dla 2018 roku}\label{tabela_playoffs2018}
+\end{table}
+
+
 \chapter{Wnioski}
 gęstości symulacji powinny mieć rozkład normalny? niekoniecznie?
 
@@ -531,31 +712,362 @@ tabele z prawdopodobieństwami, terminarz sezonu
 % w nawiasie klamrowym wpisujemy nazwę pliku z bibliografią w formacie .bib
 \bibliografia{bibliografia} 
 
-\begin{figure}[t]
-	\includegraphics[width=16cm]{m1_dla14_5lat_waga0_box_wschod.pdf}
-	\caption{Model I, 5 lat, waga 0}
-	\centering
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      MODEL 1
 
-\begin{figure}[t]
-	\includegraphics[width=16cm]{m1_dla14_5lat_waga0_box_zachod.pdf}
-	\caption{Model I, 5 lat, waga 0}
-	\centering
-\end{figure}
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_5lat_waga0_box_wschod.pdf}
+%	\caption{Model I, 5 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_5lat_waga0_box_wschod.pdf}
+%	\caption{Model I, 5 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_5lat_waga05_box_wschod.pdf}
+%	\caption{Model I, 5 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_5lat_waga05_box_zachod.pdf}
+%	\caption{Model I, 5 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_5lat_waga1_box_wschod.pdf}
+%	\caption{Model I, 5 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_5lat_waga1_box_zachod.pdf}
+%	\caption{Model I, 5 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_10lat_waga0_box_wschod.pdf}
+%	\caption{Model I, 10 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_10lat_waga0_box_wschod.pdf}
+%	\caption{Model I, 10 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_10lat_waga05_box_wschod.pdf}
+%	\caption{Model I, 10 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_10lat_waga05_box_zachod.pdf}
+%	\caption{Model I, 10 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_10lat_waga1_box_wschod.pdf}
+%	\caption{Model I, 10 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla14_10lat_waga1_box_zachod.pdf}
+%	\caption{Model I, 10 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_5lat_waga0_box_wschod.pdf}
+%	\caption{Model I, 5 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_5lat_waga0_box_wschod.pdf}
+%	\caption{Model I, 5 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_5lat_waga05_box_wschod.pdf}
+%	\caption{Model I, 5 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_5lat_waga05_box_zachod.pdf}
+%	\caption{Model I, 5 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_5lat_waga1_box_wschod.pdf}
+%	\caption{Model I, 5 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_5lat_waga1_box_zachod.pdf}
+%	\caption{Model I, 5 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_10lat_waga0_box_wschod.pdf}
+%	\caption{Model I, 10 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_10lat_waga0_box_wschod.pdf}
+%	\caption{Model I, 10 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_10lat_waga05_box_wschod.pdf}
+%	\caption{Model I, 10 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_10lat_waga05_box_zachod.pdf}
+%	\caption{Model I, 10 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_10lat_waga1_box_wschod.pdf}
+%	\caption{Model I, 10 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m1_dla17_10lat_waga1_box_zachod.pdf}
+%	\caption{Model I, 10 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      MODEL 2
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_5lat_waga0_box_wschod.pdf}
+%	\caption{Model II, 5 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_5lat_waga0_box_wschod.pdf}
+%	\caption{Model II, 5 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_5lat_waga05_box_wschod.pdf}
+%	\caption{Model II, 5 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_5lat_waga05_box_zachod.pdf}
+%	\caption{Model II, 5 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_5lat_waga1_box_wschod.pdf}
+%	\caption{Model II, 5 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_5lat_waga1_box_zachod.pdf}
+%	\caption{Model II, 5 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_10lat_waga0_box_wschod.pdf}
+%	\caption{Model II, 10 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_10lat_waga0_box_wschod.pdf}
+%	\caption{Model II, 10 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_10lat_waga05_box_wschod.pdf}
+%	\caption{Model II, 10 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_10lat_waga05_box_zachod.pdf}
+%	\caption{Model II, 10 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_10lat_waga1_box_wschod.pdf}
+%	\caption{Model II, 10 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla14_10lat_waga1_box_zachod.pdf}
+%	\caption{Model II, 10 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_5lat_waga0_box_wschod.pdf}
+%	\caption{Model II, 5 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_5lat_waga0_box_wschod.pdf}
+%	\caption{Model II, 5 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_5lat_waga05_box_wschod.pdf}
+%	\caption{Model II, 5 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_5lat_waga05_box_zachod.pdf}
+%	\caption{Model II, 5 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_5lat_waga1_box_wschod.pdf}
+%	\caption{Model II, 5 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_5lat_waga1_box_zachod.pdf}
+%	\caption{Model II, 5 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_10lat_waga0_box_wschod.pdf}
+%	\caption{Model II, 10 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_10lat_waga0_box_wschod.pdf}
+%	\caption{Model II, 10 lat, waga 0}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_10lat_waga05_box_wschod.pdf}
+%	\caption{Model II, 10 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_10lat_waga05_box_zachod.pdf}
+%	\caption{Model II, 10 lat, waga 0,5}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm} 
+%	\includegraphics[width=22cm]{m2_dla17_10lat_waga1_box_wschod.pdf}
+%	\caption{Model II, 10 lat, waga 1}
+%	\centering
+%\end{figure}
+%
+%\begin{figure}[t]
+%	\hspace*{-3cm}  
+%	\includegraphics[width=22cm]{m2_dla17_10lat_waga1_box_zachod.pdf}
+%	\caption{Model II, 10 lat, waga 1}
+%	\centering
+%\end{figure}
 
-\begin{figure}[t]
-	\hspace*{-3cm}  
-	\includegraphics[width=22cm]{m1_dla14_5lat_waga1_box_wschod.pdf}
-	\caption{Model I, 5 lat, waga 1}
-	\centering
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[t]
-	\hspace*{-3cm}  
-	\includegraphics[width=22cm]{m1_dla14_5lat_waga1_box_zachod.pdf}
-	\caption{Model I, 5 lat, waga 1}
-	\centering
-\end{figure}
 
 \end{document}
 

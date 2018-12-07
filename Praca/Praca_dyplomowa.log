@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  5 DEC 2018 20:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  7 DEC 2018 22:02
 entering extended mode
 **./Praca_dyplomowa.tex
 (Praca_dyplomowa.tex
@@ -1424,72 +1424,89 @@ l.44 \maketitle
 ] [2
 
 
-] [3
-
-
-] [4
-
-
 ]
+<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/houston_shots.jpg, id=15
+5, 1156.32pt x 427.5975pt>
+File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/houston_shots.jpg G
+raphic file (type jpg)
+
+<use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/houston_shots.jpg>
+Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
+houston_shots.jpg used on input line 55.
+(pdftex.def)             Requested size: 512.1496pt x 189.38315pt.
+
+Overfull \hbox (31.06381pt too wide) in paragraph at lines 54--56
+[]|  [] 
+ []
+
+[3
+
+
+ <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/houston_shots.jpg>]
+[4]
 Rozdzia\l  1.
 
-<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/conf_map.pdf, id=146, 80
+<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/conf_map.pdf, id=169, 80
 1.99625pt x 552.0625pt>
 File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/conf_map.pdf Graphi
 c file (type pdf)
 
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/conf_map.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-conf_map.pdf used on input line 58.
+conf_map.pdf used on input line 67.
 (pdftex.def)             Requested size: 455.24408pt x 313.38162pt.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 63.
+               Default added (so using `tbp') on input line 72.
 
 
-Overfull \hbox (9.1472pt too wide) in paragraph at lines 64--77
+Overfull \hbox (9.1472pt too wide) in paragraph at lines 73--86
 [][] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 79.
+               Default added (so using `tbp') on input line 88.
 
 
-Overfull \hbox (60.36223pt too wide) in paragraph at lines 80--93
+Overfull \hbox (60.36223pt too wide) in paragraph at lines 89--102
 [][] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 98.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 107.
+
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 98.
- [5] [6 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/conf_map.pdf>]
-<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/po_tree.pdf, id=177, 244
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 107.
+ [5
+
+
+] [6 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/conf_map.pdf>]
+<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/po_tree.pdf, id=200, 244
 .9953pt x 155.6214pt>
 File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/po_tree.pdf Graphic
  file (type pdf)
 
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/po_tree.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-po_tree.pdf used on input line 114.
+po_tree.pdf used on input line 123.
 (pdftex.def)             Requested size: 455.24408pt x 289.20107pt.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 121.
+               Default added (so using `tbp') on input line 130.
 
 
-Overfull \hbox (42.06184pt too wide) in paragraph at lines 123--157
+Overfull \hbox (42.06184pt too wide) in paragraph at lines 132--166
  [][] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 160.
+               Default added (so using `tbp') on input line 169.
 
 [7 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/po_tree.pdf>]
 [8] [9] [10
@@ -1497,7 +1514,7 @@ LaTeX Warning: No positions in optional float specifier.
 
 ]
 Rozdzia\l  2.
-LaTeX Font Info:    Try loading font information for U+dsrom on input line 208.
+LaTeX Font Info:    Try loading font information for U+dsrom on input line 217.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\doublestroke\udsrom.fd"
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
@@ -1510,118 +1527,142 @@ Rozdzia\l  3.
 [15] [16] [17] [18]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 452.
+               Default added (so using `tbp') on input line 457.
 
 [19] [20] [21] [22
 
 
 ]
 Rozdzia\l  4.
-[23] [24
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 519.
+
+
+<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1_box_
+wschod.pdf, id=348, 987.20822pt x 460.35991pt>
+File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1
+_box_wschod.pdf Graphic file (type pdf)
+
+<use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1_
+box_wschod.pdf>
+Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
+m1_dla17_5lat_waga1_box_wschod.pdf used on input line 543.
+(pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
+
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 542--544
+[]|  [] 
+ []
+
+
+<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1_box_
+zachod.pdf, id=349, 987.20822pt x 460.35991pt>
+File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1
+_box_zachod.pdf Graphic file (type pdf)
+
+<use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1_
+box_zachod.pdf>
+Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
+m1_dla17_5lat_waga1_box_zachod.pdf used on input line 551.
+(pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
+
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 550--552
+[]|  [] 
+ []
+
+
+<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga05_bo
+x_wschod.pdf, id=350, 987.20822pt x 460.35991pt>
+File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga
+05_box_wschod.pdf Graphic file (type pdf)
+
+<use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga0
+5_box_wschod.pdf>
+Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
+m2_dla17_10lat_waga05_box_wschod.pdf used on input line 559.
+(pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
+
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 558--560
+[]|  [] 
+ []
+
+
+<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga05_bo
+x_zachod.pdf, id=351, 987.20822pt x 460.35991pt>
+File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga
+05_box_zachod.pdf Graphic file (type pdf)
+
+<use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga0
+5_box_zachod.pdf>
+Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
+m2_dla17_10lat_waga05_box_zachod.pdf used on input line 567.
+(pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
+
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 566--568
+[]|  [] 
+ []
+
+[23]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 582.
+
+
+Overfull \hbox (37.98903pt too wide) in paragraph at lines 584--680
+ [][] 
+ []
+
+[24] [25] [26 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5
+lat_waga1_box_wschod.pdf> <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafik
+a/m1_dla17_5lat_waga1_box_zachod.pdf
+
+pdfTeX warning: pdflatex.exe (file C:/Users/micha/Desktop/inzynier/NBA_Simulato
+r/grafika/m1_dla17_5lat_waga1_box_zachod.pdf): PDF inclusion: multiple pdfs wit
+h page group included in a single page
+>] [27 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_wa
+ga05_box_wschod.pdf> <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_
+dla17_10lat_waga05_box_zachod.pdf
+
+pdfTeX warning: pdflatex.exe (file C:/Users/micha/Desktop/inzynier/NBA_Simulato
+r/grafika/m2_dla17_10lat_waga05_box_zachod.pdf): PDF inclusion: multiple pdfs w
+ith page group included in a single page
+>] [28
 
 
 ]
 Rozdzia\l  5.
-[25] [26
+[29] [30
 
 
-] [27
+] [31
 
 
-] [28
+] [32
 
 
-] [29
+] [33
 
 
 ]
 No file Praca_dyplomowa.bbl.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1072.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1072.
+(Praca_dyplomowa.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1072.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1072.
 
-<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga0_box_
-wschod.pdf, id=347, 987.20822pt x 460.35991pt>
-File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga0
-_box_wschod.pdf Graphic file (type pdf)
-
-<use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga0_
-box_wschod.pdf>
-Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m1_dla14_5lat_waga0_box_wschod.pdf used on input line 535.
-(pdftex.def)             Requested size: 455.24408pt x 212.29497pt.
-
-<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga0_box_
-zachod.pdf, id=348, 987.20822pt x 460.35991pt>
-File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga0
-_box_zachod.pdf Graphic file (type pdf)
-
-<use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga0_
-box_zachod.pdf>
-Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m1_dla14_5lat_waga0_box_zachod.pdf used on input line 541.
-(pdftex.def)             Requested size: 455.24408pt x 212.29497pt.
-
-<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga1_box_
-wschod.pdf, id=349, 987.20822pt x 460.35991pt>
-File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga1
-_box_wschod.pdf Graphic file (type pdf)
-
-<use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga1_
-box_wschod.pdf>
-Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m1_dla14_5lat_waga1_box_wschod.pdf used on input line 548.
-(pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
-
-Overfull \hbox (87.96931pt too wide) in paragraph at lines 547--549
-[]|  [] 
- []
-
-
-<C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga1_box_
-zachod.pdf, id=350, 987.20822pt x 460.35991pt>
-File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga1
-_box_zachod.pdf Graphic file (type pdf)
-
-<use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga1_
-box_zachod.pdf>
-Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m1_dla14_5lat_waga1_box_zachod.pdf used on input line 555.
-(pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
-
-Overfull \hbox (87.96931pt too wide) in paragraph at lines 554--556
-[]|  [] 
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 560.
-[30 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_waga0_
-box_wschod.pdf> <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14
-_5lat_waga0_box_zachod.pdf
-
-pdfTeX warning: pdflatex.exe (file C:/Users/micha/Desktop/inzynier/NBA_Simulato
-r/grafika/m1_dla14_5lat_waga0_box_zachod.pdf): PDF inclusion: multiple pdfs wit
-h page group included in a single page
->] [31 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla14_5lat_wag
-a1_box_wschod.pdf> <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dl
-a14_5lat_waga1_box_zachod.pdf
-
-pdfTeX warning: pdflatex.exe (file C:/Users/micha/Desktop/inzynier/NBA_Simulato
-r/grafika/m1_dla14_5lat_waga1_box_zachod.pdf): PDF inclusion: multiple pdfs wit
-h page group included in a single page
->]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 560.
- (Praca_dyplomowa.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 560.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 560.
 Package rerunfilecheck Info: File `Praca_dyplomowa.out' has not changed.
-(rerunfilecheck)             Checksum: 65C79BBAF6D4B0291C7AA940A2688B7E;1398.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 560.
+(rerunfilecheck)             Checksum: FC87633760A3D4F82AE6CA228A4AAD0D;1706.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1072.
  ) 
 Here is how much of TeX's memory you used:
- 23883 strings out of 493323
- 425369 string characters out of 3139065
- 853657 words of memory out of 3000000
- 26719 multiletter control sequences out of 15000+200000
- 70831 words of font info for 109 fonts, out of 3000000 for 9000
+ 23917 strings out of 493323
+ 426158 string characters out of 3139065
+ 860373 words of memory out of 3000000
+ 26739 multiletter control sequences out of 15000+200000
+ 70922 words of font info for 110 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,14n,62p,1918b,2387s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 71i,18n,62p,1558b,2387s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Fil
 es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
 nc/dvips/lm/lm-mathex.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ma
@@ -1637,9 +1678,9 @@ lic/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C
 iKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
 sy8.pfb>
-Output written on Praca_dyplomowa.pdf (35 pages, 1133746 bytes).
+Output written on Praca_dyplomowa.pdf (37 pages, 1259640 bytes).
 PDF statistics:
- 714 PDF objects out of 1000 (max. 8388607)
- 119 named destinations out of 1000 (max. 500000)
- 21707 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 772 PDF objects out of 1000 (max. 8388607)
+ 129 named destinations out of 1000 (max. 500000)
+ 21744 words of extra memory for PDF output out of 24883 (max. 10000000)
 
