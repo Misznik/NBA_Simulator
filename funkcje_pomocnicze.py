@@ -219,6 +219,15 @@ def boxploty_konf(lista_gest, lista_nazw, wyniki_dict, tytul, etykieta):
     leg = plt.legend()
     plt.show()
     
+def boxploty_konf_2018(lista_gest, lista_nazw, tytul):        
+    fig, ax = plt.subplots()
+    ax.boxplot(lista_gest)
+    plt.xticks([i for i in range(1,16)], lista_nazw)
+    ax.set_title(tytul)
+    ax.set_xlabel('Drużyna')
+    ax.set_ylabel('Liczba zwycięstw')
+    plt.show()
+    
 def rysuj_qqplot(lista, numer):    
     stats.probplot(lista[numer], dist="norm", plot=pylab)
     pylab.show()

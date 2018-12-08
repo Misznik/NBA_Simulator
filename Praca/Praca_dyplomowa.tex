@@ -81,7 +81,6 @@ National Basketball Association (NBA) została założona 6 czerwca 1946 roku. P
 	New York Knicks (NYK)&Miami Heat (MIA)&Detroit Pistons (DET)\\\hline
 	Philadelphia 76ers (PHI)&Orlando Magic (ORL)&Indiana Pacers (IND)\\\hline
 	Toronto Raptors (TOR)&Washington Wizards (WAS)&Milwaukee Bucks (MIL)\\\hline
-	\hline
 \end{tabular}
 \caption{Drużyny Konferencji Wschodniej}\label{tabela_wschod}
 \end{table}
@@ -166,50 +165,7 @@ Wyniki z sezonu regularnego 2014/2015 prezentują się następująco:
 \caption{Liczby zwycięstw drużyn w wybranych sezonach}\label{tabela_wygrane_rzeczywiste}	
 \end{table}
 
-\begin{table}[]
-	\centering
-	\begin{tabular}{ |p{5cm}|p{5cm}|c|  }
-		\hline
-		\textbf{Zwycięzca}& \textbf{Przegrany} &\textbf{Wynik}\\\hline		
-		\multicolumn{3}{|c|}{Eastern Conference First Round} \\\hline
-		Atlanta Hawks& Brooklyn Nets &4-2\\\hline
-		Chicago Bulls& Milwaukee Bucks&4-2\\\hline
-		Cleveland Cavaliers& Boston Celtics &4-0\\\hline
-		Washington Wizards& Toronto Raptors&4-0\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{Western Conference First Round} \\\hline
-		Golden State Warriors &New Orleans Pelicans &4-0\\\hline
-		Houston Rockets& Dallas Mavericks&4-1\\\hline
-		Los Angeles Clippers& San Antonio Spurs &4-3\\\hline
-		Memphis Grizzlies& Portland Trail Blazers&4-1\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-
-		\multicolumn{3}{|c|}{Eastern Conference Semifinals} \\\hline
-		Atlanta Hawks& Washington Wizards &4-2\\\hline
-		Cleveland Cavaliers& Chicago Bulls&4-2\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{Western Conference Semifinals} \\\hline
-		Golden State Warriors& Memphis Grizzlies &4-2\\\hline
-		Houston Rockets& Los Angeles Clippers&4-3\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{Eastern Conference Finals} \\\hline
-		Cleveland Cavaliers& Atlanta Hawks&4-0\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{Western Conference Finals} \\\hline
-		Golden State Warriors& Houston Rockets&4-1\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{Finals} \\\hline
-		Golden State Warriors& Cleveland Cavaliers &4-2\\\hline
-	\end{tabular}
-\caption{Rozgrywki pucharowe w 2015 roku}\label{tabela_playoffs2015}
-\end{table}
-
-\chapter{Teoria, matematyka}
+\chapter{Teoria wykorzystana w pracy}
 %, estymacja, boxplot, zmienna losowa, symulowanie z dystrybuanty
 %wartość oczekiwana, CZY BADAMY NORMALNOŚĆ? test shapiro-wilka, gęstość rozkładu, rozklad normalny, qqplot?
 
@@ -502,7 +458,8 @@ PRZYKĄŁDOWA TABELA
 \subsubsection{Model V --- Najczęstsze kombinacje}
 Drugi z badanych modeli porównuje najczęściej pojawiające się kombinacje zespołów w poszczególnych etapach. Podczas symulacji rozgrywek pucharowych zapisywano listy z drużynami przechodzącymi do kolejnych etapów Playoff, dzięki czemu zachowane zostały również układy, w jakich toczyły się rozgrywki. Innymi słowy, dla Rundy Pierwszej wyszukiwana jest najczęściej pojawiająca się kombinacja zespołów w Pierwszej Rundzie, czynność ta jest powtarzana w kolejnych etapach. Mechanizm ten jest w stanie zwrócić bardzo precyzyjną prognozę, jednak wymaga dużej liczby powtórzeń symulacji do poprawnego działania. 
 
-\chapter{Dobór optymalnego modelu}
+\chapter{Symulacje}
+\section{Dobór optymalnego modelu}
 Podczas testowania modeli badano zmiany wag poszczególnych sezonów oraz okres zbierania danych. Podjęto decyzję o przeprowadzaniu symulacji dla sezonów 2014/2015 oraz 2017/2018 o następujących parametrach:
 \begin{itemize}
 	\item wagi wynoszące odpowiednio $x=0$, $x=0.5$, $x=1$,
@@ -514,7 +471,7 @@ Podczas testowania modeli badano zmiany wag poszczególnych sezonów oraz okres 
 \end{itemize}
 Wszystkie przeprowadzone w ten sposób symulacje zostały wykonane dla 10000 powtórzeń symulacji bootstrap. 
 
-\section{Wyniki symulacji dla sezonów zasadniczych}
+\subsection{Wyniki symulacji dla sezonów zasadniczych}
 Podczas symulowania podstawowej części sezonu jako przewidzianą liczbę wygranych przyjęto medianę rozkładu symulowanych zwycięstw, co zostało opisane w Podrozdziale \ref{predykcja_zasadniczego}. Przy pomocy czynnika $G$ zdefiniowanego w Rozdziale \ref{wskaznik_g} dokonano oceny modeli dla określonych wcześniej parametrów. Dodatkowo, obliczono sumę błędów dla obu symulowanych sezonów, dzięki czemu wybór lepszego modelu będzie ułatwiony. Wyniki symulacji zawarto w Tabeli \ref{tabela_porownianie_modeli}.
 \begin{table}[]
 	\centering
@@ -576,63 +533,16 @@ Analizując wykresy pudełkowe można zauważyć, że:
 \end{itemize}
 Patrząc na te wyniki nie można jednoznacznie odrzucić jednego modelu na korzyść drugiego, dlatego do wybrania najlepszego z nich dokonamy również analizy rozgrywek pucharowych. Ponownie analizując tabelę z wartościami $G$ można zauważyć, że w dla rozgrywek 2017/2018 symulacje były bardziej trafne. Wyraźnie większa dokładność w przypadku późniejszego sezonu wynika z faktu, że od kilku lat obserwuje się te same drużyny w czołówce ligi. Przed 2014 rokiem równowaga została zachwiana przez przejście jednego z najlepszych graczy ligi, LeBrona Jamesa z Miami Heat do Cleveland Cavaliers, jak i rozpowszechnienie przez Golden State Warriors systemu szybkiej gry opartej na rzutach z dystansu. W trakcie lata 2018 roku LeBron ponownie zmienił klub, tym razem na Los Angeles Lakers, co może mieć znaczący wpływ na jakość predykcji trwającego sezonu (drużyny, w których gra pojawiają się w Finałach NBA nieprzerwanie od 2010 roku). 
 
-\section{Wyniki symulacji dla fazy Playoff}
-Dla wybranych w poprzedniej części modeli i parametrów przeprowadzona została symulacja rozgrywek pucharowych, korzystając z algorytmów zdefiniowanych w Rozdziale \ref{modele_palyoff}. w TABELACH REFY!!! porównano przewidziane na ich podstawie serie wraz z rzeczywistym przebiegiem rozgrywek w 2018 roku. 
+\subsection{Wyniki symulacji dla fazy Playoff}
+Dla wybranych w poprzedniej części modeli i parametrów przeprowadzona została symulacja rozgrywek pucharowych, korzystając z algorytmów zdefiniowanych w Rozdziale \ref{modele_palyoff}. W Tabeli \ref{tabela_playoffs2018} porównano przewidziane na ich podstawie serie wraz z rzeczywistym przebiegiem rozgrywek w 2018 roku. Dla większej przejrzystości dokonano samego porównania przewidzianych serii, trzymając się zasady, wedle której drużyna z lepszym bilansem wypisana jest z prawej strony. 
 
 \begin{table}[]
 	\centering
 	\begin{tabular}{ll}
 
-	\begin{tabular}{ |c|c|c|  }
-		\hline
-		\multicolumn{3}{|c|}{\textbf{Prognozy dla Modelu I}} \\\hline
-		\multicolumn{3}{|c|}{} \\\hline	
-		\textbf{Model IV}& \textbf{Model V} &\textbf{Rzeczywistość}\\\hline	
-		
-		\multicolumn{3}{|c|}{} \\\hline	
-		\multicolumn{3}{|c|}{\textbf{Eastern Conference First Round}} \\\hline
-		MIA-WAS& CHI-CLE &TOR-WAS\\\hline
-		BOS-CLE&BOS-IND &CLE-IND\\\hline
-		CHI-TOR&MIA-TOR &PHI-MIA\\\hline
-		ATL-IND&ATL-BRK &BOS-MIL\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{\textbf{Western Conference First Round}} \\\hline
-		SAS-POR&SAS-DAL &HOU-MIN\\\hline
-		LAC-HOU&GSW-POR &OKC-UTA\\\hline
-		OKC-MEM& HOU-NOP&POR-NOP\\\hline
-		GSW-POR& LAC-OKC&GSW-SAS\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{\textbf{Eastern Conference Semifinals}} \\\hline
-		MIA-BOS& MIA-CLE&TOR-CLE\\\hline
-		ATL-CHI& ATL-BOS&BOS-PHI\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{\textbf{Western Conference Semifinals}} \\\hline
-		SAS-LAC& SAS-LAC&HOU-UTA\\\hline
-		OKC-GSW& OKC-GSW&GSW-NOP\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{\textbf{Eastern Conference Finals}} \\\hline
-		MIA-CHI& MIA-CHI&BOS-CLE\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{\textbf{Western Conference Finals}} \\\hline
-		SAS-GSW& SAS-GSW&HOU-GSW\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{\textbf{Finals}} \\\hline
-		MIA-SAS&  MIA-SAS&GSW-CLE\\\hline
-		\multicolumn{3}{|c|}{} \\\hline
-		
-		\multicolumn{3}{|c|}{\textbf{Zwycięzca}} \\\hline
-		SAS&  SAS&GSW\\\hline
-	\end{tabular}
-
 	\begin{tabular}{|c|c|c|}
 	\hline
-	\multicolumn{3}{|c|}{\textbf{Prognozy dla Modelu II}} \\\hline
+	\multicolumn{3}{|c|}{\textbf{Prognozy dla wybranego Modelu I}} \\\hline
 	\multicolumn{3}{|c|}{} \\\hline	
 	\textbf{Model IV}& \textbf{Model V} &\textbf{Rzeczywistość}\\\hline	
 	
@@ -648,7 +558,7 @@ Dla wybranych w poprzedniej części modeli i parametrów przeprowadzona został
 	GSW-DAL&NOP-OKC &HOU-MIN\\\hline
 	HOU-OKC&UTA-LAC &OKC-UTA\\\hline
 	LAC-MEM&POR-SAS &POR-NOP\\\hline
-	SAS-DAL&GSW-HOU &GSW-SAS\\\hline
+	SAS-NOP&GSW-HOU &GSW-SAS\\\hline
 	\multicolumn{3}{|c|}{} \\\hline
 	
 	\multicolumn{3}{|c|}{\textbf{Eastern Conference Semifinals}} \\\hline
@@ -676,13 +586,161 @@ Dla wybranych w poprzedniej części modeli i parametrów przeprowadzona został
 	\multicolumn{3}{|c|}{\textbf{Zwycięzca}} \\\hline
 	GSW&  GSW&GSW\\\hline
 	\end{tabular}
+
+	\begin{tabular}{ |c|c|c|  }
+		\hline
+		\multicolumn{3}{|c|}{\textbf{Prognozy dla wybranego Modelu II}} \\\hline
+		\multicolumn{3}{|c|}{} \\\hline	
+		\textbf{Model IV}& \textbf{Model V} &\textbf{Rzeczywistość}\\\hline	
+		
+		\multicolumn{3}{|c|}{} \\\hline	
+		\multicolumn{3}{|c|}{\textbf{Eastern Conference First Round}} \\\hline
+		MIA-WAS& CHI-CLE &TOR-WAS\\\hline
+		BOS-CLE&BOS-IND &CLE-IND\\\hline
+		CHI-TOR&MIA-TOR &PHI-MIA\\\hline
+		ATL-IND&ATL-BRK &BOS-MIL\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Western Conference First Round}} \\\hline
+		SAS-POR&SAS-DAL &HOU-MIN\\\hline
+		LAC-HOU&GSW-POR &OKC-UTA\\\hline
+		OKC-MEM& HOU-NOP&POR-NOP\\\hline
+		GSW-NOP& LAC-OKC&GSW-SAS\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Eastern Conference Semifinals}} \\\hline
+		MIA-BOS& MIA-CLE&TOR-CLE\\\hline
+		ATL-CHI& ATL-BOS&BOS-PHI\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Western Conference Semifinals}} \\\hline
+		SAS-LAC& SAS-LAC&HOU-UTA\\\hline
+		OKC-GSW& OKC-GSW&GSW-NOP\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Eastern Conference Finals}} \\\hline
+		MIA-CHI& MIA-CHI&BOS-CLE\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Western Conference Finals}} \\\hline
+		SAS-GSW& SAS-GSW&HOU-GSW\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Finals}} \\\hline
+		MIA-SAS&  MIA-SAS&GSW-CLE\\\hline
+		\multicolumn{3}{|c|}{} \\\hline
+		
+		\multicolumn{3}{|c|}{\textbf{Zwycięzca}} \\\hline
+		SAS&  SAS&GSW\\\hline
+	\end{tabular}
 \end{tabular}
 	\caption{Przebieg serii Playoff w symulacjach dla 2018 roku}\label{tabela_playoffs2018}
 \end{table}
 
+Po przeanalizowaniu wyników okazało się, że prognozy wynikające z modelu V są całkowicie nietrafne --- kombinacje zespołów w następnych rundach nie pokrywają się z poprzednimi. Podczas predykcji rundy pierwszej wskazał poprawnie 12 z 16 drużyn (wyniki dla sezonu symulowanego modelem I), z czego dla Konferencji Wschodniej błędnie wskazane były aż 3 z 5 organizacji, podczas gdy dla szacowania przebiegu modelu II pomylił się w przypadku 5 drużyn. Przy dalszych rozważaniach model ten został odrzucony --- pomimo porównywalnej dokładności z modelem IV (takie same liczby poprawnie wytypowanych drużyn) jego ogromną wadą jest brak konsekwentności, czego najlepszym przykładem jest przewidziana seria Charlotte-Atlanta w finałach Konferencji Wschodniej (Charlotte nie zostało wytypowane do gry w pierwszej rundzie).
+ 
+Po odrzuceniu jednej z metod predykcji fazy pucharowej zbadano przebieg przewidywanych rozgrywek w oparciu o model IV wykorzystujący dane o sezonach zasadniczych generowanych przy wykorzystaniu modeli dobranych we wcześniejszych rozważaniach. Obydwa modele sprawdzały się podobnie w przypadku rundy pierwszej, jednak od rundy drugiej szacunki zaczęły być znacznie bardziej dokładne:
+\begin{itemize}
+	\item w przypadku modelu I do Półfinałów Konferencji Wchodniej zakwalifikowały się 2 z 4 drużyn, dla modelu II natomiast nie przeszła żadna z rzeczywistych drużyn,
+	\item dla Półfinałów Konferencji Zachodniej model I wygrał ponownie,  przewidując słusznie 2 drużyny, przy 1 dla konkurenta,
+	\item w Finałach Konferencji Model I jeszcze raz okazał się lepszy, za każdym razem dobrze przewidując przynajmniej jednego finalistę, podczas gdy drugi z systemów był skuteczny tylko dla 1 z 4 zespołów,
+	\item model I słusznie przewidział zwycięzcę całej ligi.
+\end{itemize}
+Pomimo faktu, że model IV nie przewidział pojawienia się w tej części sezonu zespołów z Milwaukee, Filadelfii, Minnesoty i Utah, był w stanie stosunkowo dobrze wytypować dalsze etapy rozgrywek, dlatego też zostanie wykorzystany w dalszych pracach.
+
+\subsection{Symulacja sezonu 2018/2019}
+W poprzedniej części pracy udowodniono, że prognozy najtrafniejsze będą, jeżeli do sezon zasadniczy symulowany będzie przy pomocy modelu I, danych z ostatnich 5 lat, i wagi $x=1$. W przypadku fazy pucharowej do predykcji wyników rozgrywek Playoff wykorzystany zostanie model IV. Wyniki symulacji można odczytać z Rysunków \ref{m1_dla18_5lat_waga1_box_wschod} i \ref{m1_dla18_5lat_waga1_box_zachod}, jak i Tabeli \ref{tabela_symulacja_2018}.
+\begin{figure}[t]
+	\hspace*{-3cm}  
+	\includegraphics[width=22cm]{m1_dla18_5lat_waga1_box_wschod.pdf}
+	\caption{Szacowane wyniki w sezonie 2018/2019}
+	\label{m1_dla18_5lat_waga1_box_wschod}
+	\centering
+\end{figure}
+\begin{figure}[t]
+	\hspace*{-3cm}  
+	\includegraphics[width=22cm]{m1_dla18_5lat_waga1_box_zachod.pdf}
+	\caption{Szacowane wyniki w sezonie 2018/2019}
+	\label{m1_dla18_5lat_waga1_box_zachod}
+	\centering
+\end{figure}
+\begin{table}[]
+	\centering
+	\begin{tabular}{ll}
+	\begin{tabular}{|c|c|}
+		\hline
+		\multicolumn{2}{|c|}{\textbf{Prognozy sezonu zasadniczego}} \\\hline
+		\multicolumn{2}{|c|}{} \\\hline	
+		\textbf{Drużyna}      & \textbf{Liczba zwycięstw} \\ \hline
+		Atlanta Hawks & 41 \\ \hline
+		Boston Celtics & 45\\ \hline
+		Brooklyn Nets & 33 \\ \hline
+		Charlotte Hornets & 40 \\ \hline
+		Chicago Bulls & 40\\ \hline	
+		Cleveland Cavaliers & 46\\ \hline
+		Dallas Mavericks & 38\\ \hline	
+		Denver Nuggets & 41\\ \hline
+		Detroit Pistons & 40 \\ \hline
+		Golden State Warriors & 51\\ \hline
+		Houston Rockets & 48 \\\hline
+		Indiana Pacers & 43 \\\hline
+		Los Angeles Clippers & 46 \\ \hline
+		Los Angeles Lakers & 33\\ \hline
+		Memphis Grizzlies & 39 \\ \hline
+		Miami Heat & 43 \\\hline
+		Milwaukee Bucks & 40\\ \hline
+		Minnesota Timberwolves & 38 \\ \hline
+		New Orleans Pelicans & 41 \\ \hline
+		New York Knicks & 34 \\ \hline
+		Oklahoma City Thunder & 46\\ \hline
+		Orlando Magic & 35\\ \hline
+		Philadelphia 76ers & 36 \\ \hline
+		Phoenix Suns & 36 \\\hline
+		Portland Trail Blazers & 44\\ \hline	
+		Sacramento Kings & 35 \\ \hline
+		San Antonio Spurs & 49 \\ \hline
+		Toronto Raptors & 47 \\ \hline
+		Utah Jazz & 43 \\\hline
+		Washington Wizards & 43\\ \hline
+	\end{tabular}
+
+	\begin{tabular}{|c|c|}
+		\hline
+		\multicolumn{2}{|c|}{\textbf{Prognozy fazy pucharowej}} \\\hline
+		\multicolumn{2}{|c|}{} \\\hline	
+		\textbf{Wschód}& \textbf{Zachód}\\\hline	
+		
+		\multicolumn{2}{|c|}{} \\\hline	
+		\multicolumn{2}{|c|}{\textbf{First Round}} \\\hline
+		TOR-CHO&GSW-NOP \\\hline
+		IND-WAS&LAC-OKC\\\hline
+		BOS-MIA&HOU-POR\\\hline
+		CLE-ATL&SAS-UTA\\\hline
+		\multicolumn{2}{|c|}{} \\\hline
+		
+		\multicolumn{2}{|c|}{\textbf{Conference Semifinals}} \\\hline
+		TOR-IND&GSW-LAC \\\hline
+		CLE-BOS&SAS-HOU \\\hline
+		\multicolumn{2}{|c|}{} \\\hline
+
+		\multicolumn{2}{|c|}{\textbf{Conference Finals}} \\\hline
+		TOR-CLE&GSW-SAS \\\hline
+		\multicolumn{2}{|c|}{} \\\hline
+		
+		\multicolumn{2}{|c|}{\textbf{Finals}} \\\hline
+		\multicolumn{2}{|c|}{GSW-TOR} \\\hline
+		\multicolumn{2}{|c|}{} \\\hline
+		
+		\multicolumn{2}{|c|}{\textbf{Zwycięzca}} \\\hline
+		\multicolumn{2}{|c|}{GSW} \\\hline
+	\end{tabular}
+\end{tabular}
+	\caption{Wyniki symulacji sezonu 2018/2019}\label{tabela_symulacja_2018}	
+\end{table}
+Porównując rezultaty przeprowadzonych prognoz z poprzednimi symulacjami można zauważyć pewną tendencję --- zaproponowane w tej pracy modele nie zakładają sytuacji, w której zespół wchodzi w stan przebudowy i zaczyna przegrywać. Z tego powodu oszacowane liczby wygranych można uznać za bardzo optymistyczne, ponieważ wiadome jest, że zespoły takie jak Brooklyn Nets, Phoenix Suns, Atlanta Hawks, czy New York Knicks najprawdopodobniej nie osiągną przewidywanych wyników. Podobnie sytuacja ma się w fazie pucharowej, gdzie z powodu nagłego osłabienia Cleveland zespoły, które do tej pory w cieniu wzmacniały swoje składy, mają realną szansę na walkę o najwyższe cele.  
 
 \chapter{Wnioski}
-gęstości symulacji powinny mieć rozkład normalny? niekoniecznie?
+
 
 {\backmatter \chapter{Podsumowanie}}
 %Podsumowanie w pracach matematycznych nie jest obligatoryjne. Warto jednak na zakończenie krótko napisać, co udało nam się zrobić w pracy, a czasem także o tym, czego nie udało się zrobić.

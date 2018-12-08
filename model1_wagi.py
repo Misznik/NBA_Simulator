@@ -32,8 +32,8 @@ from funkcje_pomocnicze import *
 
 #dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi_simple')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
-dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi_simple1')
-schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
+#dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_wagi_simple1')
+#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
 #dane_10_lat_df = pd.read_excel('team_v_team_5_dla17.xlsm', sheetname='stosunki_simple')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
 
@@ -44,8 +44,8 @@ schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
 #dane_10_lat_df = pd.read_excel('team_v_team_10_dla17.xlsm', sheetname='stosunki_simple')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='17-18')
 
-#dane_10_lat_df = pd.read_excel('team_v_team_5_dla18.xlsm', sheetname='stosunki_wagi_simple')
-#schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='18-19')
+dane_10_lat_df = pd.read_excel('team_v_team_5_dla18.xlsm', sheetname='stosunki_wagi_simple')
+schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='18-19')
 #dane_10_lat_df = pd.read_excel('team_v_team_5_dla18.xlsm', sheetname='stosunki_simple')
 #schedule_14_15_df = pd.read_excel('schedules.xlsx', sheetname='1819')
 
@@ -428,13 +428,16 @@ for i in range(len(gestosci)):
 #rysuj_gestosc(gestosci,4)
 #rysuj_histogram(1,10)
 #testy_norm(gestosci)
-print('najczestsze szesnastki ' ,most_common(finalowe16))
-print('najczestsze osemki ' ,most_common(finalowe8))
-print('najczestsze czworki ' ,most_common(finalowe4))
-print('najczestsze dwojki ' ,most_common(finalowe2))
+#print('najczestsze szesnastki ' ,most_common(finalowe16))
+#print('najczestsze osemki ' ,most_common(finalowe8))
+#print('najczestsze czworki ' ,most_common(finalowe4))
+#print('najczestsze dwojki ' ,most_common(finalowe2))
 
 #roznica=0
 #for i in range(len(wyniki)):
 #    roznica =roznica + abs(mediany[i][1]-wyniki_14_15[mediany[i][0]])
 #print(roznica)
 #predykcja()
+
+#boxploty_konf_2018(west_density, west_teams, 'Konferencja Zachodnia')
+#boxploty_konf_2018(east_density, east_teams, 'Konferencja Wschodnia')
