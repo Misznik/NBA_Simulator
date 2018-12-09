@@ -17,7 +17,7 @@
 \specjalnosc{--} 
 \specjalnoscang{--} 
 \streszczenie{Praca dotyczy aktualnego problemu z matematyki stosowanej, a mianowicie stworzenia symulatora ligi NBA przy użyciu znanych technik matematycznych/statystycznych. Celem pracy jest stworzenie symulatora rozgrywek w lidze NBA przy użyciu metod bootstrapowych. Wynikiem pracy będzie oprogramowanie do symulacji rozgrywek w lidze NBA umożliwiające prognozowanie wyników w następnym roku.}
-\streszczenieang{Tutaj piszemy krótkie streszczenie pracy w języku angielskim (nie powinno być dłuższe niż 530 znaków).}
+\streszczenieang{The main subject of the thesis concerns the recent problem from applied mathematics field --- creation of NBA leauge simulator usung known mathematical/ststistical techiques. The goal is to design a simulator based on bootstrap methods, with the result being software capable of predicting outcome of a NBA season in the next year.}
 \slowakluczowe{tutaj podajemy najważniejsze słowa kluczowe (łącznie nie powinny być dłuższe niż 150 znaków).}  
 \slowakluczoweang{tutaj podajemy najważniejsze słowa kluczowe w języku angielskim (łącznie nie powinny być dłuższe niż 150 znaków)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,19 +49,19 @@
 
 {\backmatter \chapter{Wstęp}}
 %We wstępie zapowiadamy, o czym będzie praca. Próbujemy zachęcić czytelnika do dalszej lektury, np. krótko informując, dlaczego wybraliśmy właśnie ten temat i co nas w nim zainteresowało.
-Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej amerykańska liga koszykarska NBA zyskała popularność na całym świecie, przyciągając do siebie najlepszych graczy i masy fanów. Z powodu nieprzewidywalności i złożoności tego sportu podejmowano wiele prób przewidywania wyników rozgrywek, które często toczyły się inaczej, niż by zakładano (najlepszym tego przykładem może być sezon 2003/2004, kiedy to nisko notowani Detroit Pistons pokonali faworytów w postaci Los Angeles Lakers). Trudność w przewidzeniu wyników wynika bezpośrednio z zasad ligi --- dozwolone są w niej wymiany zawodników między klubami, liczne i często katastrofalne kontuzje, czy nabory do ligi, w których najgorsze drużyny mają pierwszeństwo wyboru nowych zawodników chcących dołączyć do NBA (z tego powodu wiele organizacji celowo przegrywa mecze w celu wylosowania najwyższych miejsc w naborze). W obecnych czasach każda drużyna zatrudnia sztab analityków, którzy badają wpływ każdego czynnika obecnego na parkiecie na losy meczu. Idealnym przykładem wpływu statystyki na styl gry zespołu są Houston Rockets, którzy od sezonu 2014/2015 porzucili rzuty z półdystansu na rzecz rzutów za 3 punkty i tych spod obręczy. Doprowadziło to do sytuacji, w której 82\% ich rzutów było oddawanych z tych pozycji, podczas gdy druga najlepsza drużyna w tym aspekcie osiągała poziom 71\%. Wizualizacja tego systemu znajduje się na Rysunku \ref{houston_shots}.
+Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej amerykańska liga koszykarska NBA zyskała popularność na całym świecie, przyciągając do siebie najlepszych graczy i masy fanów. Z powodu nieprzewidywalności i złożoności tego sportu podejmowano wiele prób przewidywania wyników rozgrywek, które często toczyły się inaczej, niż by zakładano (najlepszym tego przykładem może być sezon 2003/2004, kiedy to nisko notowani Detroit Pistons pokonali faworytów w postaci Los Angeles Lakers). Trudność w przewidzeniu wyników wynika bezpośrednio z zasad ligi --- dozwolone są w niej wymiany zawodników między klubami, liczne i często katastrofalne kontuzje, czy nabory do ligi, w których najgorsze drużyny mają pierwszeństwo wyboru nowych zawodników chcących dołączyć do NBA (z tego powodu wiele organizacji celowo przegrywa mecze w celu wylosowania najwyższych miejsc w naborze). W obecnych czasach każda drużyna zatrudnia sztab analityków, którzy badają wpływ każdego czynnika obecnego na parkiecie na losy meczu. Idealnym przykładem wpływu statystyki na styl gry zespołu są Houston Rockets, którzy od sezonu 2014/2015 porzucili rzuty z półdystansu na rzecz rzutów za 3 punkty i tych spod obręczy. Doprowadziło to do sytuacji, w której 82\% ich rzutów było oddawanych z tych pozycji, podczas gdy druga najlepsza drużyna w tym aspekcie osiągała poziom 71\% \cite{houston}. Wizualizacja tego systemu znajduje się na Rysunku \ref{houston_shots}.
 \begin{figure}[h]
 	\hspace*{-1cm}
 	\includegraphics[width=18cm]{houston_shots.jpg}
 	\caption{Decyzje rzutowe Houston i reszty ligi}\label{houston_shots}
 	\centering
 \end{figure}
- Poza analizowaniem przebiegu gry, analitycy oraz statystycy podejmują próby przewidywania wyników sezonu, co staje się bardzo istotne w razie kontuzji lub wymiany gracza. Niemal wszystkie zaproponowane dotąd modele symulacji rozgrywek opierają się na statystykach zawodników, ich wpływie na atak i obronę, udziale w zwycięstwach, oraz ulubionych pozycjach rzutowych. Celem tej pracy inżynierskiej jest próba przewidzenia rezultatów wybranego sezonu ligi NBA przy pomocy bardzo prostego modelu, używając wyłącznie informacji o wynikach poszczególnych drużyn w poprzednich sezonach --- indywidualny wpływ graczy na przebieg spotkań nie jest rozpatrywany. Na potrzeby tego zadania zaprojektowano kilka algorytmów opierających się na metodzie \textbf{bootstrapu parametrycznego}, sprawdzono ich skuteczność dla kilku wybranych sezonów w zależności od okresu używanych danych i nadawania wag, a następnie przy pomocy najskuteczniejszych modeli dokonano predykcji wyników trwającego sezonu 2018/2019. 
+ Poza analizowaniem przebiegu gry, analitycy oraz statystycy podejmują próby przewidywania wyników sezonu, co staje się bardzo istotne w razie kontuzji lub wymiany gracza.\cite{replayNBA} \cite{graphicalNBA} Niemal wszystkie zaproponowane dotąd modele symulacji rozgrywek opierają się na statystykach zawodników, ich wpływie na atak i obronę, udziale w zwycięstwach, oraz ulubionych pozycjach rzutowych. Celem tej pracy inżynierskiej jest próba przewidzenia rezultatów wybranego sezonu ligi NBA przy pomocy bardzo prostego modelu, używając wyłącznie informacji o wynikach poszczególnych drużyn w poprzednich sezonach --- indywidualny wpływ graczy na przebieg spotkań nie jest rozpatrywany. Na potrzeby tego zadania zaprojektowano kilka algorytmów opierających się na metodzie bootstrap, sprawdzono ich skuteczność dla kilku wybranych sezonów w zależności od okresu używanych danych i nadawania wag, a następnie przy pomocy najskuteczniejszych modeli dokonano predykcji wyników trwającego sezonu 2018/2019. 
 
 
 
 \chapter{Opis ligi NBA, jak wyglada sezon}\label{rodzial1}
-National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of America i składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Kolejna fuzja miała miejsce w 1976 roku, a mianowicie wchłonięcie połączenie z bardziej widowiskową American Basketball Association ocaliło ją od bankructwa i stagnacji. Po tym wydarzeniu NBA zyskała na atrakcyjności --- z ABA zaczerpnięto pomysły rzutów za trzy punkty i organizacji konkursu wsadów, jak i przyjęto cztery dodatkowe organizacje. Od 2004 roku w lidze gra 30 zespołów, 29 ze Stanów Zjednoczonych i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 organizacji. Szczegółowy podział konferencje i dywizje, oraz nazwy wszystkich drużyn zawarte zostały w Tabelach \ref{tabela_wschod} i \ref{tabela_zachod}, natomiast dokładne rozmieszczenie na mapie kontynentu znajduje się na Rysunku \ref{mapa_stany}.
+National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of America i składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Kolejna fuzja miała miejsce w 1976 roku, a mianowicie wchłonięcie połączenie z bardziej widowiskową American Basketball Association ocaliło ją od bankructwa i stagnacji. Po tym wydarzeniu NBA zyskała na atrakcyjności --- z ABA zaczerpnięto pomysły rzutów za trzy punkty i organizacji konkursu wsadów, jak i przyjęto cztery dodatkowe organizacje. \cite{history} Od 2004 roku w lidze gra 30 zespołów, 29 ze Stanów Zjednoczonych i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 organizacji. Szczegółowy podział konferencje i dywizje, oraz nazwy wszystkich drużyn zawarte zostały w Tabelach \ref{tabela_wschod} i \ref{tabela_zachod}, natomiast dokładne rozmieszczenie na mapie kontynentu znajduje się na Rysunku \ref{mapa_stany}.\cite{mapa}
 
 \begin{figure}[t]
 	\includegraphics[width=16cm]{conf_map.pdf}
@@ -115,7 +115,7 @@ Sezon w NBA składa się z dwóch części: zasadniczej i następującej po niej
 	\item drużyny z tej samej konferencji oraz różnych dywizji grają ze sobą 3 albo 4 spotkania (przynajmniej po jednym na wyjedzie i własnym boisku).
 \end{enumerate}
 Mecze koszykówki nie mogą zakończyć się remisem (w razie remisu po regulaminowym czasie gry rozgrywa się dogrywki aż do wyłonienia zwycięzcy).
-Po zakończeniu sezonu następuje wspomniana wyżej faza pucharowa; wchodzi do niej po 8 najlepszych zespołów z każdej konferencji (w razie takiej samej ilości zwycięstw dla obu zespołów decydują mecze bezpośrednie pomiędzy nimi). W tej fazie drużyny grają ze sobą maksymalnie 7 meczów, czyli zespół, który pierwszy wygra 4 mecze, przechodzi do następnego etapu. W fazie Playoff jasno zdefiniowane są lokalizacje odgrywania spotkań --- lepszy bilans zwycięstw w sezonie zasadniczym skutkuje przewagą parkietu. Seria spotkań grana jest w formacie 2–2–1–1–1, czyli mecze numer 1, 2, 5 i 7 grane są u lepszej z drużyn. Przy doborze przeciwników w tej fazie bierze się pod uwagę pozycję w tabeli konferencji: drużyna z miejsca pierwszego gra z zespołem o ósmym bilansie w danej konferencji, druga z siódmą, i tak dalej. Zwycięzca serii przechodzi do następnego etapu z czterema drużynami, po którym następują finały konferencji --- najlepsze drużyny ze swoich konferencji spotykają się w finałach NBA. Dla lepszego zrozumienia systemu rozgrywek pucharowych na Rysunku \ref{po_tree} zamieszczono tzw. ,,drzewko Playoff'', czyli grafikę oddającą przebieg tej fazy.
+Po zakończeniu sezonu następuje wspomniana wyżej faza pucharowa; wchodzi do niej po 8 najlepszych zespołów z każdej konferencji (w razie takiej samej ilości zwycięstw dla obu zespołów decydują mecze bezpośrednie pomiędzy nimi). W tej fazie drużyny grają ze sobą maksymalnie 7 meczów, czyli zespół, który pierwszy wygra 4 mecze, przechodzi do następnego etapu. W fazie Playoff jasno zdefiniowane są lokalizacje odgrywania spotkań --- lepszy bilans zwycięstw w sezonie zasadniczym skutkuje przewagą parkietu. Seria spotkań grana jest w formacie 2–2–1–1–1, czyli mecze numer 1, 2, 5 i 7 grane są u lepszej z drużyn. Przy doborze przeciwników w tej fazie bierze się pod uwagę pozycję w tabeli konferencji: drużyna z miejsca pierwszego gra z zespołem o ósmym bilansie w danej konferencji, druga z siódmą, i tak dalej. Zwycięzca serii przechodzi do następnego etapu z czterema drużynami, po którym następują finały konferencji --- najlepsze drużyny ze swoich konferencji spotykają się w finałach NBA. Dla lepszego zrozumienia systemu rozgrywek pucharowych na Rysunku \ref{po_tree} zamieszczono tzw. ,,drzewko Playoff''\cite{playoffs}, czyli grafikę oddającą przebieg tej fazy.
 \begin{figure}[t]
 	\includegraphics[width=16cm]{po_tree.pdf}
 	\caption{Drzewko Playoff}\label{po_tree}
@@ -180,10 +180,10 @@ Funkcja charakterystyczna tego rozkładu wyrażana jest wzorem
 \begin{equation}
 \phi(t)=\frac{e^{itb}-e^{ita}}{(b-a)it}.
 \end{equation}
-W przypadku, gdy zmienna losowa $X$ posiada ciągłą dystrybuantę $F(x)$, to $U=F(x)$ ma rozkład $\mathcal{U}(0,1).$
+W przypadku, gdy zmienna losowa $X$ posiada ciągłą dystrybuantę $F(x)$, to $U=F(x)$ ma rozkład $\mathcal{U}(0,1).$ \cite{magiera}
 
 \section{Generatory liczb pseudolosowych rozkładu jednostajnego} %(str 427)
-Załóżmy, że $F$ to dystrybuanta rozkładu normalnego $\mathcal{U}(0,1)$. Podczas generowania ciągu zbliżonego do realizacji rozkładu jednostajnego zazwyczaj stosuje się następującą metodę: wybierzmy funkcję $G$ określoną i mająca wartości na odcinku $[0,1]$, o wartości początkowej $u_0 \in [0,1]$, i zdefiniujmy
+Załóżmy, że $F$ to dystrybuanta rozkładu normalnego $\mathcal{U}(0,1)$. \cite{koronacki}  Podczas generowania ciągu zbliżonego do realizacji rozkładu jednostajnego zazwyczaj stosuje się następującą metodę: wybierzmy funkcję $G$ określoną i mająca wartości na odcinku $[0,1]$, o wartości początkowej $u_0 \in [0,1]$, i zdefiniujmy
 \begin{equation}
 	u_1=G(u_0), \,\, u_2=G(u_1), \,\, \dots, \,\,u_i=G(u_{i-1}), \,\, i=1,\,2,\,\dots 
 \end{equation}
@@ -193,7 +193,7 @@ Znając postać funkcji $G$ i początkową wartość $u_0$ możliwe jest ponowne
 \end{definition}
 
 \section{Metoda Monte Carlo}
-Załóżmy, że $\theta$ to parametr zmiennej losowej $X$ oraz można go przedstawić jako $\theta=Eh(X)$, przy czym $h$ to pewna znana funkcja, dodatkowym założeniem jest, że można wygenerować próbę o rozkładzie $X$. 
+Załóżmy, że $\theta$ to parametr zmiennej losowej $X$ oraz można go przedstawić jako $\theta=Eh(X)$, przy czym $h$ to pewna znana funkcja, dodatkowym założeniem jest, że można wygenerować próbę o rozkładzie $X$. \cite{monte}
 \begin{definition}
 	Niech $X_1,X_2,\dots,X_m$ będzie próbą pseudolosową pewnego rozkładu $X$ dla pewnego $m$. Średnia $\bar{h}=m^{-1}(h(X_1)+h(X_2)+\dots +h(X_m))$ nazywana jest \textbf{estymatorem $Eh(X)=\theta$ wyznaczonym metodą Monte Carlo}.
 \end{definition}
@@ -215,8 +215,7 @@ Modelowanie przy pomocy metody Monte Carlo jest przydatne przy badaniu skompliko
 
 \section{Zasada bootstrap}
 %In statistics, bootstrapping is any test or metric that relies on random sampling with replacement.
-Próba bootstrap to metoda służąca do oceny rozkładu pewnego estymatora (na przykład wariancji)  używając wielokrotnych symulacji opartych na znanej realizacji jego rozkładu.  
- Narzędzie to zostało stworzone przez Bradleya Efrona i opublikowane w artykule ,,Bootstrap methods: another look at the jackknife'' z 1979 roku. Załóżmy, że $x_1, x_2 \dots x_n$ to realizacja pewnej próby losowej, a $\hat{F}$ jest dystrybuantą empiryczną tej próby. Dystrybuanta $\hat{F}$ to znane przybliżenie pewnego nieznanego rozkładu $F$, dlatego też rozkład $\hat{\Theta}$ estymować będziemy przy pomocy $\hat{F}$, czyli dokonamy oceny rozkładu estymatora $\hat{\Theta}$ w oparciu o generowanie prób z rozkładu $\hat{F}$. 
+Próba bootstrap to metoda służąca do oceny rozkładu pewnego estymatora (na przykład wariancji)  używając wielokrotnych symulacji opartych na znanej realizacji jego rozkładu. Narzędzie to zostało stworzone przez Bradleya Efrona i opublikowane w artykule ,,Bootstrap methods: another look at the jackknife'' z 1979 roku. \cite{efron1} Załóżmy, że $x_1, x_2 \dots x_n$ to realizacja pewnej próby losowej, a $\hat{F}$ jest dystrybuantą empiryczną tej próby. Dystrybuanta $\hat{F}$ to znane przybliżenie pewnego nieznanego rozkładu $F$, dlatego też rozkład $\hat{\Theta}$ estymować będziemy przy pomocy $\hat{F}$, czyli dokonamy oceny rozkładu estymatora $\hat{\Theta}$ w oparciu o generowanie prób z rozkładu $\hat{F}$.  \cite{koronacki}
 \begin{definition}
 	Próba losowa $X^* = (X_1^*, X_2^*, \dots, X_n^*)$ o rozkładzie $\hat{F}$ dla ustalonej realizacji $x = (x_1, x_2, \dots, x_n)$ nazywana jest \textbf{próbą bootstrap}.
 \end{definition}
@@ -228,20 +227,20 @@ Otrzymywanie realizacji próby bootstrap bazuje na wykonaniu $n$-krotnego losowa
 Otrzymany w ten sposób rozkład $(\Theta_1^*, \Theta_2^*, \dots, \Theta_k^*)$ to przybliżenie rozkładu błędów estymacji $\hat{\Theta}-\Theta$ przy pomocy statystyki $T$. Histogram tego rozkładu nazywany jest estymatorem rozkładu $\hat{\Theta}$ otrzymanym metodą bootstrap. Dla zadowalającego przybliżenia rozkładu $(T(X^*)-\hat{\Theta})$ wymagane jest przynajmniej $k=1000$ prób bootstrap, a im większa ich ilość, tym dokładniejsze oszacowanie.  
 
 \subsection{Bootstrap parametryczny}
-Założenia bootstrapu parametrycznego są podobne do bootstrapu klasycznego --- jedyną różnicą jest fakt, że zamiast symulowania niezależnych prób bootstrapowych z dystrybuanty empirycznej, generowane są niezależne próby z rozkładu pewnego parametrycznego modelu. 
+Założenia bootstrapu parametrycznego są podobne do bootstrapu klasycznego --- jedyną różnicą jest fakt, że zamiast symulowania niezależnych prób bootstrapowych z dystrybuanty empirycznej, generowane są niezależne próby z rozkładu pewnego parametrycznego modelu. \cite{efron2}
 W tym przypadku do danych dopasowany jest pewien model teoretyczny (często przy pomocy metody największej wiarygodności), a próby liczb losowych generowane są z owego dopasowanego modelu. Proces symulowania tak zdefiniowanej proby przebiega podobnie do innych procesów bootstrapowych, przy czym wielkość takiej próby zazwyczaj odpowiada rozmiarowi oryginalnego zbioru danych. Prowadzi to do następującej definicji:
 \begin{definition}
 	Próbę bootstrap, której nieznany rozkład $F$ można przybliżyć pewnym znanym rozkładem parametrycznym $\hat{F}$ nazywamy \textbf{parametryczną próbą bootstrap}. 
 \end{definition}
  
+ 
 \chapter{Metodologia, algorytmy}\label{rodzial_algorytmy}
 \section{Opis danych}
-Dane, które będą wykorzystywane do symulacji sezonu zostały zebrane ze strony sportowej basketballreference.com.
+Dane, które będą wykorzystywane do symulacji sezonu, tak jak i terminarze, zostały zebrane ze strony sportowej \textit{basketballreference.com}. \cite{dane}
 Na potrzeby tej pracy zebrano wyniki starć pomiędzy drużynami począwszy od sezonu 2004/2005 aż do 2017/2018. Początkowo symulowano rozgrywki sezonów 2014/2015 oraz 2017/2018 w celu wybrania najlepszego modelu, a następnie skorzystano z niego, aby przewidzieć wyniki rozgrywek we wciąż trwającym sezonie 2018/2019.
 Posiadając ilość wygranych jednej drużyny z drugą na przestrzeni lat dokonano następujących transformacji danych:
 \\
 W zależności od interwału czasowego, jaki będziemy rozpatrywać, zebrano wyniki w określonych rozgrywkach (na przykład, przy wyznaczaniu wyników sezony 2014/2015 i interwale 5 lat, używać będziemy danych z lat 2009 do 2014). Dzięki uzyskanej w ten sposób liczbie wygranych w możemy stosunek zwycięstw do porażek dla wybranych zespołów (przykład: Boston Celtics i Atlanta Hawks grały ze sobą 10 razy, Jastrzębie wygrały zaledwie 4 razy, dlatego też w starciu z Celtami ich stosunek wygranych do przegranych wynosi $0.4$). Po zastosowaniu tej metody dla wszystkich zespołów uzyskano macierz o liczbie wierszy i kolumn odpowiadającej ilości drużyn w NBA, zawierającą prawdopodobieństwa na wygraną z każdym zespołem w lidze. Przykładowa postać danych zawarta została w Tabeli \ref{dane_tabela}.
-
 \begin{table}[]
 	\centering
 	\begin{tabular}{|c|c|c|c|}
@@ -253,6 +252,8 @@ W zależności od interwału czasowego, jaki będziemy rozpatrywać, zebrano wyn
 	\end{tabular}
 	\caption{Przykładowe tabela z danymi}\label{dane_tabela}	
 \end{table}
+
+Ze względu na formę użytych danych nie ma znaczenia, czy podczas symulacji wykorzystywany będzie bootstrap klasyczny lub parametryczny. Używanie pierwszego polegałoby na losowaniu ze zwracaniem wyników (zwycięstwo lub porażka) z danych historycznych --- jest to jednoznaczne z wyliczeniem prawdopodobieństwa wygranej w oparciu o historię i symulowanie rozkładu dwupunktowego.
 
 \section{Własne oznaczenia} \label{wlasne_oznaczenia}
 Podczas prób symulacji dokonano intuicyjnego założenia, wedle którego największy wpływ na postawę sezonu mają rozgrywki bezpośrednio go poprzedzające. W tym celu dobrano system wag --- z powodu dynamicznych zmian w lidze, najstarsze sezony otrzymują najmniejszą rangę, która stopniowo zwiększa się, im bliżej do zawodów rozpatrywanych w symulacji. Ważona ilość zwycięstw $Z_i$ $i-$tej drużyny $D_i$ z $j-$tą drużyną $D_j$ wynosi
@@ -346,7 +347,7 @@ Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki pr
 \begin{pseudokod} \label{pseudokod2}
 	\textbf{Model rywalizacji}
 	\begin{algorithmic}[1]
-		\State $Z_i\gets 0,Z_j\gets 0,\dots, B_{30}\gets 0$
+		\State $B_i\gets 0,B_j\gets 0,\dots, B_{30}\gets 0$
 		\State $i\gets 1$
 		\While{$i\leq 30$}
 		\For{$j\gets i$ to 30}
@@ -649,7 +650,7 @@ Po przeanalizowaniu wyników okazało się, że prognozy wynikające z modelu V 
  
 Po odrzuceniu jednej z metod predykcji fazy pucharowej zbadano przebieg przewidywanych rozgrywek w oparciu o model IV wykorzystujący dane o sezonach zasadniczych generowanych przy wykorzystaniu modeli dobranych we wcześniejszych rozważaniach. Obydwa modele sprawdzały się podobnie w przypadku rundy pierwszej, jednak od rundy drugiej szacunki zaczęły być znacznie bardziej dokładne:
 \begin{itemize}
-	\item w przypadku modelu I do Półfinałów Konferencji Wchodniej zakwalifikowały się 2 z 4 drużyn, dla modelu II natomiast nie przeszła żadna z rzeczywistych drużyn,
+	\item w przypadku modelu I do Półfinałów Konferencji Wschodniej zakwalifikowały się 2 z 4 drużyn, dla modelu II natomiast nie przeszła żadna z rzeczywistych drużyn,
 	\item dla Półfinałów Konferencji Zachodniej model I wygrał ponownie,  przewidując słusznie 2 drużyny, przy 1 dla konkurenta,
 	\item w Finałach Konferencji Model I jeszcze raz okazał się lepszy, za każdym razem dobrze przewidując przynajmniej jednego finalistę, podczas gdy drugi z systemów był skuteczny tylko dla 1 z 4 zespołów,
 	\item model I słusznie przewidział zwycięzcę całej ligi.
@@ -675,41 +676,41 @@ W poprzedniej części pracy udowodniono, że prognozy najtrafniejsze będą, je
 \begin{table}[]
 	\centering
 	\begin{tabular}{ll}
-	\begin{tabular}{|c|c|}
+	\begin{tabular}{|c|c|c|}
 		\hline
-		\multicolumn{2}{|c|}{\textbf{Prognozy sezonu zasadniczego}} \\\hline
-		\multicolumn{2}{|c|}{} \\\hline	
-		\textbf{Drużyna}      & \textbf{Liczba zwycięstw} \\ \hline
-		Atlanta Hawks & 41 \\ \hline
-		Boston Celtics & 45\\ \hline
-		Brooklyn Nets & 33 \\ \hline
-		Charlotte Hornets & 40 \\ \hline
-		Chicago Bulls & 40\\ \hline	
-		Cleveland Cavaliers & 46\\ \hline
-		Dallas Mavericks & 38\\ \hline	
-		Denver Nuggets & 41\\ \hline
-		Detroit Pistons & 40 \\ \hline
-		Golden State Warriors & 51\\ \hline
-		Houston Rockets & 48 \\\hline
-		Indiana Pacers & 43 \\\hline
-		Los Angeles Clippers & 46 \\ \hline
-		Los Angeles Lakers & 33\\ \hline
-		Memphis Grizzlies & 39 \\ \hline
-		Miami Heat & 43 \\\hline
-		Milwaukee Bucks & 40\\ \hline
-		Minnesota Timberwolves & 38 \\ \hline
-		New Orleans Pelicans & 41 \\ \hline
-		New York Knicks & 34 \\ \hline
-		Oklahoma City Thunder & 46\\ \hline
-		Orlando Magic & 35\\ \hline
-		Philadelphia 76ers & 36 \\ \hline
-		Phoenix Suns & 36 \\\hline
-		Portland Trail Blazers & 44\\ \hline	
-		Sacramento Kings & 35 \\ \hline
-		San Antonio Spurs & 49 \\ \hline
-		Toronto Raptors & 47 \\ \hline
-		Utah Jazz & 43 \\\hline
-		Washington Wizards & 43\\ \hline
+		\multicolumn{3}{|c|}{\textbf{Prognozy sezonu zasadniczego}} \\\hline
+		&\multicolumn{2}{|c|}{Liczba zwycięstw} \\\hline	
+		\textbf{Drużyna}      & \textbf{Model I} & \textbf{ESPN}\\ \hline
+		Atlanta Hawks & 41 & 22\\ \hline
+		Boston Celtics & 45 & 58\\ \hline
+		Brooklyn Nets & 33 & 32\\ \hline
+		Charlotte Hornets & 40 & 35\\ \hline
+		Chicago Bulls & 40 & 28\\ \hline	
+		Cleveland Cavaliers & 46 & 31\\ \hline
+		Dallas Mavericks & 38& 33\\ \hline	
+		Denver Nuggets & 41 & 47\\ \hline
+		Detroit Pistons & 40 & 44\\ \hline
+		Golden State Warriors & 51 & 58\\ \hline
+		Houston Rockets & 48 & 57\\\hline
+		Indiana Pacers & 43 & 47\\\hline
+		Los Angeles Clippers & 46 &35\\ \hline
+		Los Angeles Lakers & 33 & 46\\ \hline
+		Memphis Grizzlies & 39 &33\\ \hline
+		Miami Heat & 43 & 47 \\\hline
+		Milwaukee Bucks & 40 & 47\\ \hline
+		Minnesota Timberwolves & 38 & 45\\ \hline
+		New Orleans Pelicans & 41  &45\\ \hline
+		New York Knicks & 34 & 28\\ \hline
+		Oklahoma City Thunder & 46 & 49\\ \hline
+		Orlando Magic & 35 & 30\\ \hline
+		Philadelphia 76ers & 36 & 53\\ \hline
+		Phoenix Suns & 36 &27\\\hline
+		Portland Trail Blazers & 44& 43\\ \hline	
+		Sacramento Kings & 35 &24\\ \hline
+		San Antonio Spurs & 49 &44\\ \hline
+		Toronto Raptors & 47 & 55\\ \hline
+		Utah Jazz & 43 & 49\\\hline
+		Washington Wizards & 43 & 44\\ \hline
 	\end{tabular}
 
 	\begin{tabular}{|c|c|}
@@ -745,19 +746,16 @@ W poprzedniej części pracy udowodniono, że prognozy najtrafniejsze będą, je
 \end{tabular}
 	\caption{Wyniki symulacji sezonu 2018/2019}\label{tabela_symulacja_2018}	
 \end{table}
-DODAJ PORÓWNANIE Z JAKIMS MODELEM!!!!!!!!!!!!!!!!!!!!!
-Porównując rezultaty przeprowadzonych prognoz z poprzednimi symulacjami można zauważyć pewną tendencję --- zaproponowane w tej pracy modele nie zakładają sytuacji, w której zespół wchodzi w stan przebudowy i zaczyna przegrywać. Z tego powodu oszacowane liczby wygranych można uznać za bardzo optymistyczne, ponieważ wiadome jest, że zespoły takie jak Brooklyn Nets, Phoenix Suns, Atlanta Hawks, czy New York Knicks najprawdopodobniej nie osiągną przewidywanych wyników. Podobnie sytuacja ma się w fazie pucharowej, gdzie z powodu nagłego osłabienia Cleveland zespoły, które do tej pory w cieniu wzmacniały swoje składy, mają realną szansę na walkę o najwyższe cele.  
+Porównując rezultaty przeprowadzonych prognoz z poprzednimi symulacjami można zauważyć pewną tendencję --- zaproponowane w tej pracy modele nie zakładają sytuacji, w której zespół wchodzi w stan przebudowy i zaczyna przegrywać. Z tego powodu oszacowane liczby wygranych można uznać za bardzo optymistyczne, ponieważ wiadome jest, że zespoły takie jak Brooklyn Nets, Phoenix Suns, Atlanta Hawks, czy New York Knicks najprawdopodobniej nie osiągną przewidywanych wyników. Podobnie sytuacja ma się w fazie pucharowej, gdzie z powodu nagłego osłabienia Cleveland zespoły, które do tej pory w cieniu wzmacniały swoje składy, mają realną szansę na walkę o najwyższe cele. Po zestawieniu wyników modelu I z przewidywaniami ESPN \cite{espn} można zauważyć, że tendencje zaproponowane w obu modelach pokrywają się z nielicznymi wyjątkami --- są to kluby, które znacząco wzmocniły się tego lata lub weszły w przebudowę. 
 
 \chapter{Wnioski}
 Podczas symulowania rozgrywek i porównywania ich wyników z rzeczywistymi okazało się, że w wielu przypadkach zasugerowane modele nie oddają dobrze przebiegu sezonu. Należy pamiętać, że zawodnicy się starzeją i przestają grać na wysokim poziomie, zmieniają kluby, łapią kontuzje, czy nawet przechodzą na emerytury. Przykładem organizacji, która pomimo regresu w ostatnich sezonach, jest wysoko notowana we wszystkich symulacjach są San Antonio Spurs. Trzon tego zespołu od kilkunastu lat był taki sam i grał na niezwykle wysokim poziomie, zdobywając wielokrotne mistrzostwa od 2000 roku, lecz ostatnie lata przyniosły zmagania z wiekiem ich gwiazd, co skończyło się zakończeniem ich karier. Wszystkie modele kwalifikują tę drużynę bardzo wysoko ze względu na zeszłe dokonania, co prowadzi do mało prawdopodobnych wyników predykcji. Kolejnym niemożliwym do przewidzenia czynnikiem jest decyzja zarządu klubu o celowym przegrywaniu --- skutkiem tego są ich bardzo niskie wyniki i podwyższone wygrane innych zespołów. Wysoce prawdopodobne jest, że zaproponowane w tej pracy modele sprawowałyby się znacznie lepiej, gdyby żadna drużyna nie decydowała się na przebudowę poprzez odpuszczanie meczów. Osobną kwestią jest również etap, w którym zespoły rozwijające młodzież zaczynają nagle wygrywać, ponieważ niejednokrotnie po wielu słabych latach z zaskoczenia osiągały wysokie rezultaty (na przykład Philaledphia 76ers, po kilku sezonach ciągłego przegrywania zajęli niespodziewanie trzecie miejsce na Wschodzie). Modele symulujące rozgrywki pucharowe również miały te same problemy, jednak w większości przypadków skutecznie udawało im się przewidywać kształt Finałów Konferencji i wytypować zwycięzców ligi. Okazało się, że najdokładniejsze były dla stabilnego sezonu 2017/2018, można więc założyć, że wszystkie algorytmy działają najlepiej dla stabilnej ligi, w której drużyny grają stale na tym samym poziomie.
 
 {\backmatter \chapter{Podsumowanie}}
-W niniejszej pracy inżynierskiej zaproponowano kilka modeli umożliwiających symulowanie rozgrywek NBA w oparciu o dane zawierające wyniki z zeszłych sezonów. Wszystkie modele przetestowano dla różnych okresów zbierania danych, wag premiujących kolejne lata, jak i sezonu, dla którego dokonano symulacji. Wybrano w ten sposób najlepszy system do predykcji wyników wybranego sezonu. Niestety, okazało się, że zaproponowane metody nie oddają w pełni trendów panujących obecnie w NBA, jak i nie działają najlepiej w przypadku nagłej poprawy gry przez słabe do tej pory zespoły. W trakcie badania skuteczności modeli testowano normalność rozkładu zwycięstw każdej z drużyn w próbie bootstrap, jednak we wszystkich testach hipotezy te zostały odrzucone. Po głębszych rozważaniach na ten temat wysunięto hipotezę, wedle której zwycięstwa te pochodzą z mieszanego rozkładu dwumianowego, jednak udowodnienie tego było niemożliwe. Po nie najlepszych wynikach takiego podejścia do szacowania wyników sezonu warte rozważenia jest stworzenie modelu opierającego się na statystykach zawodników grających w poszczególnych klubach i ich wpływie na grę.
-DODAĆ MAILA !!!!!!!!!!
-I BIBLIOGRAFIA!!!!!!!!!!!!
-I TYTUŁY!!!!!!!!!!!!
+W niniejszej pracy inżynierskiej zaproponowano kilka modeli umożliwiających symulowanie rozgrywek NBA w oparciu o dane zawierające wyniki z zeszłych sezonów. Wszystkie modele przetestowano dla różnych okresów zbierania danych, wag premiujących kolejne lata, jak i sezonu, dla którego dokonano symulacji. Wybrano w ten sposób najlepszy system do predykcji wyników wybranego sezonu. Niestety, okazało się, że zaproponowane metody nie oddają w pełni trendów panujących obecnie w NBA, jak i nie działają najlepiej w przypadku nagłej poprawy gry przez słabe do tej pory zespoły. Dokonano porównania wyników zaproponowanego modelu z prognozami ESPN i zauważono, że w większej części tendencje w nich są podobne. W trakcie badania skuteczności modeli testowano normalność rozkładu zwycięstw każdej z drużyn w próbie bootstrap, jednak we wszystkich testach hipotezy te zostały odrzucone. Po głębszych rozważaniach na ten temat wysunięto hipotezę, wedle której zwycięstwa te pochodzą z mieszanego rozkładu dwumianowego, jednak udowodnienie tego było niemożliwe. Po nie najlepszych wynikach takiego podejścia do szacowania wyników sezonu warte rozważenia jest stworzenie modelu opierającego się na statystykach zawodników grających w poszczególnych klubach i ich wpływie na grę.
 
 {\backmatter \chapter{Dodatek}}
+Ze względu na dużą ilość tabel z danymi i wygenerowanych dla nich wykresów, wszystkie dodatki zostały zawarte na płycie dołączonej do pracy.
 %Dodatek w pracach matematycznych również nie jest wymagany. Można w nim przedstawić np. jakiś dłuższy dowód, który z pewnych przyczyn pominęliśmy we właściwej części pracy lub (np. w przypadku prac statystycznych) umieścić dane, które analizowaliśmy.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -779,7 +777,41 @@ I TYTUŁY!!!!!!!!!!!!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 % w nawiasie klamrowym wpisujemy nazwę pliku z bibliografią w formacie .bib
-\bibliografia{bibliografia} 
+%\bibliografia{bibliografia} 
+
+\begin{thebibliography}{9}	
+	\bibitem{koronacki}
+	\emph{Jacek Koronacki, Jan Mielniczuk: Statystyka dla studentów kierunków technicznych i przyrodniczych, Wydawnictwo Naukowo-Techniczne, Warszawa, 2009}
+	\bibitem{magiera}
+	\emph{Ryszard Magiera: Modele i metody statystyki matematycznej. Część II. Wnioskowanie statystyczne. Wydanie drugie rozszerzone, Oficyna Wydawnicza GiS, Wrocław, 2007}
+	\bibitem{efron1}
+	\emph{Bradley Efron: Bootstrap methods: another look at the jackknife. The Annals of Statistics 1979, Vol. 7, No. 1, 1--26 }
+	\bibitem{efron2}
+	\emph{Bradley Efron: The jackknife, the bootstrap, and other resampling plans. SIAM, 1982 }
+	\bibitem{replayNBA}
+	\emph{Nathan Sandholtz, Luke Bornn: Replaying the NBA. 2018 }
+	\bibitem{graphicalNBA}
+	\emph{Min-hwan Oh, Suraj Keshri, Garud Iyengar: Graphical Model for Baskeball Match Simulation. 2015 }
+	\bibitem{bootstrap1}
+	\emph{Kesar Singh, Minge Xie: Bootstrap: A Statistical Method. }
+	\bibitem{monte}
+	\emph{Martin Haugh: Generating Random Variables and Stochastic Processes. 2017 }
+	\bibitem{bootstrap2}
+	\emph{Cosma Shalizi: The Bootstrap. 2011 }
+	\bibitem{history}
+	\emph{https://nbahoopsonline.com/History/}
+	\bibitem{dane}
+	\emph{https://www.basketball-reference.com/}
+	\bibitem{playoffs}
+	\emph{https://pre00.deviantart.net}
+	\bibitem{houston}
+	\emph{https://digit.hbs.org/submission/moreyball-the-houston-rockets-and-analytics/}
+	\bibitem{mapa}
+	\emph{https://www.mapsofworld.com/}
+	\bibitem{espn}
+	\emph{http://www.espn.com/nba/story/\_/id/24365036/nba-standings-predictions-espn-summer-forecast}
+		
+\end{thebibliography}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      MODEL 1
 
