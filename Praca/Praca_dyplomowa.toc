@@ -1,6 +1,6 @@
 \select@language {polish}
 \contentsline {chapter}{Wst\IeC {\k e}p}{3}{chapter*.2}
-\contentsline {chapter}{\numberline {1}Opis ligi NBA, jak wyglada sezon}{5}{chapter.1}
+\contentsline {chapter}{\numberline {1}Opis ligi NBA}{5}{chapter.1}
 \contentsline {chapter}{\numberline {2}Teoria wykorzystana w pracy}{11}{chapter.2}
 \contentsline {section}{\numberline {2.1}Rozk\IeC {\l }ad jednostajny}{11}{section.2.1}
 \contentsline {section}{\numberline {2.2}Generatory liczb pseudolosowych rozk\IeC {\l }adu jednostajnego}{11}{section.2.2}

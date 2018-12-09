@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  9 DEC 2018 11:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  9 DEC 2018 13:19
 entering extended mode
 **./Praca_dyplomowa.tex
 (Praca_dyplomowa.tex
@@ -1147,26 +1147,29 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip75
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\indentfirst.sty"
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 )
 \c@theorem=\count168
- (Praca_dyplomowa.aux)
+
+(Praca_dyplomowa.aux)
 \openout1 = `Praca_dyplomowa.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 43.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1204,7 +1207,7 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 42.
+LaTeX Info: Redefining \microtypecontext on input line 43.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1219,7 +1222,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 )
 \AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring OFF on input line 42.
+Package hyperref Info: Link coloring OFF on input line 43.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1229,9 +1232,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count169
 )
-LaTeX Info: Redefining \ref on input line 42.
-LaTeX Info: Redefining \pageref on input line 42.
-LaTeX Info: Redefining \nameref on input line 42.
+LaTeX Info: Redefining \ref on input line 43.
+LaTeX Info: Redefining \pageref on input line 43.
+LaTeX Info: Redefining \nameref on input line 43.
 
 (Praca_dyplomowa.out) (Praca_dyplomowa.out)
 \@outlinefile=\write5
@@ -1300,35 +1303,35 @@ ABD: EveryShipout initializing macros
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 44.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 45.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 44.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 45.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 44.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 45.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 44.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 45.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 44.
+(Font)              <10.95> on input line 45.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 44.
+(Font)              <8> on input line 45.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 44.
-LaTeX Font Info:    Try loading font information for U+msa on input line 44.
+(Font)              <6> on input line 45.
+LaTeX Font Info:    Try loading font information for U+msa on input line 45.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1336,7 +1339,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ("C:\Program Files\MiKTeX 2.9\tex\latex\microtype\mt-msa.cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 44.
+LaTeX Font Info:    Try loading font information for U+msb on input line 45.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1345,7 +1348,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 44.
+(Font)              <12> on input line 45.
  [1
 
 
@@ -1357,7 +1360,7 @@ tination with the same identifier (name{page.}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.44 \maketitle
+l.45 \maketitle
                 [2
 
 
@@ -1399,7 +1402,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.44 \maketitle
+l.45 \maketitle
                 [3
 
 
@@ -1407,7 +1410,7 @@ l.44 \maketitle
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.44 \maketitle
+l.45 \maketitle
                 [4
 
 
@@ -1432,11 +1435,16 @@ raphic file (type jpg)
 
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/houston_shots.jpg>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-houston_shots.jpg used on input line 55.
+houston_shots.jpg used on input line 56.
 (pdftex.def)             Requested size: 512.1496pt x 189.38315pt.
 
-Overfull \hbox (31.06381pt too wide) in paragraph at lines 54--56
+Overfull \hbox (31.06381pt too wide) in paragraph at lines 55--57
 []|  [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--61
+
  []
 
 [3
@@ -1453,34 +1461,34 @@ c file (type pdf)
 
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/conf_map.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-conf_map.pdf used on input line 67.
+conf_map.pdf used on input line 70.
 (pdftex.def)             Requested size: 455.24408pt x 313.38162pt.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 72.
+               Default added (so using `tbp') on input line 75.
 
 
-Overfull \hbox (9.1472pt too wide) in paragraph at lines 73--85
+Overfull \hbox (9.1472pt too wide) in paragraph at lines 76--88
 [][] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 87.
+               Default added (so using `tbp') on input line 90.
 
 
-Overfull \hbox (60.36223pt too wide) in paragraph at lines 88--101
+Overfull \hbox (60.36223pt too wide) in paragraph at lines 91--104
 [][] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 105.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 108.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 105.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 108.
  [5
 
 
@@ -1492,15 +1500,15 @@ File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/po_tree.pdf Graphic
 
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/po_tree.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-po_tree.pdf used on input line 120.
+po_tree.pdf used on input line 123.
 (pdftex.def)             Requested size: 455.24408pt x 289.20107pt.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 124.
+               Default added (so using `tbp') on input line 127.
 
 
-Overfull \hbox (42.06184pt too wide) in paragraph at lines 126--160
+Overfull \hbox (42.06184pt too wide) in paragraph at lines 129--163
  [][] 
  []
 
@@ -1513,7 +1521,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Rozdzia\l  2.
-LaTeX Font Info:    Try loading font information for U+dsrom on input line 167.
+LaTeX Font Info:    Try loading font information for U+dsrom on input line 170.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\doublestroke\udsrom.fd"
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
@@ -1525,7 +1533,7 @@ File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 Rozdzia\l  3.
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 244.
+               Default added (so using `tbp') on input line 247.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1534,7 +1542,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [16] [17] [18]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 422.
+               Default added (so using `tbp') on input line 425.
 
 [19] [20] [21] [22
 
@@ -1543,7 +1551,7 @@ LaTeX Warning: No positions in optional float specifier.
 Rozdzia\l  4.
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 485.
+               Default added (so using `tbp') on input line 487.
 
 
 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1_box_
@@ -1554,10 +1562,10 @@ _box_wschod.pdf Graphic file (type pdf)
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1_
 box_wschod.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m1_dla17_5lat_waga1_box_wschod.pdf used on input line 509.
+m1_dla17_5lat_waga1_box_wschod.pdf used on input line 511.
 (pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
 
-Overfull \hbox (87.96931pt too wide) in paragraph at lines 508--510
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 510--512
 []|  [] 
  []
 
@@ -1570,10 +1578,10 @@ _box_zachod.pdf Graphic file (type pdf)
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1_
 box_zachod.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m1_dla17_5lat_waga1_box_zachod.pdf used on input line 517.
+m1_dla17_5lat_waga1_box_zachod.pdf used on input line 519.
 (pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
 
-Overfull \hbox (87.96931pt too wide) in paragraph at lines 516--518
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 518--520
 []|  [] 
  []
 
@@ -1586,10 +1594,10 @@ File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga0
 5_box_wschod.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m2_dla17_10lat_waga05_box_wschod.pdf used on input line 525.
+m2_dla17_10lat_waga05_box_wschod.pdf used on input line 527.
 (pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
 
-Overfull \hbox (87.96931pt too wide) in paragraph at lines 524--526
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 526--528
 []|  [] 
  []
 
@@ -1602,20 +1610,20 @@ File: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m2_dla17_10lat_waga0
 5_box_zachod.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m2_dla17_10lat_waga05_box_zachod.pdf used on input line 533.
+m2_dla17_10lat_waga05_box_zachod.pdf used on input line 535.
 (pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
 
-Overfull \hbox (87.96931pt too wide) in paragraph at lines 532--534
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 534--536
 []|  [] 
  []
 
 [23]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 548.
+               Default added (so using `tbp') on input line 550.
 
 
-Overfull \hbox (37.98903pt too wide) in paragraph at lines 550--646
+Overfull \hbox (37.98903pt too wide) in paragraph at lines 552--648
  [][] 
  []
 
@@ -1628,10 +1636,10 @@ _box_wschod.pdf Graphic file (type pdf)
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla18_5lat_waga1_
 box_wschod.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m1_dla18_5lat_waga1_box_wschod.pdf used on input line 664.
+m1_dla18_5lat_waga1_box_wschod.pdf used on input line 666.
 (pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
 
-Overfull \hbox (87.96931pt too wide) in paragraph at lines 663--665
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 665--667
 []|  [] 
  []
 
@@ -1644,16 +1652,16 @@ _box_zachod.pdf Graphic file (type pdf)
 <use C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla18_5lat_waga1_
 box_zachod.pdf>
 Package pdftex.def Info: C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/
-m1_dla18_5lat_waga1_box_zachod.pdf used on input line 671.
+m1_dla18_5lat_waga1_box_zachod.pdf used on input line 673.
 (pdftex.def)             Requested size: 625.96062pt x 291.90382pt.
 
-Overfull \hbox (87.96931pt too wide) in paragraph at lines 670--672
+Overfull \hbox (87.96931pt too wide) in paragraph at lines 672--674
 []|  [] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 676.
+               Default added (so using `tbp') on input line 678.
 
 [26 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_dla17_5lat_waga1_
 box_wschod.pdf>] [27 <C:/Users/micha/Desktop/inzynier/NBA_Simulator/grafika/m1_
@@ -1692,30 +1700,30 @@ Rozdzia\l  5.
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 812--813
+Underfull \hbox (badness 10000) in paragraph at lines 814--815
 []\T1/lmr/m/it/12 (+20) http://www.espn.com/nba/story/_/id/24365036/nba-standin
 gs-predictions-espn-
  []
 
 [37]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1173.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1173.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1175.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1175.
  (Praca_dyplomowa.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1173.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1173.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1175.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1175.
 
 Package rerunfilecheck Info: File `Praca_dyplomowa.out' has not changed.
-(rerunfilecheck)             Checksum: 47FE229943A05E1B18D7AD0EA7299A8C;1867.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1173.
+(rerunfilecheck)             Checksum: A7EA093EBB496B899A14740276774D78;1848.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1175.
  ) 
 Here is how much of TeX's memory you used:
- 23990 strings out of 493323
- 427724 string characters out of 3139065
- 863432 words of memory out of 3000000
- 26772 multiletter control sequences out of 15000+200000
- 71661 words of font info for 117 fonts, out of 3000000 for 9000
+ 24013 strings out of 493323
+ 428152 string characters out of 3139065
+ 863441 words of memory out of 3000000
+ 26780 multiletter control sequences out of 15000+200000
+ 72187 words of font info for 123 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,19n,62p,2044b,2387s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 71i,19n,62p,2053b,2387s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Fil
 es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
 nc/dvips/lm/lm-mathex.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ma
@@ -1731,7 +1739,7 @@ lic/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C
 iKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
 sy8.pfb>
-Output written on Praca_dyplomowa.pdf (41 pages, 1342758 bytes).
+Output written on Praca_dyplomowa.pdf (41 pages, 1341961 bytes).
 PDF statistics:
  984 PDF objects out of 1000 (max. 8388607)
  154 named destinations out of 1000 (max. 500000)
