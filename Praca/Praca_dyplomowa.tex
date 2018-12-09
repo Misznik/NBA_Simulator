@@ -50,7 +50,7 @@
 
 {\backmatter \chapter{Wstęp}}
 %We wstępie zapowiadamy, o czym będzie praca. Próbujemy zachęcić czytelnika do dalszej lektury, np. krótko informując, dlaczego wybraliśmy właśnie ten temat i co nas w nim zainteresowało.
-Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej amerykańska liga koszykarska NBA zyskała popularność na całym świecie, przyciągając do siebie najlepszych graczy i masy fanów. Z powodu nieprzewidywalności i złożoności tego sportu podejmowano wiele prób przewidywania wyników rozgrywek, które często toczyły się inaczej, niż by zakładano (najlepszym tego przykładem może być sezon 2003/2004, kiedy to nisko notowani Detroit Pistons pokonali faworytów w postaci Los Angeles Lakers). Trudność w przewidzeniu wyników wynika bezpośrednio z zasad ligi --- dozwolone są w niej wymiany zawodników między klubami, liczne i często katastrofalne kontuzje, czy nabory do ligi, w których najgorsze drużyny mają pierwszeństwo wyboru nowych zawodników chcących dołączyć do NBA (z tego powodu wiele organizacji celowo przegrywa mecze w celu wylosowania najwyższych miejsc w naborze). W obecnych czasach każda drużyna zatrudnia sztab analityków, którzy badają wpływ każdego czynnika obecnego na parkiecie na losy meczu. Idealnym przykładem wpływu statystyki na styl gry zespołu są Houston Rockets, którzy od sezonu 2014/2015 zrezygnowali z rzutów z półdystansu na rzecz rzutów za 3 punkty i tych spod obręczy. Doprowadziło to do sytuacji, w której 82\% ich rzutów było oddawanych z tych pozycji, podczas gdy druga najlepsza drużyna w tym aspekcie osiągała poziom 71\% \cite{houston}. Wizualizacja tego systemu znajduje się na Rysunku \ref{houston_shots}.
+Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej amerykańska liga koszykarska NBA zyskała popularność na całym świecie, przyciągając do siebie najlepszych graczy i masę fanów. Z powodu nieprzewidywalności i złożoności tego sportu podejmowano wiele prób przewidywania wyników rozgrywek, które często toczyły się inaczej, niż by zakładano (najlepszym tego przykładem może być sezon 2003/2004, kiedy to nisko notowani Detroit Pistons pokonali faworytów, czyli Los Angeles Lakers). Trudność w przewidzeniu wyników wynika z powodu licznych i często katastrofalnych kontuzji. Problematyczne w tym są również zasady ligi --- dozwolone są w niej wymiany zawodników między klubami, podpisywanie umów z nowymi koszykarzami, czy nabory do ligi, w których najsłabsze drużyny mają najwyższe szanse na pierwszeństwo wyboru nowych zawodników chcących dołączyć do NBA (z tego powodu wiele organizacji celowo przegrywa swoje mecze). W obecnych czasach każda drużyna zatrudnia sztab analityków, którzy badają wpływ każdego czynnika obecnego na parkiecie na losy meczu. Idealnym przykładem wpływu statystyki na styl gry zespołu są Houston Rockets, którzy od sezonu 2014/2015 zrezygnowali z rzutów z półdystansu na rzecz rzutów za 3 punkty i tych spod obręczy. Doprowadziło to do sytuacji, w której 82\% ich rzutów było oddawanych z tych pozycji, podczas gdy druga najlepsza drużyna w tym aspekcie osiągała poziom 71\% \cite{houston}. Wizualizacja tego systemu znajduje się na Rysunku \ref{houston_shots}.
 \begin{figure}[h]
 	\hspace*{-1cm}
 	\includegraphics[width=18cm]{houston_shots.jpg}
@@ -59,12 +59,12 @@ Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej
 \end{figure}
  Poza analizowaniem przebiegu gry, analitycy oraz statystycy podejmują próby przewidywania wyników sezonu, co staje się bardzo istotne w razie kontuzji lub wymiany gracza.\cite{replayNBA} \cite{graphicalNBA} Niemal wszystkie zaproponowane dotąd modele symulacji rozgrywek opierają się na statystykach zawodników, ich wpływie na atak i obronę, udziale w zwycięstwach, oraz ulubionych pozycjach rzutowych. \\
  
- Celem tej pracy inżynierskiej jest próba przewidzenia rezultatów wybranego sezonu ligi NBA przy pomocy prostego modelu, używając wyłącznie informacji o wynikach poszczególnych drużyn w poprzednich sezonach --- indywidualny wpływ graczy na przebieg spotkań nie jest rozpatrywany. Na potrzeby tego zadania zaprojektowano kilka algorytmów opierających się na metodzie bootstrap, sprawdzono ich skuteczność dla kilku wybranych sezonów w zależności od okresu używanych danych i nadawania wag, a następnie przy pomocy najskuteczniejszych modeli dokonano predykcji wyników trwającego sezonu 2018/2019. 
+ Celem pracy inżynierskiej jest próba przewidzenia rezultatów wybranego sezonu ligi NBA przy pomocy prostego modelu, używając wyłącznie informacji o wynikach poszczególnych drużyn z poprzednich sezonów --- indywidualny wpływ graczy na przebieg spotkań nie jest rozpatrywany. Na potrzeby tego zadania zaprojektowano kilka algorytmów opierających się na metodzie bootstrap, sprawdzono ich skuteczność dla kilku wybranych sezonów w zależności od okresu używanych danych i nadanych wag, a następnie przy pomocy najskuteczniejszych modeli dokonano predykcji wyników trwającego sezonu 2018/2019. 
 
 
 
 \chapter{Opis ligi NBA}\label{rodzial1}
-National Basketball Association (NBA) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of America i składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła rywalizującą National Basketball League. Kolejna fuzja miała miejsce w 1976 roku, a mianowicie wchłonięcie połączenie z bardziej widowiskową American Basketball Association ocaliło ją od bankructwa i stagnacji. Po tym wydarzeniu NBA zyskała na atrakcyjności --- z ABA zaczerpnięto pomysły rzutów za trzy punkty i organizacji konkursu wsadów, jak i przyjęto cztery dodatkowe organizacje. \cite{history} Od 2004 roku w lidze gra 30 zespołów, 29 ze Stanów Zjednoczonych i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 organizacji. Szczegółowy podział konferencje i dywizje, oraz nazwy wszystkich drużyn zawarte zostały w Tabelach \ref{tabela_wschod} i \ref{tabela_zachod}, natomiast dokładne rozmieszczenie na mapie kontynentu znajduje się na Rysunku \ref{mapa_stany}.\cite{mapa}
+NBA (National Basketball Association) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of America i składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła konkurencyjną National Basketball League. Kolejna fuzja z inną ligą miała miejsce w 1976 roku, a mianowicie połączenie z bardziej widowiskową American Basketball Association. Po tym wydarzeniu NBA znacznie zyskała na atrakcyjności --- z ABA zaczerpnięto pomysł rzutów za trzy punkty oraz organizację konkursu wsadów, jak i przyjęto cztery dodatkowe kluby. \cite{history} Od 2004 roku w lidze gra 30 zespołów, 29 ze Stanów Zjednoczonych i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 organizacji. Szczegółowy podział na konferencje i dywizje, oraz nazwy wszystkich drużyn zawarte zostały w Tabelach \ref{tabela_wschod} i \ref{tabela_zachod}, natomiast dokładne rozmieszczenie na mapie kontynentu znajduje się na Rysunku \ref{mapa_stany}.\cite{mapa}
 
 \begin{figure}[t]
 	\includegraphics[width=16cm]{conf_map.pdf}
@@ -113,12 +113,12 @@ Dodatkowo, od 2004 roku niektóre kluby zmieniły swoje nazwy lub lokalizacje. W
 
 Sezon w NBA składa się z dwóch części: zasadniczej i następującej po niej pucharowej (playoffs). W sezonie zasadniczym każda drużyna rozgrywa 82 mecze, grając z każdym innym zespołem od 2 do 4 gier. Przykładowa tabela z wynikami na zakończenie sezonu została zawarta w Tabeli \ref{tabela_wygrane_rzeczywiste}. Terminarz rozgrywek wyznaczany jest wedle następujących reguł:
 \begin{enumerate}
-	\item drużyny z różnych konferencji grają ze sobą 2 spotkania (1 na wyjedzie i 1 na własnym boisku),
-	\item drużyny z tej samej dywizji grają ze sobą 4 spotkania (2 na wyjedzie i 2 na własnym boisku),
-	\item drużyny z tej samej konferencji oraz różnych dywizji grają ze sobą 3 albo 4 spotkania (przynajmniej po jednym na wyjedzie i własnym boisku).
+	\item drużyny z różnych konferencji grają ze sobą 2 spotkania (1 na wyjeździe i 1 na własnym boisku),
+	\item drużyny z tej samej dywizji grają ze sobą 4 spotkania (2 na wyjeździe i 2 na własnym boisku),
+	\item drużyny z tej samej konferencji oraz różnych dywizji grają ze sobą 3 albo 4 spotkania (przynajmniej po jednym na wyjeździe i własnym boisku).
 \end{enumerate}
 Mecze koszykówki nie mogą zakończyć się remisem (w razie remisu po regulaminowym czasie gry rozgrywa się dogrywki aż do wyłonienia zwycięzcy).
-Po zakończeniu sezonu następuje wspomniana wyżej faza pucharowa; wchodzi do niej po 8 najlepszych zespołów z każdej konferencji (w razie takiej samej ilości zwycięstw dla obu zespołów decydują mecze bezpośrednie pomiędzy nimi). W tej fazie drużyny grają ze sobą maksymalnie 7 meczów, czyli zespół, który pierwszy wygra 4 mecze, przechodzi do następnego etapu. W fazie Playoff jasno zdefiniowane są lokalizacje odgrywania spotkań --- lepszy bilans zwycięstw w sezonie zasadniczym skutkuje przewagą parkietu. Seria spotkań grana jest w formacie 2–2–1–1–1, czyli mecze numer 1, 2, 5 i 7 grane są u lepszej z drużyn. Przy doborze przeciwników w tej fazie bierze się pod uwagę pozycję w tabeli konferencji: drużyna z miejsca pierwszego gra z zespołem o ósmym bilansie w danej konferencji, druga z siódmą, i tak dalej. Zwycięzca serii przechodzi do następnego etapu z czterema drużynami, po którym następują finały konferencji --- najlepsze drużyny ze swoich konferencji spotykają się w finałach NBA. Dla lepszego zrozumienia systemu rozgrywek pucharowych na Rysunku \ref{po_tree} zamieszczono tzw. ,,drzewko Playoff''\cite{playoffs}, czyli grafikę oddającą przebieg tej fazy.
+Po zakończeniu sezonu następuje wspomniana wyżej faza pucharowa; wchodzi do niej po 8 najlepszych zespołów z każdej konferencji (w razie takiej samej ilości zwycięstw dla obu zespołów decydują wyniki ich bezpośrednich spotkań). W tej fazie drużyny grają ze sobą maksymalnie 7 meczów, czyli zespół, który pierwszy wygra 4 mecze, przechodzi do następnego etapu. W fazie Playoff jasno zdefiniowane są lokalizacje odgrywania spotkań --- lepszy bilans zwycięstw w sezonie zasadniczym skutkuje przewagą parkietu. Seria spotkań grana jest w formacie 2–2–1–1–1, czyli mecze numer 1, 2, 5 i 7 grane są u lepszej z drużyn. Przy doborze przeciwników bierze się pod uwagę pozycję w tabeli konferencji: drużyna z miejsca pierwszego gra z zespołem na ósmym miejscu, druga z siódmą, i tak dalej. Zwycięzca serii przechodzi do następnego etapu z czterema drużynami, po którym następują finały konferencji --- najlepsze drużyny ze swoich grup spotykają się w finałach NBA. Dla lepszego zrozumienia systemu rozgrywek pucharowych na Rysunku \ref{po_tree} zamieszczono tzw. ,,drzewko Playoff''\cite{playoffs}, czyli grafikę oddającą przebieg tej fazy.
 \begin{figure}[t]
 	\includegraphics[width=16cm]{po_tree.pdf}
 	\caption{Drzewko Playoff}\label{po_tree}
@@ -162,7 +162,8 @@ Po zakończeniu sezonu następuje wspomniana wyżej faza pucharowa; wchodzi do n
 \end{tabular}
 \caption{Liczby zwycięstw drużyn w wybranych sezonach}\label{tabela_wygrane_rzeczywiste}	
 \end{table}
-Każdego lata, po zakończeniu fazy Playoff, ma miejsce nabór młodych zawodników do NBA. Jest to okazja dla graczy uniwersyteckich (Draft), którzy chcieliby rozpocząć karierę zawodową, lub zawodników grających w innych ligach. Zasady Draftu są proste: każdy sportowiec może się do niego zgłosić tylko raz, oraz aby móc zagrać w lidze trzeba do niego obowiązkowo przystąpić --- jest to świetny sposób na balansowanie NBA, ponieważ najlepsze zespoły mają najmniejsze szanse na otrzymanie praw do dobrych, młodych zawodników. Nabór nagradza najsłabsze zespoły, ponieważ zespół z najgorszym wynikiem w sezonie zasadniczym ma największe szanse na otrzymanie pierwszego wyboru, drugi najgorszy zespół ma drugie największe szanse, i tak dalej. Kolejność wyborów jest ustalana poprzez losowanie, dlatego często w historii zdarzało się, że najsłabszy zespół nie uzyskał pierwszeństwa. Niestety, coraz częstszym zjawiskiem w NBA staje się tak zwane ,,tankowanie'', czyli celowe przegrywanie w celu uzyskania najwyższego możliwie wyboru w Drafcie. Zespoły na poziomie średniej ligowej, mając świadomość, że nie są w stanie walczyć o wysokie cele, decydują się na wejście w przebudowę i kilkuletnie poświęcanie zwycięstw na rzecz rozwoju młodzieży. Podczas porównywania wyników symulacji z rzeczywistymi w tej pracy, wielokrotnie można było zauważyć, które zespoły skupiły się na walce o młodych zawodników, a które o tytuły --- najlepszym wskaźnikiem tego jest liczba wygranych.
+\\
+\hspace*{6mm}Każdego lata, po zakończeniu fazy Playoff, ma miejsce nabór młodych zawodników do NBA (tzw. Draft). Jest to okazja dla graczy uniwersyteckich, którzy chcieliby rozpocząć karierę zawodową, lub zawodników grających w innych ligach. Zasady Draftu są proste: każdy sportowiec może się do niego zgłosić tylko raz, oraz aby móc zagrać w lidze trzeba do niego obowiązkowo przystąpić --- jest to świetny sposób na utrzymanie balansu w NBA, ponieważ najlepsze zespoły mają najmniejsze szanse na otrzymanie praw do utalentowanych, młodych zawodników. Nabór nagradza najsłabsze kluby, ponieważ zespół z najgorszym wynikiem w sezonie zasadniczym ma największe szanse na otrzymanie pierwszego wyboru, druga najgorsza drużyna ma drugie największe szanse, i tak dalej. Kolejność wyborów jest ustalana poprzez losowanie, dlatego często w historii zdarzało się, że najsłabszy zespół nie uzyskał pierwszeństwa. Niestety, coraz częstszym zjawiskiem w NBA staje się tak zwane ,,tankowanie'', czyli celowe przegrywanie w celu uzyskania najwyższego możliwie wyboru w Drafcie. Zespoły na poziomie średniej ligowej, mając świadomość, że nie są w stanie walczyć o wysokie cele, decydują się na wejście w przebudowę i kilkuletnie poświęcanie zwycięstw na rzecz rozwoju młodzieży. Podczas porównywania wyników symulacji z rzeczywistymi w tej pracy, wielokrotnie można było zauważyć, które zespoły skupiły się na walce o młodych zawodników, a które o tytuły --- najlepszym wskaźnikiem tego jest liczba wygranych.
 
 \chapter{Teoria wykorzystana w pracy}
 
@@ -186,7 +187,7 @@ Funkcja charakterystyczna tego rozkładu wyrażana jest wzorem
 W przypadku, gdy zmienna losowa $X$ posiada ciągłą dystrybuantę $F(x)$, to $U=F(x)$ ma rozkład $\mathcal{U}(0,1).$ \cite{magiera}
 
 \section{Generatory liczb pseudolosowych rozkładu jednostajnego} %(str 427)
-Załóżmy, że $F$ to dystrybuanta rozkładu normalnego $\mathcal{U}(0,1)$. \cite{koronacki}  Podczas generowania ciągu zbliżonego do realizacji rozkładu jednostajnego zazwyczaj stosuje się następującą metodę: wybierzmy funkcję $G$ określoną i mająca wartości na odcinku $[0,1]$, o wartości początkowej $u_0 \in [0,1]$, i zdefiniujmy
+Załóżmy, że $F$ to dystrybuanta rozkładu jednostajnego $\mathcal{U}(0,1)$. \cite{koronacki}  Podczas generowania ciągu zbliżonego do realizacji rozkładu jednostajnego zazwyczaj stosuje się następującą metodę: wybierzmy funkcję $G$ określoną i mającą wartości na odcinku $[0,1]$, o wartości początkowej $u_0 \in [0,1]$, i zdefiniujmy
 \begin{equation}
 	u_1=G(u_0), \,\, u_2=G(u_1), \,\, \dots, \,\,u_i=G(u_{i-1}), \,\, i=1,\,2,\,\dots 
 \end{equation}
@@ -196,7 +197,7 @@ Znając postać funkcji $G$ i początkową wartość $u_0$ możliwe jest ponowne
 \end{definition}
 
 \section{Metoda Monte Carlo}
-Załóżmy, że $\theta$ to parametr zmiennej losowej $X$ oraz można go przedstawić jako $\theta=Eh(X)$, przy czym $h$ to pewna znana funkcja, dodatkowym założeniem jest, że można wygenerować próbę o rozkładzie $X$. \cite{monte}
+Załóżmy, że $\theta$ to parametr zmiennej losowej $X$ oraz można go przedstawić jako $\theta=Eh(X)$, przy czym $h$ to pewna znana funkcja, dodatkowym założeniem jest to, że można wygenerować próbę o rozkładzie $X$. \cite{monte}
 \begin{definition}
 	Niech $X_1,X_2,\dots,X_m$ będzie próbą pseudolosową pewnego rozkładu $X$ dla pewnego $m$. Średnia $\bar{h}=m^{-1}(h(X_1)+h(X_2)+\dots +h(X_m))$ nazywana jest \textbf{estymatorem $Eh(X)=\theta$ wyznaczonym metodą Monte Carlo}.
 \end{definition}
@@ -231,7 +232,7 @@ Otrzymany w ten sposób rozkład $(\Theta_1^*, \Theta_2^*, \dots, \Theta_k^*)$ t
 
 \subsection{Bootstrap parametryczny}
 Założenia bootstrapu parametrycznego są podobne do bootstrapu klasycznego --- jedyną różnicą jest fakt, że zamiast symulowania niezależnych prób bootstrapowych z dystrybuanty empirycznej, generowane są niezależne próby z rozkładu pewnego parametrycznego modelu. \cite{efron2}
-W tym przypadku do danych dopasowany jest pewien model teoretyczny (często przy pomocy metody największej wiarygodności), a próby liczb losowych generowane są z owego dopasowanego modelu. Proces symulowania tak zdefiniowanej proby przebiega podobnie do innych procesów bootstrapowych, przy czym wielkość takiej próby zazwyczaj odpowiada rozmiarowi oryginalnego zbioru danych. Prowadzi to do następującej definicji:
+W tym przypadku do danych dopasowany jest pewien model teoretyczny (często przy pomocy metody największej wiarygodności), a próby liczb losowych generowane są z owego dopasowanego modelu. Proces symulowania tak zdefiniowanej próby przebiega podobnie do innych procesów bootstrapowych, przy czym wielkość takiej próby zazwyczaj odpowiada rozmiarowi oryginalnego zbioru danych. Prowadzi to do następującej definicji:
 \begin{definition}
 	Próbę bootstrap, której nieznany rozkład $F$ można przybliżyć pewnym znanym rozkładem parametrycznym $\hat{F}$ nazywamy \textbf{parametryczną próbą bootstrap}. 
 \end{definition}
@@ -243,7 +244,7 @@ Dane, które będą wykorzystywane do symulacji sezonu, tak jak i terminarze, zo
 Na potrzeby tej pracy zebrano wyniki starć pomiędzy drużynami począwszy od sezonu 2004/2005 aż do 2017/2018. Początkowo symulowano rozgrywki sezonów 2014/2015 oraz 2017/2018 w celu wybrania najlepszego modelu, a następnie skorzystano z niego, aby przewidzieć wyniki rozgrywek we wciąż trwającym sezonie 2018/2019.
 Posiadając ilość wygranych jednej drużyny z drugą na przestrzeni lat dokonano następujących transformacji danych:
 \\
-W zależności od interwału czasowego, jaki będziemy rozpatrywać, zebrano wyniki w określonych rozgrywkach (na przykład, przy wyznaczaniu wyników sezony 2014/2015 i interwale 5 lat, używać będziemy danych z lat 2009 do 2014). Dzięki uzyskanej w ten sposób liczbie wygranych możemy wyznaczyć stosunek zwycięstw do porażek dla wybranych zespołów (przykład: Boston Celtics i Atlanta Hawks grały ze sobą 10 razy, Jastrzębie wygrały zaledwie 4 razy, dlatego też w starciu z Celtami ich szansa na wygraną wynosi $0.4$). Po zastosowaniu tej metody dla wszystkich zespołów uzyskano macierz o liczbie wierszy i kolumn odpowiadającej ilości drużyn w NBA, zawierającą prawdopodobieństwa na wygraną z każdym zespołem w lidze. Przykładowa postać danych zawarta została w Tabeli \ref{dane_tabela}.
+\hspace*{6mm}W zależności od interwału czasowego, jaki będziemy rozpatrywać, zebrano wyniki w określonych rozgrywkach (na przykład, przy wyznaczaniu wyników sezonu 2014/2015 i interwale 5 lat, używać będziemy danych z lat 2009 do 2014). Dzięki uzyskanej w ten sposób liczbie wygranych możemy wyznaczyć stosunek zwycięstw do porażek dla wybranych zespołów (przykład: Boston Celtics i Atlanta Hawks grały ze sobą 10 razy, druga z drużyn wygrała zaledwie 4 razy, dlatego też w starciu z Celtami ich szansa na wygraną wynosi $0.4$). Po zastosowaniu tej metody dla wszystkich zespołów uzyskano macierz o liczbie wierszy i kolumn odpowiadającej ilości drużyn w NBA, zawierającą prawdopodobieństwa na wygraną z każdym zespołem w lidze. Przykładowa postać danych zawarta została w Tabeli \ref{dane_tabela}.
 \begin{table}[]
 	\centering
 	\begin{tabular}{|c|c|c|c|}
@@ -256,22 +257,22 @@ W zależności od interwału czasowego, jaki będziemy rozpatrywać, zebrano wyn
 	\caption{Przykładowa tabela z danymi}\label{dane_tabela}	
 \end{table}
 
-Ze względu na formę użytych danych nie ma znaczenia, czy podczas symulacji wykorzystywany będzie bootstrap klasyczny lub parametryczny. Używanie pierwszego polegałoby na losowaniu ze zwracaniem wyników (zwycięstwo lub porażka) z danych historycznych --- jest to jednoznaczne z wyliczeniem prawdopodobieństwa wygranej w oparciu o historię i symulowanie rozkładu dwupunktowego.
+Ze względu na formę użytych danych nie ma znaczenia, czy podczas symulacji wykorzystywany będzie bootstrap klasyczny lub parametryczny. Używanie pierwszego polegałoby na losowaniu ze zwracaniem wyników (zwycięstwo lub porażka) z danych historycznych --- jest to jednoznaczne z wyliczeniem prawdopodobieństwa wygranej w oparciu o historię i symulowaniu rozkładu dwupunktowego.
 
 \section{Własne oznaczenia} \label{wlasne_oznaczenia}
 Podczas prób symulacji dokonano intuicyjnego założenia, wedle którego największy wpływ na postawę sezonu mają rozgrywki bezpośrednio go poprzedzające. W tym celu dobrano system wag --- z powodu dynamicznych zmian w lidze, najstarsze sezony otrzymują najmniejszą rangę, która stopniowo zwiększa się, im bliżej do zawodów rozpatrywanych w symulacji. Ważona ilość zwycięstw $Z_{ij}$ $i-$tej drużyny $D_i$ z $j-$tą drużyną $D_j$ wynosi
 \begin{equation}
 	Z_{ij} = \sum_{k=1}^{n} (1+x\cdot k)\cdot R_{ijk}, 
 \end{equation}
-gdzie $n$ to ilość sezonów, z których zaciągamy dane, $x$ ustalona waga kolejnych rozgrywek, a $R_{ijk}$ to wynik starć drużyny $D_i$ z drużyną $D_j$ w $k-$tym sezonie. Podczas testowania skuteczności modeli dobierano różne wagi w celu znalezienia tego zwracającego najlepsze predykcje. W trakcie symulacji program przechodzi przez dokładnie określony terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w Rozdziale \ref{rodzial1}. 
+gdzie $n$ to ilość sezonów, z których pobrano dane, $x$ to ustalona waga kolejnych rozgrywek, a $R_{ijk}$ to wynik starć drużyny $D_i$ z drużyną $D_j$ w $k-$tym sezonie. Podczas testowania skuteczności modeli dobierano różne wagi w celu znalezienia tego zwracającego najlepsze predykcje. W trakcie symulacji program przechodzi przez dokładnie określony terminarz rozgrywek --- drużyna gra z przeciwnikiem tyle razy, ile spotkań wyznaczono w rozkładzie. Algorytmy losowania opisano szczegółowo w Rozdziale \ref{rodzial1}. 
 Na potrzeby testów mających na celu wyłonienie najlepszego modelu zdefiniowano współczynnik $G$ równy
 \begin{equation}\label{wskaznik_g}
 	G = \sum_{i=1}^{n}|\hat{\Theta_i} - \Theta_i|,
 \end{equation}
-gdzie $n$ to ilość drużyn (obecnie 30), $\hat{\Theta_i}$ to wartość estymowana przy pomocy próby bootstrap dla $i$-tej drużyny, a $\Theta_i$ to jej rzeczywisty wynik w porównywanym sezonie. Wartość $G$ to bezwzględna suma błędów modelu, a więc im jest ona mniejsza, tym lepszego dokonano dopasowania. 
+gdzie $n$ to ilość drużyn (obecnie 30), $\hat{\Theta_i}$ to wartość estymowana przy pomocy próby bootstrap dla $i$-tej drużyny, a $\Theta_i$ to jej rzeczywisty wynik w porównywanym sezonie. Wartość $G$ to bezwzględna suma błędów modelu, a więc im jest ona mniejsza, tym lepsze jest dopasowanie. 
 
 \section{Modele symulacji rozgrywek}
-Zaproponowane w tym rozdziale modele opierają się na zasadzie bootstrapu parametrycznego. Podchodząc do symulacji znane są prawdopodobieństwa poszczególnych drużyn na wygraną, co pozwala na przybliżenie rozkładu teoretycznego danego sezonu. 
+Zaproponowane w tym rozdziale modele opierają się na zasadzie bootstrapu parametrycznego. Przed rozpoczęciem symulacji znane są prawdopodobieństwa poszczególnych drużyn na wygraną, co pozwala na przybliżenie rozkładu teoretycznego danego sezonu. 
 
 \subsection{Model I --- uśredniony}
 Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięstw do porażek dla każdej drużyny w wybranym okresie --- wszystkie wygrane zespołu zostają podzielone przez łączną liczbę rozegranych spotkań, wynikiem czego jest liczba z przedziału $[0,1]$ określana jako $P_{i}$, gdzie $i$ to $i-$ta drużyna. Schemat symulowania wyników spotkań między drużynami został szczegółowo opisany w Algorytmie \ref{algorytm1} i Pseudokodzie \ref{pseudokod1}.
@@ -324,7 +325,7 @@ Pierwszy ze stworzonych modeli polega na obliczeniu ogólnego stosunku zwycięst
 \end{pseudokod}
 
 \subsection{Model II --- rywalizacji}
-Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki przeciwko konkretnej drużynie. W zawodowym sporcie niejednokrotnie można trafić na zażarte rywalizacje między dwoma klubami lub zwykłą łatwość w pokonaniu szczególnego przeciwnika. Schemat symulowania wyników przy wykorzystaniu tego modelu został szczegółowo opisany w Algorytmie \ref{algorytm2} i Pseudokodzie \ref{pseudokod2}.
+Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki przeciwko konkretnej drużynie. W zawodowym sporcie niejednokrotnie można trafić na zażarte rywalizacje między dwoma klubami lub tendencję do wygrywania z pewnym przeciwnikiem. Schemat symulowania wyników przy wykorzystaniu tego modelu został szczegółowo opisany w Algorytmie \ref{algorytm2} i Pseudokodzie \ref{pseudokod2}.
 
 \begin{algorytm} \label{algorytm2}
 	\textbf{Model rywalizacji}
@@ -335,7 +336,7 @@ Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki pr
 			\item dla $j=i$, $j=i+1$, \dots, $j=30$: 
 			\begin{enumerate}
 				\item znajdź drużyny $D_i$ i $D_j$
-				\item odczytaj z macierzy wyników stosunek zwycięstw $W_{ij}=\frac{Z_{ij}}{Z_{ij}+Z_{ji}}$ drużyny $D_i$ przeciw drużynie $D_j$   
+				\item odczytaj z macierzy wyników stosunek zwycięstw $W_{ij}=\frac{Z_{ij}}{Z_{ij}+Z_{ji}}$ drużyny $D_i$ przeciwko drużynie $D_j$   
 				\item w terminarzu znajdź liczbę spotkań $S_{ij}$ pomiędzy drużynami $D_i$ i $D_j$
 				\item wykonaj $S_{ij}$ razy:
 				\begin{enumerate}
@@ -373,7 +374,7 @@ Drugi z zaproponowanych modeli zakłada zwracanie uwagi na historyczne wyniki pr
 \end{pseudokod}
 
 \subsection{Model III --- fazy pucharowej}
-Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każdej konferencji przechodzi do fazy Playoff, gdzie toczy rozgrywki zgodnie z systemem opisanym w Rozdziale \ref{rodzial1}. Na tym etapie rozgrywek symulacja spotkań różni się od części zasadniczej: zamiast jednego z zasugerowanych wcześniej modeli korzysta się ze wcześniejszej symulacji fazy zasadniczej. W celu oddania trendów panujących w wygenerowanych rozgrywkach (a mianowicie potencjalnych kontuzjach, spadkach lub zwyżkach formy), użyta zostaje jedynie informacja o ilości wygranych przed rozpoczęciem Playoffów. Szczegółowy opis symulacji tej fazy został opisany w Algorytmie \ref{algorytm3} i Pseudokodzie \ref{pseudokod3}.
+Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każdej konferencji przechodzi do fazy Playoff, gdzie toczy rozgrywki zgodnie z systemem opisanym w Rozdziale \ref{rodzial1}. Na tym etapie rozgrywek symulacja spotkań różni się od części zasadniczej: zamiast jednego z zasugerowanych powyżej modeli korzysta się ze wcześniejszej symulacji fazy zasadniczej. W celu oddania trendów panujących w wygenerowanych rozgrywkach (potencjalnych kontuzjach, spadkach lub zwyżkach formy), użyta zostaje jedynie informacja o ilości wygranych przed rozpoczęciem Playoffów. Szczegółowy opis symulacji tej fazy został opisany w Algorytmie \ref{algorytm3} i Pseudokodzie \ref{pseudokod3}.
 
 \begin{algorytm} \label{algorytm3}
 	\textbf{Model Playoff}
@@ -382,7 +383,7 @@ Po symulacji całego sezonu, czyli 1230 spotkań, 8 najlepszych drużyn z każde
 		\item wstaw liczniki zwycięstw $ZW_i=0$ i $ZW_j=0$
 		\item odczytaj symulowane ilości zwycięstw z sezonu zasadniczego $B_i$ i $B_j$ dla wybranych drużyn $D_i$ i $D_j$
 		\item wyznacz prawdopodobieństwo zwycięstwa drużyny $D_i$ nad drużyną $D_j$ równe $W_{ij}=\frac{B_i}{B_i + B_j}$
-		\item powtarzaj dopóki  $ZW_i=4$ albo $ZW_j=4$
+		\item powtarzaj dopóki  $ZW_i=4$ albo $ZW_j=4$:
 		\begin{enumerate}
 			\item symuluj liczbę $U$ z rozkładu jednostajnego $U\sim U[0,1]$ 
 			\item jeżeli $W_{ij} \leq U,$ wstaw $ZW_i=ZW_i+1$, w przeciwnym razie wstaw $ZW_j=ZW_j+1$
@@ -418,10 +419,10 @@ Ilości zwycięstw drużyn w kolejnych symulowanych rozgrywkach są zapisywane i
 
 \section{Predykcja wyników na podstawie symulacji}
 Korzystając z metod bootstrapowych zaproponowano kilka modeli pozwalających na oszacowanie przebiegu rozgrywek w analizowanym sezonie.
-Przed korzystaniem z opisanych poniżej modeli przeprowadzono symulację opartą na algorytmach zdefiniowanych w Rozdziale \ref{rodzial_algorytmy}, dzięki czemu do symulacji podchodzono z przygotowanymi wcześniej danymi.
+Przed korzystaniem z opisanych poniżej schematów przeprowadzono symulację opartą na algorytmach zdefiniowanych w Rozdziale \ref{rodzial_algorytmy}, dzięki czemu do symulacji podchodzono z przygotowanymi wcześniej danymi.
 
 \subsection{Predykcja wyników sezonu zasadniczego} \label{predykcja_zasadniczego}
-Sezon zasadniczy odgrywa bardzo ważną rolę w rozgrywkach NBA --- w trakcie jego trwania drużyny toczą walkę o najlepsze miejsca w fazie pucharowej, sprawdzają swoje siły w trakcie gier z potencjalnymi rywalami w Playoff, a także wzmacniają swoje drużyny poprzez rotację zawodnikami. Podczas przejść symulacji zapisywano łączną liczbę wygranych każdego zespołu, dzięki czemu otrzymano rozkłady zwycięstw wszystkich składów. Po przeanalizowaniu rozkładów zauważono, że mediany i wartości średnie nie różnią się znacznie od siebie, dlatego w dalszych rozważaniach jako przyszłą liczbę wygranych zespołu w sezonie zasadniczym przyjmuje się medianę rozkładu zwycięstw w symulacji. Wyniki porównania zawarto w Tabeli \ref{srednie_mediany}. Dodatkowo, zbadano normalność rozkładów zwycięstw wszystkich drużyn. Niestety, pomimo kształtu gęstości zbliżonego do normalnego, wszystkie testy statystyczne odrzuciły hipotezę o rozkładzie normalnym.
+Sezon zasadniczy odgrywa bardzo ważną rolę w rozgrywkach NBA --- w trakcie jego trwania drużyny toczą walkę o najlepsze miejsca w fazie pucharowej, sprawdzają swoje siły w trakcie gier z potencjalnymi rywalami w Playoff, a także wzmacniają swoje drużyny poprzez rotację zawodników. Podczas przejść symulacji zapisywano łączną liczbę wygranych każdego zespołu, dzięki czemu otrzymano rozkłady zwycięstw wszystkich składów. Po przeanalizowaniu rozkładów zauważono, że mediany i wartości średnie nie różnią się znacznie od siebie, dlatego w dalszych rozważaniach jako przyszłą liczbę wygranych zespołu w sezonie zasadniczym przyjmuje się medianę rozkładu zwycięstw w symulacji. Wyniki porównania zawarto w Tabeli \ref{srednie_mediany}. Dodatkowo zbadano normalność rozkładów zwycięstw wszystkich drużyn. Niestety, pomimo kształtu gęstości zbliżonego do normalnego, wszystkie testy statystyczne odrzuciły hipotezę o rozkładzie normalnym.
 \begin{table}[]
 	\centering
 	\begin{tabular}{|c|c|c|}
@@ -460,14 +461,14 @@ Sezon zasadniczy odgrywa bardzo ważną rolę w rozgrywkach NBA --- w trakcie je
 \caption{Porównanie średnich i median wygranych spotkań w symulacji}\label{srednie_mediany}	
 \end{table}
 \subsection{Modele predykcji wyników fazy pucharowej}\label{modele_palyoff}
-Rozgrywki Playoff są niezwykle trudne do przewidzenia --- niejednokrotnie zdarzyło się już, że faworyci zostali pokonani przez znacznie niżej notowanego przeciwnika (najlepszy przykład to seria DAL-GSW w 2007 roku, kiedy Dallas Mavericks kończąc sezon z najlepszym bilansem zwycięstw w lidze, przegrali pierwszą rundę w 6 meczach z ósmą drużną konferencji).
+Rozgrywki Playoff są niezwykle trudne do przewidzenia --- niejednokrotnie zdarzyło się, że faworyci zostali pokonani przez znacznie niżej notowanego przeciwnika (najlepszy przykład to seria DAL-GSW w 2007 roku, kiedy Dallas Mavericks kończąc sezon z najlepszym bilansem zwycięstw w lidze, przegrali pierwszą rundę w 6 meczach z ósmą drużną konferencji).
 Do symulacji tego etapu zaproponowano 2 odmienne od siebie modele, bazujące na innych założeniach.
 
 \subsubsection{Model IV --- Prawdopodobieństwo przejść}
-Model ten polega na oszacowaniu szans poszczególnych drużyn na przejście do wybranych etapów rozgrywek pucharowych. Podczas każdej z symulacji sezonu zbierano informacje o przejściach zespołów do kolejnych faz Playoff. W ten sposób estymowano prawdopodobieństwa przejść do odpowiednio Pierwszej Rundy, Drugiej Rundy, Finałów Konferencji oraz Finałów. Według zaproponowanego schematu do kolejnych etapów awansują zespoły z największą ilością przejść, a więc największym prawdopodobieństwem awansu. Do Rundy Pierwszej każdej konferencji dostanie się 8 drużyn najczęściej zakwalifikowanych do Rundy Pierwszej w symulacjach, do Drugiej 4 zespoły o największym prawdopodobieństwie przejścia do drugiego etapu, kolejne etapy wyznaczane są analogicznie. 
+Model ten polega na oszacowaniu szans poszczególnych drużyn na przejście do wybranych etapów rozgrywek pucharowych. Podczas każdej z symulacji sezonu zbierano informacje o przejściach zespołów do kolejnych faz Playoff. W ten sposób estymowano prawdopodobieństwa przejść do odpowiednio pierwszej rundy, drugiej rundy, finałów konferencji oraz finałów. Według zaproponowanego schematu do kolejnych etapów awansują zespoły z największą ilością przejść, a więc największym prawdopodobieństwem awansu. Do rundy pierwszej każdej konferencji dostanie się 8 drużyn najczęściej zakwalifikowanych w symulacjach, do drugiej 4 zespoły o największym prawdopodobieństwie przejścia do drugiego etapu, kolejne etapy wyznaczane są analogicznie. 
 
 \subsubsection{Model V --- Najczęstsze kombinacje}
-Drugi z badanych modeli porównuje najczęściej pojawiające się kombinacje zespołów w poszczególnych etapach. Podczas symulacji rozgrywek pucharowych zapisywano listy z drużynami przechodzącymi do kolejnych etapów Playoff, dzięki czemu zachowane zostały również układy, w jakich toczyły się rozgrywki. Innymi słowy, dla Rundy Pierwszej wyszukiwana jest najczęściej pojawiająca się kombinacja zespołów w Pierwszej Rundzie, czynność ta jest powtarzana w kolejnych etapach. Mechanizm ten jest w stanie zwrócić bardzo precyzyjną prognozę, jednak wymaga dużej liczby powtórzeń symulacji do poprawnego działania. 
+Drugi z badanych modeli porównuje najczęściej pojawiające się kombinacje zespołów w poszczególnych etapach. Podczas symulacji rozgrywek pucharowych zapisywano listy z drużynami przechodzącymi do kolejnych etapów Playoff, dzięki czemu zachowane zostały również układy, w jakich toczyły się rozgrywki. Innymi słowy, dla rundy pierwszej wyszukiwana jest najczęściej pojawiająca się kombinacja zespołów w pierwszej rundzie, czynność ta jest powtarzana w kolejnych etapach. Mechanizm ten jest w stanie zwrócić bardzo precyzyjną prognozę, wymaga jednak dużej liczby powtórzeń symulacji do poprawnego działania. 
 
 \chapter{Symulacje}
 \section{Dobór optymalnego modelu}
@@ -480,10 +481,10 @@ Podczas testowania modeli badano zmiany wag poszczególnych sezonów oraz okres 
 		\item dla sezonu 2017/2018 wykorzystywano dane z lat 2012-2017 oraz 2007-2017
 	\end{itemize}
 \end{itemize}
-Wszystkie przeprowadzone w ten sposób symulacje zostały wykonane dla 10000 powtórzeń symulacji bootstrap. 
+Wszystkie przeprowadzone w ten sposób symulacje zostały wykonane dla 10000 powtórzeń próby bootstrap. 
 
 \subsection{Wyniki symulacji dla sezonów zasadniczych}
-Podczas symulowania podstawowej części sezonu jako przewidzianą liczbę wygranych przyjęto medianę rozkładu symulowanych zwycięstw, co zostało opisane w Podrozdziale \ref{predykcja_zasadniczego}. Przy pomocy czynnika $G$ zdefiniowanego w Rozdziale \ref{wskaznik_g} dokonano oceny modeli dla określonych wcześniej parametrów. Dodatkowo, obliczono sumę błędów dla obu symulowanych sezonów, dzięki czemu wybór lepszego modelu będzie ułatwiony. Wyniki symulacji zawarto w Tabeli \ref{tabela_porownianie_modeli}.
+Podczas symulowania podstawowej części sezonu, jako przewidzianą liczbę wygranych przyjęto medianę rozkładu symulowanych zwycięstw, co zostało opisane w Podrozdziale \ref{predykcja_zasadniczego}. Przy pomocy czynnika $G$ zdefiniowanego w Rozdziale \ref{wskaznik_g} dokonano oceny modeli dla określonych wcześniej parametrów. Dodatkowo obliczono sumę błędów dla obu badanych sezonów, co znacznie uprości wybór lepszego modelu. Wyniki symulacji zawarto w Tabeli \ref{tabela_porownianie_modeli}.
 \begin{table}[]
 	\centering
 	\begin{tabular}{|c|c|c|c|}
@@ -504,7 +505,7 @@ Podczas symulowania podstawowej części sezonu jako przewidzianą liczbę wygra
 	\end{tabular}
 	\caption{Współczynnik $G$ jakości dopasowania modelu}\label{tabela_porownianie_modeli}	
 \end{table}
-Jak można zauważyć, najlepsze oceny otrzymał Model I dla danych z 5 lat i wagą $x=1$. Do dalszych rozważań zakwalifikowany został również Model 2 z zebranymi 10 sezonami o wadze $x=0.5$ (okazał być się najlepszy w prognozie drugiego symulowanego sezonu). Pomimo gorszej oceny, korzystne będzie przetestowanie dwóch różnych modeli w następnym etapie.  Po przeanalizowaniu wyników symulacji okazało się, że wyniki dla sezonu 2017/2018 były znacznie lepsze niż dla 2014/2015. Na Rysunkach \ref{m1_5lat_waga1_wschod_17}--\ref{m2_10lat_waga05_zachod_17} zawarto wykresy pudełkowe wygenerowanych rozkładów zwycięstw dla wszystkich drużyn w sezonie 2017/2018 przy użyciu wybranych wcześniej modeli i parametrów. 
+Jak można zauważyć, najlepsze oceny otrzymał Model I dla danych z 5 lat i wagą $x=1$. Do dalszych rozważań zakwalifikowany został również Model 2 z zebranymi 10 sezonami o wadze $x=0.5$ (okazał być się najlepszy w prognozie drugiego symulowanego sezonu). Pomimo gorszej oceny, korzystne będzie przetestowanie dwóch różnych modeli w następnym etapie. Po przeanalizowaniu rezultatów symulacji okazało się, że wyniki dla sezonu 2017/2018 były znacznie lepsze niż dla 2014/2015. Na Rysunkach \ref{m1_5lat_waga1_wschod_17}--\ref{m2_10lat_waga05_zachod_17} zawarto wykresy pudełkowe wygenerowanych rozkładów zwycięstw dla wszystkich drużyn w sezonie 2017/2018 przy użyciu wybranych wcześniej modeli i parametrów. 
 
 \begin{figure}[t]
 	\hspace*{-3cm}  
@@ -539,13 +540,13 @@ Jak można zauważyć, najlepsze oceny otrzymał Model I dla danych z 5 lat i wa
 \end{figure}
 Analizując wykresy pudełkowe można zauważyć, że:
 \begin{itemize}
-	\item liczba dopasowań bardzo dobrych, czyli leżących w przedziale $[Q_1,Q_3]$ jest lepsza dla Modelu II i wynosi 6, podczas gdy dla Modelu I wartość ta jest równa 5. Większość drużyn osiąga wyniki na podobnym poziomie.
-	\item liczba wartości odstających, leżących poza przedziałem $[Q_1-1.5IQR,Q_3+1.5IQR]$ jest większa dla Modelu II, jest równa 8, gdzie dla Modelu I równa się ona 7.
+	\item liczba dopasowań bardzo dobrych, czyli leżących w przedziale $[Q_1,Q_3]$ jest lepsza dla modelu II i wynosi 6, podczas gdy dla modelu I wartość ta jest równa 5. Większość drużyn osiąga wyniki na podobnym poziomie.
+	\item liczba wartości odstających, leżących poza przedziałem $[Q_1-1.5IQR,Q_3+1.5IQR]$ jest większa dla modelu II, jest równa 8, gdzie dla modelu I równa się ona 7.
 \end{itemize}
-Patrząc na te wyniki nie można jednoznacznie odrzucić jednego modelu na korzyść drugiego, dlatego do wybrania najlepszego z nich dokonamy również analizy rozgrywek pucharowych. Ponownie analizując tabelę z wartościami $G$ można zauważyć, że w dla rozgrywek 2017/2018 symulacje były bardziej trafne. Wyraźnie większa dokładność w przypadku późniejszego sezonu wynika z faktu, że od kilku lat obserwuje się te same drużyny w czołówce ligi. Przed 2014 rokiem równowaga została zachwiana przez przejście jednego z najlepszych graczy ligi, LeBrona Jamesa z Miami Heat do Cleveland Cavaliers, jak i rozpowszechnienie przez Golden State Warriors systemu szybkiej gry opartej na rzutach z dystansu. W trakcie lata 2018 roku LeBron ponownie zmienił klub, tym razem na Los Angeles Lakers, co może mieć znaczący wpływ na jakość predykcji trwającego sezonu (drużyny, w których gra pojawiają się w Finałach NBA nieprzerwanie od 2010 roku). 
+Patrząc na te wyniki nie można jednoznacznie odrzucić jednego modelu na korzyść drugiego, dlatego do wybrania najlepszego z nich dokonano również analizy rozgrywek pucharowych. Ponownie analizując tabelę z wartościami $G$ można zauważyć, że w dla rozgrywek 2017/2018 symulacje były bardziej trafne. Wyraźnie większa dokładność w przypadku późniejszego sezonu wynika z faktu, że od kilku lat obserwuje się te same drużyny w czołówce ligi. Przed 2014 rokiem równowaga została zachwiana przez przejście jednego z najlepszych graczy ligi, LeBrona Jamesa z Miami Heat do Cleveland Cavaliers, jak i rozpowszechnienie przez Golden State Warriors systemu szybkiej gry opartej na rzutach z dystansu. W trakcie lata 2018 roku LeBron ponownie zmienił klub, tym razem na Los Angeles Lakers, co może mieć znaczący wpływ na jakość predykcji trwającego sezonu (drużyny, w których gra pojawiają się w Finałach NBA nieprzerwanie od 2010 roku). 
 
 \subsection{Wyniki symulacji dla fazy Playoff}
-Dla wybranych w poprzedniej części modeli i parametrów przeprowadzona została symulacja rozgrywek pucharowych, korzystając z algorytmów zdefiniowanych w Rozdziale \ref{modele_palyoff}. W Tabeli \ref{tabela_playoffs2018} porównano przewidziane na ich podstawie serie wraz z rzeczywistym przebiegiem rozgrywek w 2018 roku. Dla większej przejrzystości dokonano samego porównania przewidzianych serii, trzymając się zasady, wedle której drużyna z lepszym bilansem wypisana jest z prawej strony. 
+Dla wybranych w poprzedniej części modeli i parametrów przeprowadzona została symulacja rozgrywek pucharowych, korzystając z algorytmów zdefiniowanych w Rozdziale \ref{modele_palyoff}. W Tabeli \ref{tabela_playoffs2018} porównano przewidziane na ich podstawie serie wraz z rzeczywistym przebiegiem rozgrywek w 2018 roku. Podczas symulowania tej fazy trzymano się zasady, wedle której drużyna z lepszym bilansem wypisana jest jako pierwsza. 
 
 \begin{table}[]
 	\centering
@@ -648,7 +649,7 @@ Dla wybranych w poprzedniej części modeli i parametrów przeprowadzona został
 	\caption{Przebieg serii Playoff w symulacjach dla 2018 roku}\label{tabela_playoffs2018}
 \end{table}
 
-Po przeanalizowaniu wyników okazało się, że prognozy wynikające z modelu V są całkowicie nietrafne --- kombinacje zespołów w następnych rundach nie pokrywają się z poprzednimi. Podczas predykcji rundy pierwszej wskazał poprawnie 12 z 16 drużyn (wyniki dla sezonu symulowanego modelem I), z czego dla Konferencji Wschodniej błędnie wskazane były aż 3 z 5 organizacji, podczas gdy dla szacowania przebiegu modelu II pomylił się w przypadku 5 drużyn. Przy dalszych rozważaniach model ten został odrzucony --- pomimo porównywalnej dokładności z modelem IV (takie same liczby poprawnie wytypowanych drużyn) jego ogromną wadą jest brak konsekwentności, czego najlepszym przykładem jest przewidziana seria Charlotte-Atlanta w finałach Konferencji Wschodniej (Charlotte nie zostało wytypowane do gry w pierwszej rundzie).
+Po przeanalizowaniu wyników okazało się, że prognozy wynikające z modelu V są całkowicie nietrafne --- kombinacje zespołów w następnych rundach nie pokrywają się z poprzednimi. Podczas predykcji rundy pierwszej wskazał on poprawnie 12 z 16 drużyn (wyniki dla sezonu symulowanego modelem I), z czego dla Konferencji Wschodniej błędnie wyznaczone były aż 3 z 5 organizacji. Dla porównania, podczas szacowania przebiegu modelu II pomylił się w przypadku 5 drużyn. Przy dalszych rozważaniach model ten został odrzucony --- pomimo porównywalnej dokładności z modelem IV (takie same liczby poprawnie wytypowanych drużyn) jego ogromną wadą jest brak konsekwentności, czego najlepszym przykładem jest przewidziana seria Charlotte-Atlanta w finałach Konferencji Wschodniej (Charlotte nie zostało wytypowane do gry w pierwszej rundzie).
  
 Po odrzuceniu jednej z metod predykcji fazy pucharowej zbadano przebieg przewidywanych rozgrywek w oparciu o model IV wykorzystujący dane o sezonach zasadniczych generowanych przy wykorzystaniu modeli dobranych we wcześniejszych rozważaniach. Obydwa modele sprawdzały się podobnie w przypadku rundy pierwszej, jednak od rundy drugiej szacunki zaczęły być znacznie bardziej dokładne:
 \begin{itemize}
