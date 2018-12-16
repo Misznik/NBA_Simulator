@@ -15,7 +15,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{pwr_wmat_praca_dyplomowa}[2018/03/10 Praca dyplomowa]
 \def\@klasa{book}
-\PassOptionsToClass{12pt,a4paper,twoside}{\@klasa}
+\PassOptionsToClass{12pt,a4paper,oneside}{\@klasa}
 \LoadClass{\@klasa}
 
 \RequirePackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm,headheight=50pt]{geometry}
@@ -1533,9 +1533,9 @@ Specjalność: \@specjalnosc\\
 \StrLen{\@tytul}[\tytuldlugosc]
 \ifthenelse{\tytuldlugosc > \dlugoscmaxg}{
 	\large
-    \textbf{\MakeUppercase{\@tytul}}\\
+    \textbf{\@tytul}\\
 }{
-	\Large\textbf{\MakeUppercase{\@tytul}}\\
+	\Large\textbf{\@tytul}\\
 }
 \vspace{0.6cm plus .2fill}
 \large \@autor
@@ -1679,9 +1679,9 @@ Specialty: \@specjalnoscang
 \StrLen{\@tytulang}[\tytulangdlugosc]
 \ifthenelse{\tytulangdlugosc > \dlugoscmaxg}{
 	\large
-    \textbf{\MakeUppercase{\@tytulang}}\\
+    \textbf{\@tytulang}\\
 }{
-	\Large\textbf{\MakeUppercase{\@tytulang}}\\
+	\Large\textbf{\@tytulang}\\
 }
 \vspace{0.6cm plus .2fill}
 \large \@autor
