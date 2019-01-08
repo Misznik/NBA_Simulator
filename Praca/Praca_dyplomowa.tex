@@ -59,7 +59,7 @@ Dzięki powszechnemu dostępowi do internetu i rozpowszechnieniu kultury masowej
 
 
 \chapter{Opis ligi NBA}\label{rodzial1}
-NBA (National Basketball Association) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of America i składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła konkurencyjną National Basketball League. Kolejna fuzja z inną ligą miała miejsce w 1976 roku, a mianowicie połączenie z bardziej widowiskową American Basketball Association. Po tym wydarzeniu NBA znacznie zyskała na atrakcyjności --- z ABA zaczerpnięto pomysł rzutów za trzy punkty oraz organizację konkursu wsadów, jak i przyjęto cztery dodatkowe kluby\cite{history}. Od 2004 roku w lidze gra 30 zespołów, 29 ze Stanów Zjednoczonych i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 organizacji. Szczegółowy podział na konferencje i dywizje, oraz nazwy wszystkich drużyn zawarte zostały w tabelach \ref{tabela_wschod} i \ref{tabela_zachod}, natomiast dokładne rozmieszczenie na mapie kontynentu znajduje się na rysunku \ref{mapa_stany}\cite{mapa}.
+NBA (National Basketball Association) została założona 6 czerwca 1946 roku. Pierwotnie była znana jako Basketball Association of America i składała się z 11 zespołów, a swoją obecną nazwę zyskała w roku 1949, kiedy to wchłonęła konkurencyjną National Basketball League. Kolejna fuzja z inną ligą miała miejsce w 1976 roku, a mianowicie połączenie z bardziej widowiskową American Basketball Association. Po tym wydarzeniu NBA znacznie zyskała na atrakcyjności --- z ABA zaczerpnięto pomysł rzutów za trzy punkty oraz organizację konkursu wsadów, jak i przyjęto cztery dodatkowe kluby \cite{history}. Od 2004 roku w lidze gra 30 zespołów, 29 ze Stanów Zjednoczonych i 1 z Kanady. Liga podzielona jest na dwie konferencje po 15 drużyn, te natomiast składają się z dywizji po 5 organizacji. Szczegółowy podział na konferencje i dywizje, oraz nazwy wszystkich drużyn zawarte zostały w tabelach \ref{tabela_wschod} i \ref{tabela_zachod}, natomiast dokładne rozmieszczenie na mapie kontynentu znajduje się na rysunku \ref{mapa_stany} \cite{mapa}.
 
 \begin{figure}[t]
 	\includegraphics[width=16cm]{conf_map.pdf}
@@ -250,8 +250,7 @@ W tym przypadku do danych dopasowany jest pewien model teoretyczny (często przy
 W tej części pracy zawarto opis danych i procesu ich przygotowania, wprowadzono używane dalej oznaczenia oraz współczynniki, a także zaproponowano modele do przewidywania wyników sezonu. Wszystkie z zaproponowanych schematów przedstawiono w postaci algorytmów i pseudokodów, co znacznie ułatwia ich zrozumienie i implementację w dowolnym języku programowania.  
 
 \section{Opis danych}
-Dane, które będą wykorzystywane do symulacji sezonu, tak jak i terminarze, zostały zebrane z najpopularniejszej statystycznej stronie internetowej poświęconej koszykówce. \cite{dane}.
-Na potrzeby tej pracy zebrano wyniki starć pomiędzy drużynami, począwszy od sezonu 2004/2005 aż do 2017/2018. Początkowo symulowano rozgrywki sezonów 2014/2015 oraz 2017/2018 w celu wybrania najlepszego modelu, a następnie skorzystano z niego, aby przewidzieć wyniki rozgrywek we wciąż trwającym sezonie 2018/2019.
+Dane, które będą wykorzystywane do symulacji sezonu, tak jak i terminarze, zostały zebrane z najpopularniejszej statystycznej stronie internetowej poświęconej koszykówce. \cite{dane}. Na potrzeby tej pracy zebrano wyniki starć pomiędzy drużynami, począwszy od sezonu 2004/2005 aż do 2017/2018. Początkowo symulowano rozgrywki sezonów 2014/2015 oraz 2017/2018 w celu wybrania najlepszego modelu, a następnie skorzystano z niego, aby przewidzieć wyniki rozgrywek we wciąż trwającym sezonie 2018/2019.
 Posiadając liczbę wygranych jednej drużyny z drugą na przestrzeni lat, dokonano następujących transformacji danych:
 \\
 \hspace*{6mm}W zależności od przedziału czasowego, jaki będziemy rozpatrywać, zebrano wyniki w określonych rozgrywkach (na przykład, przy wyznaczaniu wyników sezonu 2014/2015 i przedziale 5 lat, używać będziemy danych z lat 2009 do 2014). Dzięki uzyskanej w ten sposób liczbie wygranych możemy wyznaczyć stosunek zwycięstw do porażek dla wybranych zespołów (przykład: Boston Celtics i Atlanta Hawks grały ze sobą 10 razy, druga z drużyn wygrała zaledwie 4 razy, dlatego też w starciu z Celtami ich szansa na wygraną wynosi $0.4$). Po zastosowaniu tej metody dla wszystkich zespołów uzyskano macierz o liczbie wierszy i kolumn odpowiadającej ilości drużyn w NBA, zawierającą prawdopodobieństwa na wygraną z każdym zespołem w lidze. Przykładowa postać danych zawarta została w tabeli \ref{dane_tabela}.
@@ -796,7 +795,7 @@ Ze względu na dużą ilość tabel z danymi i wygenerowanych dla nich wykresów
 	ESPN: ,,Summer Forecast: East standings, West standings for 2018-19'', 14 sierpnia 2018, [dostęp: 9 grudnia 2018], \textit{<http://www.espn.com/nba/story/\_/id/24365036/nba-standings-predictions-espn-summer-forecast>}
 	
 	\bibitem{monte}
-	M. Haugh: ,,Generating Random Variables and Stochastic Processes'', Columbia University, 2017, [dostęp: 4 grudnia 2018], \textit{<http://www.columbia.edu/~mh2078/MonteCarlo/MCS\_Generate\_RVars.pdf>}
+	M. Haugh: ,,Generating Random Variables and Stochastic Processes'', Columbia University, 2017, [dostęp: 4 grudnia 2018], \textit{<http://www.columbia.edu/\textasciitilde mh2078/MonteCarlo/MCS\_Generate\_RVars.pdf>}
 	
 	\bibitem{graphicalNBA}
 	M. Oh, S. Keshri, G. Iyengar: ,,Graphical Model for Baskeball Match Simulation'', Sloan Sports Analytics Conference, 2015 [dostęp: 1 grudnia 2018], \textit{<http://www.sloansportsconference.com/wp-content/uploads/2015/02/SSAC15-RP-Finalist-Graphical-model-for-basketball-match-simulation.pdf>}
@@ -805,7 +804,7 @@ Ze względu na dużą ilość tabel z danymi i wygenerowanych dla nich wykresów
 	N. Sandholtz, L. Bornn: ,,Replaying the NBA'', Sloan Sports Analytics Conference, 2018 [dostęp: 5 grudnia 2018], \textit{<http://www.lukebornn.com/papers/sandholtz\_ssac\_2018.pdf>}
 		
 	\bibitem{bootstrap2} %nie uzywane
-	C. Shalizi: ,,The Bootstrap'', 3 luty 2011, [dostęp: 3 grudnia 2018], \textit{<https://www.stat.cmu.edu/~cshalizi/402/lectures/08-bootstrap/lecture-08.pdf>}
+	C. Shalizi: ,,The Bootstrap'', 3 luty 2011, [dostęp: 3 grudnia 2018], \textit{<https://www.stat.cmu.edu/\textasciitilde cshalizi/402/lectures/08-bootstrap/lecture-08.pdf>}
 	
 	\bibitem{bootstrap1}
 	K. Singh, M. Xie: ,,Bootstrap: A Statistical Method'', Rutgers University, [dostęp: 16 grudnia 2018], \textit{<http://www.stat.rutgers.edu/home/mxie/stat586/handout/Bootstrap1.pdf>}
